@@ -10,14 +10,13 @@
       "error",
       {
         "groups": [
-          "index",
-          "sibling",
-          "parent",
-          "internal",
-          "external",
           "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
           "object",
-          "type"
+          "type",
+          "index"
         ],
         "alphabetize": {
           "order": "asc"
