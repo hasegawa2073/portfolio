@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { CSSProperties } from 'react';
 
+import { roboto } from '@/pages/_app';
+
 import styles from './NavigationButton.module.scss';
 
 const labels = ['Home', 'About', 'Works', 'GitHub', 'Contact'] as const;
@@ -64,7 +66,7 @@ const NavigationButton = ({ type, style }: Props) => {
             <FontAwesomeIcon icon={Button.icon} style={style} />
           </div>
         </button>
-        <p className={styles.label}>{Button.type}</p>
+        <p className={`${styles.label} ${roboto.className}`}>{Button.type}</p>
       </Link>
     </div>
   );

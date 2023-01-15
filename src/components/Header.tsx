@@ -5,11 +5,13 @@ const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <NavigationButton type="Home" />
-        <NavigationButton type="About" />
-        <NavigationButton type="Works" />
-        <NavigationButton type="GitHub" />
-        <NavigationButton type="Contact" />
+        <nav className={styles.nav}>
+          <NavigationButton type="Home" />
+          <NavigationButton type="About" />
+          <NavigationButton type="Works" />
+          <NavigationButton type="GitHub" />
+          <NavigationButton type="Contact" />
+        </nav>
       </header>
     </>
   );

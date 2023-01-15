@@ -9,9 +9,15 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <div className={styles.layout}>
         <div className={styles.glass}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <div className={styles.header}>
+            <Header />
+          </div>
+          <div className={styles.content}>
+            <main className={styles.main}>{children}</main>
+          </div>
+          <div className={styles.footer}>
+            <Footer />
+          </div>
         </div>
         <div className={styles.circle_s}></div>
         <div className={styles.circle_m}></div>

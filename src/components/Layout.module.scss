@@ -5,17 +5,38 @@
   overflow: hidden;
 }
 
+.header {
+  grid-column: 1 / 3;
+  padding: 64px 0;
+  text-align: center;
+}
+
+.content {
+  grid-column: 3 / 13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .glass {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   margin: 0 auto;
+  padding: 0 20px;
   max-width: 1360px;
-  height: 800px;
   background-color: rgba($color: #ffffff, $alpha: 0.1);
   border-radius: 40px;
   border: 1px solid rgba($color: #ffffff, $alpha: 0.3);
   backdrop-filter: blur(80px);
   box-shadow: inset 0 0 30px rgba($color: #ffffff, $alpha: 0.5);
   z-index: 0;
+}
+
+.footer {
+  grid-column: 1 / 13;
+  grid-row: 2 / 3;
+  text-align: center;
 }
 
 .circle_s {
