@@ -1,0 +1,33 @@
+$btn-s: 40px;
+$btn-m: 56px;
+$btn-l: 80px;
+
+.wrapper {
+  display: inline-block;
+}
+.box {
+  display: inline-block;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: var(--c-white);
+}
+.button {
+  display: grid;
+  place-items: center;
+  width: $btn-l;
+  height: $btn-l;
+  background-color: var(--c-white);
+  border-radius: 17.5%;
+}
+.icon {
+  width: $btn-l;
+  line-height: $btn-l;
+  color: var(--c-navy);
+  font-size: 3.2rem;
+}
+.label {
+  display: inline-block;
+  width: 100%;
+  padding-top: 8px;
+  font-size: 1.5rem;
+}
