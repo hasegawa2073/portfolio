@@ -9,5 +9,10 @@ html {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 body {
-  background-color: tomato;
+  background-color: #106;
+  background-image: radial-gradient(at 0 0, #f70, transparent 40%),
+    radial-gradient(at 0 40%, #0df, transparent 40%),
+    radial-gradient(at 40% 60%, #01f, transparent 80%),
+    radial-gradient(at 0 100%, #faa, transparent 50%);
+  background-attachment: fixed;
 }
