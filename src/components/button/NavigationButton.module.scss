@@ -5,6 +5,10 @@ $btn-l: 80px;
 .wrapper {
   position: relative;
   display: inline-block;
+  transition: scale 0.6s;
+  &:hover {
+    scale: 1.2;
+  }
 }
 .box {
   display: inline-block;
