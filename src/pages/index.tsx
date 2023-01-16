@@ -1,7 +1,8 @@
+// eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
 
-import styles from './index.module.scss';
 // eslint-disable-next-line import/order
+import styles from '@/styles/index.module.scss';
 import { cormorant, robotoCondensed } from './_app';
 
 export default function Home() {
