@@ -4,7 +4,9 @@ import { Cormorant, Noto_Sans_JP, Roboto, Roboto_Condensed } from '@next/font/go
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import type { AppProps } from 'next/app';
+
 import 'ress';
 config.autoAddCss = false;
 
