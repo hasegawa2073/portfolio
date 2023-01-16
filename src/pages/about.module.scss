@@ -1,0 +1,58 @@
+.section {
+  color: var(--c-white);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+.ttl {
+  text-align: center;
+  padding-bottom: 64px;
+}
+.ttl_l {
+  font-size: 8rem;
+  letter-spacing: 0.125em;
+}
+.sub_ttl {
+  margin-top: -1em;
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+.icon {
+  border-radius: 50%;
+}
+.name {
+  font-size: 3.2rem;
+  letter-spacing: 0.15em;
+  padding-bottom: 16px;
+}
+.profile {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+.profile_txt {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.125em;
+  & > :not(:last-child) {
+    padding-bottom: 8px;
+  }
+}
+
+.content {
+  padding-top: 70px;
+}
+.ttl_en {
+  font-size: 6.4rem;
+  letter-spacing: 0.08em;
+}
+.ttl_jp {
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+.description {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: 1.6rem;
+  letter-spacing: 0.16em;
+  line-height: 3;
+}

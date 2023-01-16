@@ -1,5 +1,5 @@
 import '@/styles/globals.scss';
-import { Cormorant, Noto_Sans_JP, Roboto, Roboto_Condensed } from '@next/font/google';
+import { Caveat, Cormorant, Noto_Sans_JP, Roboto, Roboto_Condensed } from '@next/font/google';
 // eslint-disable-next-line import/order
 import { config } from '@fortawesome/fontawesome-svg-core';
 
@@ -15,7 +15,7 @@ export const cormorant = Cormorant({
   subsets: ['latin'],
 });
 export const notoSansJP = Noto_Sans_JP({
-  weight: '400',
+  weight: ['100', '500'],
   subsets: ['latin'],
 });
 export const roboto = Roboto({
@@ -24,6 +24,10 @@ export const roboto = Roboto({
 });
 export const robotoCondensed = Roboto_Condensed({
   weight: '300',
+  subsets: ['latin'],
+});
+export const caveat = Caveat({
+  weight: '400',
   subsets: ['latin'],
 });
 
