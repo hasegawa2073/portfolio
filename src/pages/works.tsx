@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Layout from '@/components/Layout';
 import { client } from '@/libs/client';
@@ -19,13 +20,15 @@ const Works = ({ works }: any) => {
             </div>
             {works.map((work: Work) => (
               <div key={work.id} className={styles.item}>
-                <Image
-                  src={work.thumbnail.url}
-                  width={work.thumbnail.width}
-                  height={work.thumbnail.height}
-                  alt={work.name}
-                  className={styles.thumbnail}
-                />
+                <Link href={`/works/${work.id}`}>
+                  <Image
+                    src={work.thumbnail.url}
+                    width={work.thumbnail.width}
+                    height={work.thumbnail.height}
+                    alt={work.name}
+                    className={styles.thumbnail}
+                  />
+                </Link>
               </div>
             ))}
           </section>

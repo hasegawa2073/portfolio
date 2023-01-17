@@ -22,6 +22,7 @@ export type Work = {
     width: number;
   };
   shortName: string;
+  url: string;
 };
 
 export type Works = Work[];
