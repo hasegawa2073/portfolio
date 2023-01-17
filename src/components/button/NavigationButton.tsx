@@ -12,7 +12,7 @@ import { CSSProperties } from 'react';
 
 import { roboto } from '@/pages/_app';
 
-import { PageType } from '../types/PageType';
+import { PageType } from '../../types/pageType';
 // eslint-disable-next-line import/order
 import styles from './NavigationButton.module.scss';
 

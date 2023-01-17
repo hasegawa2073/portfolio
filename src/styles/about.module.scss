@@ -1,19 +1,18 @@
+@import './variables.scss';
+
 .section {
-  color: var(--c-white);
-  padding: var(--section-pt) 0 var(--section-pb);
+  @include section;
 }
 .ttl {
   text-align: center;
   padding-bottom: 64px;
 }
 .ttl_l {
-  font-size: 8rem;
-  letter-spacing: 0.125em;
+  @include ttl_l;
 }
 .sub_ttl {
+  @include ttl_s;
   margin-top: -1em;
-  font-size: 1.4rem;
-  font-weight: 100;
 }
 .icon {
   border-radius: 50%;

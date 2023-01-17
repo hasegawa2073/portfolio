@@ -1,0 +1,12 @@
+@mixin ttl_l {
+  font-size: 8rem;
+  letter-spacing: 0.125em;
+}
+@mixin ttl_s {
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+@mixin section {
+  color: var(--c-white);
+  padding: var(--section-pt) 0 var(--section-pb);
+}

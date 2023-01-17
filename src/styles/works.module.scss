@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+.section {
+  @include section;
+}
+.ttl {
+  text-align: center;
+  padding-bottom: 64px;
+}
+.ttl_l {
+  @include ttl_l;
+}
+.sub_ttl {
+  @include ttl_s;
+  margin-top: -1em;
+}
+.item:not(:last-child) {
+  margin-bottom: 80px;
+}
+.thumbnail {
+  max-width: 760px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
