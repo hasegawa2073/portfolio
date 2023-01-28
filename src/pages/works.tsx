@@ -1,3 +1,4 @@
+import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,7 +9,8 @@ import { Work, Works } from '@/types/work';
 
 import { caveat, notoSansJP } from './_app';
 
-const Works = ({ works }: any) => {
+// @ts-ignore
+const Works: NextPage<Works> = ({ works }) => {
   return (
     <>
       <div className={notoSansJP.className}>
@@ -27,6 +29,7 @@ const Works = ({ works }: any) => {
                     height={work.thumbnail.height}
                     alt={work.name}
                     className={styles.thumbnail}
+                    priority
                   />
                 </Link>
               </div>
@@ -38,13 +41,12 @@ const Works = ({ works }: any) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (): Promise<GetStaticPropsResult<Works>> => {
   const data = await client?.get({ endpoint: 'works' });
   const contents: Works = data.contents;
   return {
-    props: {
-      works: contents,
-    },
+    // @ts-ignore
+    props: { works: contents },
   };
 };
 
