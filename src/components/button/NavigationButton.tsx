@@ -27,6 +27,7 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
     type: PageType;
     link: string;
     icon: IconDefinition;
+    targetBrank?: boolean;
   };
   const buttons: Button[] = [
     {
@@ -48,6 +49,7 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
       type: 'GitHub',
       link: 'https://github.com/hasegawa2073',
       icon: faGithub,
+      targetBrank: true,
     },
     {
       type: 'Contact',
@@ -62,7 +64,7 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <Link href={Button.link} className={styles.box}>
+        <Link href={Button.link} className={styles.box} target={Button.targetBrank ? '_blank' : ''}>
           <button className={styles.button}>
             <div className={styles.icon}>
               <FontAwesomeIcon icon={Button.icon} style={style} />
