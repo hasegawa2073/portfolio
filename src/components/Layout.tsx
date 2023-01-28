@@ -20,20 +20,22 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <CurrentContext.Provider value={pathName}>
         <div className={styles.layout}>
-          <div className={styles.glass}>
+          <div className={styles.glassBox}>
             <div className={styles.header}>
               <Header />
             </div>
-            <div className={styles.content}>
-              <main className={styles.main}>{children}</main>
+            <div className={styles.glass}>
+              <div className={styles.content}>
+                <main className={styles.main}>{children}</main>
+              </div>
+              <div className={styles.footer}>
+                <Footer />
+              </div>
             </div>
-            <div className={styles.footer}>
-              <Footer />
-            </div>
+            <div className={styles.circle_s}></div>
+            <div className={styles.circle_m}></div>
+            <div className={styles.circle_l}></div>
           </div>
-          <div className={styles.circle_s}></div>
-          <div className={styles.circle_m}></div>
-          <div className={styles.circle_l}></div>
         </div>
       </CurrentContext.Provider>
     </>
