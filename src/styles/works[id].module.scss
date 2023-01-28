@@ -31,14 +31,26 @@
   font-size: 2.2rem;
   font-weight: 300;
 }
-.item_ttl {
-  font-size: 2rem;
-  font-weight: 100;
-  padding-bottom: 4px;
+.detailSection {
+  display: flex;
+  gap: 32px;
 }
-.item_val {
-  font-size: 1.6rem;
-  padding-bottom: 22px;
+.detail {
+  :last-child {
+    padding: 0;
+  }
+  &__box {
+    padding-bottom: 24px;
+  }
+  &__ttl {
+    font-size: 2rem;
+    font-weight: 300;
+    padding-bottom: 4px;
+  }
+  &__txt {
+    font-size: 1.6rem;
+    font-weight: 100;
+  }
 }
 .work {
   display: inline-block;

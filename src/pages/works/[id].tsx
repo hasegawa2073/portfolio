@@ -36,30 +36,35 @@ const WorkId = ({ work }: any) => {
                 className={styles.thumbnail}
               />
             </div>
-            <div className={styles.name_box}>
-              <p className={styles.date}>{work.date}</p>
-              <h2 className={styles.name}>{work.name}</h2>
-            </div>
-
-            {items.map((item) => (
-              <div key={item.title}>
-                <h3 className={styles.item_ttl}>{item.title}</h3>
-                <p className={styles.item_val}>{item.value}</p>
+            <section>
+              <div className={styles.name_box}>
+                <p className={styles.date}>{work.date}</p>
+                <h2 className={styles.name}>{work.name}</h2>
               </div>
-            ))}
-            <section className={styles.work}>
-              <Link href={work.url} target="_blank">
-                <div className={styles.work__iconBox}>
-                  <Image
-                    src={work.icon.url}
-                    width={work.icon.width}
-                    height={work.icon.height}
-                    alt={work.shortName}
-                    className={styles.work__icon}
-                  />
-                </div>
-              </Link>
-              <h3 className={styles.work__shortName}>{work.shortName}</h3>
+              <section className={styles.detailSection}>
+                <section className={styles.detail}>
+                  {items.map((item) => (
+                    <div key={item.title} className={styles.detail__box}>
+                      <h3 className={styles.detail__ttl}>{item.title}</h3>
+                      <p className={styles.detail__txt}>{item.value}</p>
+                    </div>
+                  ))}
+                </section>
+                <section className={styles.work}>
+                  <Link href={work.url} target="_blank">
+                    <div className={styles.work__iconBox}>
+                      <Image
+                        src={work.icon.url}
+                        width={work.icon.width}
+                        height={work.icon.height}
+                        alt={work.shortName}
+                        className={styles.work__icon}
+                      />
+                    </div>
+                  </Link>
+                  <h3 className={styles.work__shortName}>{work.shortName}</h3>
+                </section>
+              </section>
             </section>
           </section>
         </Layout>
