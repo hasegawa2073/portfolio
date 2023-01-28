@@ -1,3 +1,4 @@
+import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,7 +9,7 @@ import { Work } from '@/types/work';
 
 import { caveat, notoSansJP } from '../_app';
 
-const WorkId = ({ work }: any) => {
+const WorkId: NextPage<Work> = (work) => {
   const items = [
     { title: '担当領域', value: work.role },
     { title: '使用技術', value: work.tech },
@@ -16,7 +17,6 @@ const WorkId = ({ work }: any) => {
     { title: '工夫したところ', value: work.point },
     { title: '使用ツール', value: work.tool },
   ];
-  type Item = typeof items;
 
   return (
     <>
@@ -78,13 +78,13 @@ export const getStaticPaths = async () => {
   const paths = data.contents.map((content: Work) => `/works/${content.id}`);
   return { paths, fallback: false };
 };
-export const getStaticProps = async (context: { params: { id: string } }) => {
+export const getStaticProps = async (context: {
+  params: { id: string };
+}): Promise<GetStaticPropsResult<Work>> => {
   const id = context.params.id;
   const data = await client?.get({ endpoint: 'works', contentId: id });
   return {
-    props: {
-      work: data,
-    },
+    props: data,
   };
 };
 export default WorkId;
