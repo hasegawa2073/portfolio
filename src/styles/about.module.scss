@@ -49,9 +49,13 @@
   font-weight: 100;
 }
 .description {
+  text-align: center;
   margin: 0 auto;
   max-width: 640px;
   font-size: 1.6rem;
   letter-spacing: 0.16em;
   line-height: 3;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
 }

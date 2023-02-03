@@ -10,22 +10,34 @@ const profile = {
   name: 'Tatsuya Hasegawa',
   birth: '2001年6月18日',
   hobby: '散歩',
-  favoriteFood: 'ピーマン',
-  experience: 'アルバイトでフロントエンド開発経験あり(3ヶ月)',
+  favoriteFood: '砂ずり・ミノ・ピーマン・れんこん',
+  experience: 'スタートアップでフロントエンド開発経験あり(3ヶ月)',
 };
 
 const contents = [
   {
     ttlEn: 'My joy',
     ttlJP: '喜びに感じること',
-    description:
-      '実際に触れることのできるフロントエンドを開発することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。',
+    descriptions: [
+      [
+        '実際に触れることのできるフロントエンドを開発することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。',
+      ],
+    ],
   },
   {
     ttlEn: 'My effort',
     ttlJP: '私の取り組み',
-    description:
-      '2022年11月より、株式会社Univearthで運送会社向け協力会社管理クラウドのフロントエンド開発の業務に携わっております。個人としては、小さなアプリケーションを作成して日々、技術力の向上に努めています。フロントエンドだけでなく、バックエンドやUIデザインの隣接領域にも視野を広げて、自立したエンジニアを目指しています。',
+    descriptions: [
+      [
+        '2022年11月より、株式会社Univearthで運送会社向け協力会社管理クラウドのフロントエンド開発の業務に携わっております。',
+      ],
+      [
+        '開発業務に併せて営業資料の作成やランディングページのデザイン・コーディングなど、守備範囲を広げて取り組んでおります。',
+      ],
+      [
+        '個人としては、小さなアプリケーションを作成して日々、技術力の向上に努めています。フロントエンドだけでなく、バックエンドやUIデザインの隣接領域にも視野を広げて、自立したエンジニアを目指しています。',
+      ],
+    ],
   },
 ];
 
@@ -64,7 +76,11 @@ const About = () => {
                 <h2 className={`${caveat.className} ${styles.ttl_en}`}>{content.ttlEn}</h2>
                 <p className={styles.ttl_jp}>{content.ttlJP}</p>
               </div>
-              <p className={styles.description}>{content.description}</p>
+              {content.descriptions.map((description) => (
+                <>
+                  <p className={styles.description}>{description}</p>
+                </>
+              ))}
             </div>
           ))}
         </section>
