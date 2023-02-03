@@ -76,10 +76,10 @@ const About = () => {
                 <h2 className={`${caveat.className} ${styles.ttl_en}`}>{content.ttlEn}</h2>
                 <p className={styles.ttl_jp}>{content.ttlJP}</p>
               </div>
-              {content.descriptions.map((description) => (
-                <>
-                  <p className={styles.description}>{description}</p>
-                </>
+              {content.descriptions.map((description, index) => (
+                <p key={index} className={styles.description}>
+                  {description}
+                </p>
               ))}
             </div>
           ))}
