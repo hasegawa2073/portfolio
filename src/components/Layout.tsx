@@ -20,7 +20,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <CurrentContext.Provider value={pathName}>
         <div className={styles.layout}>
-          <div className={styles.glassBox}>
+          <div className={styles.glassContainer}>
             <div className={styles.header}>
               <Header />
             </div>
