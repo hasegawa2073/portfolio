@@ -16,12 +16,12 @@ export type Work = {
   summary: string;
   point: string;
   tool: string;
-  icon: {
+  icon?: {
     url: string;
     height: number;
     width: number;
   };
-  shortName: string;
+  shortName?: string;
   url: string;
 };
 

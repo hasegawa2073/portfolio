@@ -14,11 +14,19 @@
   @include ttl_s;
   margin-top: -1em;
 }
+.thumbnailContainer {
+  width: 100%;
+  text-align: center;
+}
 .thumbnail {
   max-width: 760px;
   width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+.contentContainer {
+  max-width: 760px;
 }
 .name_box {
   padding: 22px 0 40px;
@@ -34,6 +42,9 @@
 .detailSection {
   display: flex;
   gap: 32px;
+  &__NoIcon {
+    display: inline;
+  }
 }
 .detail {
   :last-child {
@@ -60,7 +71,7 @@
     margin-bottom: 12px;
   }
   &__icon {
-    width: 240px;
+    max-width: 240px;
     height: auto;
     border-radius: 17.5%;
   }

@@ -27,7 +27,7 @@ const WorkId: NextPage<Work> = (work) => {
               <h1 className={`${caveat.className} ${styles.ttl_l}`}>Work</h1>
               <p className={styles.sub_ttl}>作品の詳細</p>
             </div>
-            <div>
+            <div className={styles.thumbnailContainer}>
               <Image
                 src={work.thumbnail.url}
                 width={work.thumbnail.width}
@@ -36,12 +36,16 @@ const WorkId: NextPage<Work> = (work) => {
                 className={styles.thumbnail}
               />
             </div>
-            <section>
+            <section className={styles.contentContainer}>
               <div className={styles.name_box}>
                 <p className={styles.date}>{work.date}</p>
                 <h2 className={styles.name}>{work.name}</h2>
               </div>
-              <section className={styles.detailSection}>
+              <section
+                className={`${
+                  work.icon?.url ? styles.detailSection : styles.detailSection__NoIcon
+                }`}
+              >
                 <section className={styles.detail}>
                   {items.map((item) => (
                     <div key={item.title} className={styles.detail__box}>
@@ -50,20 +54,24 @@ const WorkId: NextPage<Work> = (work) => {
                     </div>
                   ))}
                 </section>
-                <section className={styles.work}>
-                  <Link href={work.url} target="_blank">
-                    <div className={styles.work__iconBox}>
-                      <Image
-                        src={work.icon.url}
-                        width={work.icon.width}
-                        height={work.icon.height}
-                        alt={work.shortName}
-                        className={styles.work__icon}
-                      />
-                    </div>
-                  </Link>
-                  <h3 className={styles.work__shortName}>{work.shortName}</h3>
-                </section>
+                {work.icon && work.shortName ? (
+                  <section className={styles.work}>
+                    <Link href={work.url} target="_blank">
+                      <div className={styles.work__iconBox}>
+                        <Image
+                          src={work.icon.url}
+                          width={work.icon.width}
+                          height={work.icon.height}
+                          alt={work.shortName}
+                          className={styles.work__icon}
+                        />
+                      </div>
+                    </Link>
+                    <h3 className={styles.work__shortName}>{work.shortName}</h3>
+                  </section>
+                ) : (
+                  ''
+                )}
               </section>
             </section>
           </section>
