@@ -53,7 +53,7 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
     },
     {
       type: 'Contact',
-      link: '/',
+      link: '/contact',
       icon: faEnvelope,
     },
   ];
