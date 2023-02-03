@@ -18,7 +18,7 @@ const Works: NextPage<Works> = ({ works }) => {
           <section className={styles.section}>
             <div className={styles.ttl}>
               <h1 className={`${caveat.className} ${styles.ttl_l}`}>Works</h1>
-              <p className={styles.sub_ttl}>過去の作品</p>
+              <p className={styles.sub_ttl}>過去の制作物</p>
             </div>
             {works.map((work: Work) => (
               <div key={work.id} className={styles.item}>

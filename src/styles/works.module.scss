@@ -14,12 +14,22 @@
   @include ttl_s;
   margin-top: -1em;
 }
-.item:not(:last-child) {
-  margin-bottom: 80px;
+.item {
+  overflow: hidden;
+  border-radius: 10px;
+  &:not(:last-child) {
+    max-width: 760px;
+    margin-bottom: 80px;
+    overflow: hidden;
+  }
 }
 .thumbnail {
   max-width: 760px;
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  vertical-align: bottom;
+  transition: transform 0.6s ease;
+  &:hover {
+    transform: scale(1.12);
+  }
 }

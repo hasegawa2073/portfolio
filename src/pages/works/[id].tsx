@@ -16,6 +16,7 @@ const WorkId: NextPage<Work> = (work) => {
     { title: '概要', value: work.summary },
     { title: '工夫したところ', value: work.point },
     { title: '使用ツール', value: work.tool },
+    { title: '制作物URL', value: work.url },
   ];
 
   return (
@@ -25,7 +26,7 @@ const WorkId: NextPage<Work> = (work) => {
           <section className={styles.section}>
             <div className={styles.ttl}>
               <h1 className={`${caveat.className} ${styles.ttl_l}`}>Work</h1>
-              <p className={styles.sub_ttl}>作品の詳細</p>
+              <p className={styles.sub_ttl}>制作物の詳細</p>
             </div>
             <div className={styles.thumbnailContainer}>
               <Image
@@ -50,7 +51,15 @@ const WorkId: NextPage<Work> = (work) => {
                   {items.map((item) => (
                     <div key={item.title} className={styles.detail__box}>
                       <h3 className={styles.detail__ttl}>{item.title}</h3>
-                      <p className={styles.detail__txt}>{item.value}</p>
+                      {item.value === work.url ? (
+                        <p className={styles.detail__txt}>
+                          <Link href={item.value} target="_blank" className={styles.detail__url}>
+                            {item.value}
+                          </Link>
+                        </p>
+                      ) : (
+                        <p className={styles.detail__txt}>{item.value}</p>
+                      )}
                     </div>
                   ))}
                 </section>
