@@ -1,0 +1,77 @@
+@import './variables.scss';
+
+$formBorderRadius: 6px;
+
+.section {
+  @include section;
+}
+.ttl {
+  text-align: center;
+  padding-bottom: 64px;
+}
+.ttl_l {
+  @include ttl_l;
+}
+.sub_ttl {
+  @include ttl_s;
+  margin-top: -1em;
+}
+
+.form {
+  padding: 24px 0;
+  text-align: center;
+  max-width: 760px;
+  &__personInfoContainer {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  &__personInfo {
+    width: 100%;
+    min-width: 320px;
+  }
+  &__message {
+    margin-bottom: 48px;
+  }
+  &__item {
+    font-size: 1.8rem;
+  }
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    text-align: start;
+    font-weight: 600;
+    color: var(--c-white);
+    letter-spacing: 0.08em;
+  }
+  &__text {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1.6rem;
+    color: var(--c-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $formBorderRadius;
+  }
+  &__textArea {
+    resize: vertical;
+    min-height: 200px;
+  }
+  &__button {
+    display: inline-block;
+    padding: 16px 88px;
+    letter-spacing: 0.16em;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--c-white);
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.02);
+    box-shadow: inset 0 0 60px rgb(255 255 255 / 6%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $formBorderRadius;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
