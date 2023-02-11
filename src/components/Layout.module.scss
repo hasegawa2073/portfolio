@@ -34,11 +34,11 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  background-color: rgba($color: #ffffff, $alpha: 0.1);
-  border-radius: 40px;
-  border: 1px solid rgba($color: #ffffff, $alpha: 0.3);
-  box-shadow: inset 0 0 30px rgba($color: #ffffff, $alpha: 0.5);
-  backdrop-filter: blur(50px);
+  background-color: rgba($color: #ffffff, $alpha: 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba($color: #ffffff, $alpha: 0.25);
+  box-shadow: inset 0 0 20px rgba($color: #ffffff, $alpha: 0.1);
+  backdrop-filter: blur(80px);
   z-index: 0;
 }
 
@@ -52,8 +52,10 @@
   position: absolute;
   top: 4.8%;
   left: calc(50% - 200px);
-  width: 440px;
-  height: 440px;
+  width: 28vw;
+  height: 28vw;
+  min-width: 200px;
+  min-height: 200px;
   background: radial-gradient(#539ee3, #eaeaea);
   border-radius: 50%;
   filter: blur(10px);
@@ -64,8 +66,10 @@
   position: absolute;
   bottom: 10%;
   right: 7%;
-  width: 580px;
-  height: 580px;
+  width: calc(30vw + 100px);
+  height: calc(30vw + 100px);
+  min-width: 260px;
+  min-height: 260px;
   background: radial-gradient(#53e37c, #eaeaea);
   border-radius: 50%;
   filter: blur(20px);
@@ -76,8 +80,10 @@
   position: absolute;
   bottom: -18%;
   left: -12%;
-  width: 700px;
-  height: 700px;
+  width: calc(30vw + 200px);
+  height: calc(30vw + 200px);
+  min-height: 400px;
+  min-height: 400px;
   background: radial-gradient(#b94fca, #eaeaea);
   border-radius: 50%;
   filter: blur(30px);
