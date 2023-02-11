@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import React, { useRef } from 'react';
 
 // eslint-disable-next-line import/order
@@ -11,23 +13,27 @@ import { caveat, notoSansJP } from './_app';
 import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
+  const router = useRouter();
+
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const res = await fetch('/api/sendMail', {
-      method: 'post',
-      body: JSON.stringify({
+    e.preventDefault();
+    axios
+      .post('/api/sendMail', {
         name: nameRef.current?.value,
         email: emailRef.current?.value,
         text: messageRef.current?.value,
-      }),
-    });
-    if (res.status === 200) {
-      console.log('Response succeeded!');
-    } else {
-      console.log(`Error: Status Code ${res.status}`);
-    }
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .then((err) => {
+        console.log(err);
+      });
+    router.push('/');
   };
 
   return (
@@ -38,12 +44,7 @@ const Contact = () => {
             <h1 className={`${caveat.className} ${styles.ttl_l}`}>Contact</h1>
             <p className={styles.sub_ttl}>お問い合わせ</p>
           </div>
-          <form
-            action="/api/sendMail"
-            method="post"
-            className={styles.form}
-            onSubmit={(e) => handleSubmit(e)}
-          >
+          <form method="post" className={styles.form} onSubmit={(e) => handleSubmit(e)}>
             <div className={styles.form__personInfoContainer}>
               <div className={`${styles.form__item} ${styles.form__personInfo}`}>
                 <label htmlFor="name" className={styles.form__label}>

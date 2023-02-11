@@ -4,42 +4,28 @@ import { createTransport } from 'nodemailer';
 import { EmailContent } from '@/types/emailContent';
 
 const sendMail = async (req: NextApiRequest, res: NextApiResponse) => {
-  const transporter = createTransport({
-    // @ts-ignore
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      type: 'OAuth2',
-      user: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
-      pass: process.env.NEXT_PUBLIC_MAIL_AUTH_PASS,
-      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-      refreshToken: process.env.NEXT_PUBLIC_REFRESH_TOKEN,
-      accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
-    },
-  });
-
-  const data: EmailContent = JSON.parse(JSON.stringify(req.body));
-
-  const message = {
-    from: data.email,
-    to: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
-    subject: data.name,
-    text: data.text,
-  };
-  if (req.method === 'POST') {
-    transporter.sendMail(message, (err, info) => {
-      if (err) {
-        res.status(404).json({
-          error: `Connection refused at ${err}`,
-        });
-      } else {
-        res.status(250).json({
-          success: `Message deliverd to ${info.accepted}`,
-        });
-      }
+  try {
+    const data: EmailContent = JSON.parse(JSON.stringify(req.body));
+    const transporter = createTransport({
+      // @ts-ignore
+      host: process.env.NEXT_PUBLIC_MAIL_HOST,
+      port: process.env.NEXT_PUBLIC_MAIL_PORT,
+      secure: process.env.NEXT_PUBLIC_MAIL_SECURE,
+      auth: {
+        user: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
+        pass: process.env.NEXT_PUBLIC_MAIL_AUTH_PASS,
+      },
     });
+    const info = await transporter.sendMail({
+      from: data.email,
+      to: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
+      subject: data.name,
+      text: data.text,
+    });
+    res.status(200).send('送信成功');
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('送信失敗');
   }
 };
 
