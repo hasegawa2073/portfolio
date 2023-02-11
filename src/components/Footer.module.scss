@@ -1,7 +1,14 @@
 .footer {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   font-family: 'Roboto', sans-serif;
+  font-weight: 100;
   font-size: 0.8rem;
-  color: rgba($color: #ffffff, $alpha: 0.5);
-  letter-spacing: 0.6em;
-  padding-bottom: 20px;
+  color: var(--c-white);
+  letter-spacing: 0.32em;
+  padding-bottom: 28px;
+  text-align: right;
+  &__copy {
+    grid-column: 8/12;
+  }
 }

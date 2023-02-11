@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
       <footer className={`${styles.footer} ${roboto.className}`}>
-        <p>
+        <p className={styles.footer__copy}>
           <small>&copy; 2023 Tatsuya Hasegawa</small>
         </p>
       </footer>
