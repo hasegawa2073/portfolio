@@ -1,10 +1,20 @@
+@mixin ttl_container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+  text-align: center;
+  padding-bottom: 64px;
+}
+
 @mixin ttl_l {
   font-size: 8rem;
-  letter-spacing: 0.125em;
+}
+@mixin ttl_m {
+  font-size: 6.4rem;
 }
 @mixin ttl_s {
-  font-size: 1.4rem;
-  font-weight: 100;
+  font-size: 1.2rem;
 }
 @mixin section {
   color: var(--c-white);

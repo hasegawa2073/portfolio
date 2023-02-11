@@ -10,7 +10,7 @@ const profile = {
   name: 'Tatsuya Hasegawa',
   birth: '2001年6月18日',
   hobby: '散歩',
-  favoriteFood: '砂ずり・ミノ・ピーマン・れんこん',
+  favoriteFood: '砂ずり・ミノ・魚介で出汁を取ったラーメン',
   experience: 'スタートアップでフロントエンド開発経験あり(3ヶ月)',
 };
 
@@ -46,11 +46,11 @@ const About = () => {
     <div className={notoSansJP.className}>
       <Layout>
         <section className={styles.section}>
-          <div className={styles.ttl}>
-            <h1 className={`${caveat.className} ${styles.ttl_l}`}>About</h1>
+          <div className={styles.ttl_container}>
+            <h1 className={`${caveat.className} ${styles.main_ttl}`}>About</h1>
             <p className={styles.sub_ttl}>私について</p>
           </div>
-          <div className={styles.profile}>
+          <section className={styles.profile}>
             <Image
               src="/my-icon.jpg"
               width={200}
@@ -68,11 +68,10 @@ const About = () => {
                 <p>開発経験：{profile.experience}</p>
               </div>
             </div>
-          </div>
-
+          </section>
           {contents.map((content) => (
-            <div key={content.ttlEn} className={styles.content}>
-              <div className={styles.ttl}>
+            <section key={content.ttlEn} className={styles.content}>
+              <div className={styles.ttl_container}>
                 <h2 className={`${caveat.className} ${styles.ttl_en}`}>{content.ttlEn}</h2>
                 <p className={styles.ttl_jp}>{content.ttlJP}</p>
               </div>
@@ -81,7 +80,7 @@ const About = () => {
                   {description}
                 </p>
               ))}
-            </div>
+            </section>
           ))}
         </section>
       </Layout>

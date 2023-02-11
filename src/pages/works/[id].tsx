@@ -24,8 +24,8 @@ const WorkId: NextPage<Work> = (work) => {
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>
-            <div className={styles.ttl}>
-              <h1 className={`${caveat.className} ${styles.ttl_l}`}>Work</h1>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Work</h1>
               <p className={styles.sub_ttl}>制作物の詳細</p>
             </div>
             <div className={styles.thumbnailContainer}>

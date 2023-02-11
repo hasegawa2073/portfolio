@@ -3,16 +3,14 @@
 .section {
   @include section;
 }
-.ttl {
-  text-align: center;
-  padding-bottom: 64px;
+.ttl_container {
+  @include ttl_container;
 }
-.ttl_l {
+.main_ttl {
   @include ttl_l;
 }
 .sub_ttl {
   @include ttl_s;
-  margin-top: -1em;
 }
 .icon {
   border-radius: 50%;
@@ -41,15 +39,13 @@
   padding-top: 70px;
 }
 .ttl_en {
-  font-size: 6.4rem;
-  letter-spacing: 0.08em;
+  @include ttl_m;
 }
 .ttl_jp {
-  font-size: 1.4rem;
-  font-weight: 100;
+  @include ttl_s;
 }
 .description {
-  text-align: center;
+  text-align: left;
   margin: 0 auto;
   max-width: 640px;
   font-size: 1.6rem;

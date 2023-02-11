@@ -16,8 +16,8 @@ const Works: NextPage<Works> = ({ works }) => {
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>
-            <div className={styles.ttl}>
-              <h1 className={`${caveat.className} ${styles.ttl_l}`}>Works</h1>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Works</h1>
               <p className={styles.sub_ttl}>過去の制作物</p>
             </div>
             {works.map((work: Work) => (

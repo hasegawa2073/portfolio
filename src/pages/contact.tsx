@@ -40,8 +40,8 @@ const Contact = () => {
     <>
       <Layout>
         <section className={styles.section}>
-          <div className={styles.ttl}>
-            <h1 className={`${caveat.className} ${styles.ttl_l}`}>Contact</h1>
+          <div className={styles.ttl_container}>
+            <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
             <p className={styles.sub_ttl}>お問い合わせ</p>
           </div>
           <form method="post" className={styles.form} onSubmit={(e) => handleSubmit(e)}>

@@ -5,16 +5,14 @@ $formBorderRadius: 6px;
 .section {
   @include section;
 }
-.ttl {
-  text-align: center;
-  padding-bottom: 64px;
+.ttl_container {
+  @include ttl_container;
 }
-.ttl_l {
+.main_ttl {
   @include ttl_l;
 }
 .sub_ttl {
   @include ttl_s;
-  margin-top: -1em;
 }
 
 .form {
