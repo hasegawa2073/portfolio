@@ -59,9 +59,10 @@ $buttonSizeMd: 48px;
   .mobileNav {
     place-items: center;
     gap: 0;
-    min-height: calc(100svh - 112px);
+    min-height: calc(100svh - 24px);
   }
   .mobileNavContainer {
+    margin-top: 12px;
     gap: 80px;
   }
 }

@@ -5,7 +5,7 @@
   place-items: center;
   position: relative;
   padding: 48px 20px 64px;
-  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
 }
 
@@ -156,19 +156,20 @@
 @include mq('sm') {
   .layout {
     place-items: start;
+    padding: 0px;
   }
   .content {
     grid-column: 1 / 13;
     grid-row: 1/13;
   }
   .glassContainer {
-    padding: 0;
+    padding: 12px;
     height: 100%;
   }
   .glass {
     height: 100%;
     grid-template-rows: repeat(12, minmax(0, 1fr));
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(32px);
   }
   .footer {
     display: grid;
@@ -183,7 +184,7 @@
     bottom: 24%;
   }
   .circle_l {
-    left: -6%;
+    left: -15%;
     bottom: -10%;
   }
 }
