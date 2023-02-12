@@ -1,5 +1,8 @@
-$btn-s: 40px;
-$btn-m: 56px;
+@import '../../styles/variables.scss';
+
+$btn-xs: 52px;
+$btn-s: 64px;
+$btn-m: 72px;
 $btn-l: 80px;
 
 .wrapper {
@@ -43,4 +46,48 @@ $btn-l: 80px;
   width: 10px;
   height: 10px;
   background-color: var(--c-white);
+}
+
+@mixin navButtonXl {
+  .button {
+    width: $btn-m;
+    height: $btn-m;
+  }
+  .icon {
+    width: $btn-m;
+    height: $btn-m;
+    line-height: $btn-m;
+    font-size: 2.8rem;
+  }
+  .current {
+    left: -16px;
+    top: calc(50% - 14px);
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@include mq('xl') {
+  @include navButtonXl;
+}
+@include mq('lg') {
+  .button {
+    width: $btn-s;
+    height: $btn-s;
+  }
+  .icon {
+    width: $btn-s;
+    height: $btn-s;
+    line-height: $btn-s;
+    font-size: 2.4rem;
+  }
+  .label {
+    display: inline-block;
+    width: 100%;
+    padding-top: 6px;
+    font-size: 1.4rem;
+  }
+}
+@include mq('md') {
+  @include navButtonXl;
 }

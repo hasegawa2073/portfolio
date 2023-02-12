@@ -1,3 +1,7 @@
+@import '../styles/variables.scss';
+
+$buttonSizeMd: 48px;
+
 .header {
   position: relative;
   display: inline-block;
@@ -6,4 +10,48 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  transition: gap 0.8s ease;
+}
+.button {
+  display: none;
+}
+.mobileNavContainer {
+  display: none;
+}
+
+@include mq('xl') {
+  .nav {
+    gap: 32px;
+  }
+}
+@include mq('lg') {
+  .nav {
+    gap: 26px;
+  }
+}
+@include mq('md') {
+  .nav {
+    display: none;
+    gap: 20px;
+  }
+  .button {
+    position: relative;
+    display: block;
+    width: $buttonSizeMd;
+    height: $buttonSizeMd;
+    font-size: 2.2rem;
+    color: var(--c-white);
+    background-color: rgba($color: #ffffff, $alpha: 0.2);
+    backdrop-filter: blur(100px);
+    border-radius: 17.5%;
+    z-index: 1000;
+  }
+  .mobileNavContainer {
+    display: flex;
+    gap: 80px;
+  }
+  .mobileNav {
+    display: grid;
+    gap: 24px;
+  }
 }

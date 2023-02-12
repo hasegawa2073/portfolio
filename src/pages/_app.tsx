@@ -8,6 +8,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { AppProps } from 'next/app';
 
 import 'ress';
+
+// eslint-disable-next-line import/order
 config.autoAddCss = false;
 
 export const cormorant = Cormorant({
