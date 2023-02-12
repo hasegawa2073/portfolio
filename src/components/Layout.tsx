@@ -24,7 +24,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const pathName = router.pathname === '/' ? 'Home' : convertPathToPage(router.pathname);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(isMenuOpen);
 
   return (
     <>

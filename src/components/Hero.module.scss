@@ -1,10 +1,12 @@
+@import '../styles/variables.scss';
+
 .section {
   text-align: center;
   padding: 160px 0;
 }
 
 .name {
-  font-size: clamp(3rem, 16vw, 21rem);
+  font-size: clamp(3.2rem, 16vw, 21rem);
   color: var(--c-navy);
   line-height: 0.8;
   padding-bottom: 0.7em;
@@ -12,7 +14,13 @@
 
 .role {
   color: var(--c-white);
-  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  font-size: clamp(1.4rem, 2vw, 2.4rem);
   font-weight: 600;
   letter-spacing: 0.3em;
+}
+
+@include mq('sm') {
+  .section {
+    padding: 0;
+  }
 }

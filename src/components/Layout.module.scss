@@ -51,7 +51,7 @@
 
 .circle_s {
   position: absolute;
-  top: 4.8%;
+  top: 5%;
   left: calc(50% - 200px);
   width: 28vw;
   height: 28vw;
@@ -69,8 +69,8 @@
   right: 7%;
   width: calc(30vw + 100px);
   height: calc(30vw + 100px);
-  min-width: 260px;
-  min-height: 260px;
+  min-width: 240px;
+  min-height: 240px;
   background: radial-gradient(#53e37c, #eaeaea);
   border-radius: 50%;
   filter: blur(20px);
@@ -83,8 +83,8 @@
   left: -12%;
   width: calc(30vw + 200px);
   height: calc(30vw + 200px);
-  min-height: 400px;
-  min-height: 400px;
+  min-height: 360px;
+  min-height: 360px;
   background: radial-gradient(#b94fca, #eaeaea);
   border-radius: 50%;
   filter: blur(30px);
@@ -141,7 +141,7 @@
   }
   .headerMenuOpen {
     padding: 0px;
-    left: calc(40% - 100px);
+    left: calc(40% - 120px);
   }
   .filterLayer {
     position: fixed;
@@ -151,5 +151,39 @@
     height: 100%;
     background-color: rgba($color: #ffffff, $alpha: 0.1);
     backdrop-filter: blur(40px);
+  }
+}
+@include mq('sm') {
+  .layout {
+    place-items: start;
+  }
+  .content {
+    grid-column: 1 / 13;
+    grid-row: 1/13;
+  }
+  .glassContainer {
+    padding: 0;
+    height: 100%;
+  }
+  .glass {
+    height: 100%;
+    grid-template-rows: repeat(12, minmax(0, 1fr));
+    backdrop-filter: blur(40px);
+  }
+  .footer {
+    display: grid;
+    grid-row: 12/13;
+    align-items: center;
+  }
+  .circle_s {
+    top: 8%;
+  }
+  .circle_m {
+    right: -4%;
+    bottom: 24%;
+  }
+  .circle_l {
+    left: -6%;
+    bottom: -10%;
   }
 }

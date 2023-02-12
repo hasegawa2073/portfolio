@@ -48,10 +48,20 @@ $buttonSizeMd: 48px;
   }
   .mobileNavContainer {
     display: flex;
-    gap: 80px;
+    gap: 120px;
   }
   .mobileNav {
     display: grid;
-    gap: 24px;
+    gap: 40px;
+  }
+}
+@include mq('sm') {
+  .mobileNav {
+    place-items: center;
+    gap: 0;
+    min-height: calc(100svh - 112px);
+  }
+  .mobileNavContainer {
+    gap: 80px;
   }
 }

@@ -8,13 +8,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { CSSProperties } from 'react';
+import { CSSProperties, useContext } from 'react';
 
 import { roboto } from '@/pages/_app';
 
 import { PageType } from '../../types/pageType';
 // eslint-disable-next-line import/order
 import styles from './NavigationButton.module.scss';
+// eslint-disable-next-line import/order
+import { MenuContext } from '../Layout';
 
 type Props = {
   type: PageType;
@@ -60,11 +62,22 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
 
   const filterButton = (type: PageType) => buttons.filter((button) => button.type === type)[0];
   const Button = filterButton(type);
+  const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
+  const clickHandler = () => {
+    if (currentPage === Button.type) {
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <>
       <div className={styles.wrapper}>
-        <Link href={Button.link} className={styles.box} target={Button.targetBrank ? '_blank' : ''}>
+        <Link
+          href={Button.link}
+          className={styles.box}
+          target={Button.targetBrank ? '_blank' : ''}
+          onClick={() => clickHandler()}
+        >
           <button className={styles.button}>
             <div className={styles.icon}>
               <FontAwesomeIcon icon={Button.icon} style={style} />
