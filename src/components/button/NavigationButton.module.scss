@@ -67,10 +67,10 @@ $btn-l: 80px;
   }
 }
 
-@include mq('xl') {
+@include mediaQuery('xl') {
   @include navButtonXl;
 }
-@include mq('lg') {
+@include mediaQuery('lg') {
   .button {
     width: $btn-s;
     height: $btn-s;
@@ -88,6 +88,6 @@ $btn-l: 80px;
     font-size: 1.4rem;
   }
 }
-@include mq('md') {
+@include mediaQuery('md') {
   @include navButtonXl;
 }

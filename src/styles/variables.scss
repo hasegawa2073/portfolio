@@ -6,7 +6,7 @@ $breakpoints: (
   '2xl': 1536px,
 );
 
-@mixin mq($size) {
+@mixin mediaQuery($size) {
   @media screen and (max-width: #{map-get($breakpoints, $size)}) {
     @content;
   }

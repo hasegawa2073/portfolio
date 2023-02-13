@@ -19,7 +19,7 @@
   letter-spacing: 0.3em;
 }
 
-@include mq('sm') {
+@include mediaQuery('sm') {
   .section {
     padding: 0;
   }
