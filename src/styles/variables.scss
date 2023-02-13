@@ -6,12 +6,6 @@ $breakpoints: (
   '2xl': 1536px,
 );
 
-@mixin mediaQuery($size) {
-  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
-    @content;
-  }
-}
-
 @mixin ttl_container {
   display: flex;
   justify-content: center;
@@ -24,7 +18,6 @@ $breakpoints: (
     padding-bottom: 40px;
   }
 }
-
 @mixin ttl_l {
   font-size: 8rem;
   @include mediaQuery('xl') {
@@ -40,10 +33,40 @@ $breakpoints: (
 @mixin ttl_s {
   font-size: 1.2rem;
 }
+
 @mixin section {
   color: var(--c-white);
   padding: var(--section-pt) 0 var(--section-pb);
   @include mediaQuery('xl') {
     padding: var(--section-ptXl) 0 var(--section-pbXl);
+  }
+}
+
+@mixin transition_text {
+  transition: font-size var(--t-transition) var(--val-transition-timing-function),
+    color var(--t-transition) var(--val-transition-timing-function),
+    font-weight var(--t-transition) var(--val-transition-timing-function),
+    font-family var(--t-transition) var(--val-transition-timing-function),
+    letter-spacing var(--t-transition) var(--val-transition-timing-function),
+    line-height var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_spacing {
+  transition: margin var(--t-transition) var(--val-transition-timing-function),
+    padding var(--t-transition) var(--val-transition-timing-function),
+    gap var(--t-transition) var(--val-transition-timing-function),
+    letter-spacing var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_sizing {
+  transition: width var(--t-transition) var(--val-transition-timing-function),
+    height var(--t-transition) var(--val-transition-timing-function),
+    line-height var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_all {
+  transition: all var(--t-transition) var(--val-transition-timing-function);
+}
+
+@mixin mediaQuery($size) {
+  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
+    @content;
   }
 }
