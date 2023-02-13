@@ -10,7 +10,7 @@ $buttonSizeMd: 48px;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  transition: gap 0.8s ease;
+  @include transition_spacing;
 }
 .button {
   display: none;
