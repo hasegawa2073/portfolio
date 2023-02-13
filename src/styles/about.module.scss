@@ -165,3 +165,38 @@
     }
   }
 }
+@include mediaQuery('sm') {
+  .profile {
+    gap: 24px;
+    &__name {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding-bottom: 24px;
+    }
+    &__txt {
+      max-width: 384px;
+      letter-spacing: 0.065em;
+      & > :not(:last-child) {
+        padding-bottom: 16px;
+      }
+    }
+    &__li {
+      gap: 16px;
+    }
+    &__ttl {
+      min-width: 91px;
+      font-size: 1.6rem;
+    }
+    &__content {
+      font-size: 1.6rem;
+    }
+  }
+  .content {
+    &__description {
+      max-width: 384px;
+      line-height: 2;
+      letter-spacing: 0.12em;
+    }
+  }
+}

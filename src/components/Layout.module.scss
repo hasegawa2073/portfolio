@@ -160,7 +160,7 @@
   .content {
     grid-column: 1/13;
     grid-row: 1/13;
-    padding: 0 12px 0;
+    padding: 0 16px 0;
   }
   .glassContainer {
     padding: 12px;
@@ -177,10 +177,11 @@
     align-items: center;
   }
   .circle_s {
-    top: 8%;
+    top: 20%;
+    left: 76%;
   }
   .circle_m {
-    right: -4%;
+    right: 2%;
     bottom: 24%;
   }
   .circle_l {
