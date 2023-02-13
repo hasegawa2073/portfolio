@@ -8,14 +8,13 @@
   min-height: 100svh;
   overflow: hidden;
 }
-
 .content {
   grid-column: 2 / 13;
   display: flex;
   align-items: center;
   justify-content: center;
+  @include transition_all;
 }
-
 .glassContainer {
   margin: 0 auto;
   width: 100%;
@@ -23,14 +22,12 @@
   padding: 0 20px;
   z-index: 0;
 }
-
 .header {
   position: fixed;
   padding: 64px 6vw;
   text-align: center;
   z-index: 1000;
 }
-
 .glass {
   position: relative;
   display: grid;
@@ -42,7 +39,6 @@
   backdrop-filter: blur(80px);
   z-index: 0;
 }
-
 .footer {
   grid-column: 1 / 13;
   grid-row: 2 / 3;
@@ -136,6 +132,9 @@
 }
 
 @include mediaQuery('md') {
+  .content {
+    grid-column: 1 / 13;
+  }
   .header {
     padding: 40px 5vw;
   }
@@ -159,8 +158,9 @@
     padding: 0px;
   }
   .content {
-    grid-column: 1 / 13;
+    grid-column: 1/13;
     grid-row: 1/13;
+    padding: 0 12px 0;
   }
   .glassContainer {
     padding: 12px;

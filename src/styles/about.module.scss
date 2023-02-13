@@ -34,12 +34,12 @@
     font-weight: 500;
     letter-spacing: 0.225em;
     padding-bottom: 28px;
-    @include transition_text;
+    @include transition_all;
   }
   &__txt {
     font-size: 1.6rem;
     letter-spacing: 0.1em;
-    @include transition_sizing;
+    @include transition_all;
     & > :not(:last-child) {
       padding-bottom: 20px;
     }
@@ -48,7 +48,7 @@
     list-style: none;
     display: flex;
     gap: 28px;
-    @include transition_spacing;
+    @include transition_all;
   }
   &__ttl {
     display: block;
@@ -124,4 +124,44 @@
   }
 }
 @include mediaQuery('lg') {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    &__name {
+      text-align: center;
+      padding-bottom: 28px;
+    }
+    &__txt {
+      max-width: 512px;
+      & > :not(:last-child) {
+        padding-bottom: 18px;
+      }
+    }
+    &__li {
+      gap: 24px;
+    }
+    &__ttl {
+      font-size: 1.6rem;
+    }
+    &__content {
+      font-size: 1.6rem;
+    }
+  }
+}
+@include mediaQuery('md') {
+  .profile {
+    &__name {
+      letter-spacing: 0.125em;
+    }
+    &__txt {
+      max-width: 448px;
+      letter-spacing: 0.08em;
+    }
+  }
+  .content {
+    &__description {
+      max-width: 448px;
+      line-height: 2.25em;
+    }
+  }
 }
