@@ -58,6 +58,7 @@
   filter: blur(10px);
   z-index: -100;
   animation: circle-s 20s ease infinite;
+  @include transition_position;
 }
 .circle_m {
   position: absolute;
@@ -72,6 +73,7 @@
   filter: blur(20px);
   z-index: -10;
   animation: circle_m 18s ease infinite;
+  @include transition_position;
 }
 .circle_l {
   position: absolute;
@@ -86,6 +88,7 @@
   filter: blur(30px);
   z-index: -1;
   animation: circle_l 20s ease infinite;
+  @include transition_position;
 }
 
 @keyframes circle_s {
