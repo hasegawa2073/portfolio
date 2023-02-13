@@ -1,7 +1,9 @@
 import Image from 'next/image';
 
 import Layout from '@/components/Layout';
-import styles from '@/styles/about.module.scss';
+
+// eslint-disable-next-line import/order
+import styles from '../styles/about.module.scss';
 
 // eslint-disable-next-line import/order
 import { caveat, notoSansJP } from './_app';
