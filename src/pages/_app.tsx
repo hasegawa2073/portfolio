@@ -17,7 +17,7 @@ export const cormorant = Cormorant({
   subsets: ['latin'],
 });
 export const notoSansJP = Noto_Sans_JP({
-  weight: ['100', '300', '500'],
+  weight: ['100', '300', '400', '500', '700'],
   subsets: ['latin'],
 });
 export const roboto = Roboto({
@@ -25,7 +25,7 @@ export const roboto = Roboto({
   subsets: ['latin'],
 });
 export const robotoCondensed = Roboto_Condensed({
-  weight: '300',
+  weight: ['300', '400'],
   subsets: ['latin'],
 });
 export const caveat = Caveat({
