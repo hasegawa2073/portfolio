@@ -19,13 +19,23 @@ $breakpoints: (
   gap: 20px;
   text-align: center;
   padding-bottom: 64px;
+  @include mediaQuery('xl') {
+    gap: 16px;
+    padding-bottom: 40px;
+  }
 }
 
 @mixin ttl_l {
   font-size: 8rem;
+  @include mediaQuery('xl') {
+    font-size: 7.2rem;
+  }
 }
 @mixin ttl_m {
   font-size: 6.4rem;
+  @include mediaQuery('xl') {
+    font-size: 6rem;
+  }
 }
 @mixin ttl_s {
   font-size: 1.2rem;
@@ -33,4 +43,7 @@ $breakpoints: (
 @mixin section {
   color: var(--c-white);
   padding: var(--section-pt) 0 var(--section-pb);
+  @include mediaQuery('xl') {
+    padding: var(--section-ptXl) 0 var(--section-pbXl);
+  }
 }
