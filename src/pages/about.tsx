@@ -57,26 +57,38 @@ const About = () => {
               height={200}
               alt="Tatsuya Hasegawa"
               priority
-              className={styles.icon}
+              className={styles.profile__icon}
             />
             <div>
-              <h2 className={`${notoSansJP.className} ${styles.name}`}>{profile.name}</h2>
-              <div className={styles.profile_txt}>
-                <p>生年月日：{profile.birth}</p>
-                <p>趣味：{profile.hobby}</p>
-                <p>好きな食べ物：{profile.favoriteFood}</p>
-                <p>開発経験：{profile.experience}</p>
-              </div>
+              <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>{profile.name}</h2>
+              <ul className={styles.profile__txt}>
+                <li className={styles.profile__li}>
+                  <span className={styles.profile__ttl}>生年月日</span>
+                  <span className={styles.profile__content}>{profile.birth}</span>
+                </li>
+                <li className={styles.profile__li}>
+                  <span className={styles.profile__ttl}>趣味</span>
+                  <span className={styles.profile__content}>{profile.hobby}</span>
+                </li>
+                <li className={styles.profile__li}>
+                  <span className={styles.profile__ttl}>好きな食べ物</span>
+                  <span className={styles.profile__content}>{profile.favoriteFood}</span>
+                </li>
+                <li className={styles.profile__li}>
+                  <span className={styles.profile__ttl}>開発経験</span>
+                  <span className={styles.profile__content}>{profile.experience}</span>
+                </li>
+              </ul>
             </div>
           </section>
           {contents.map((content) => (
             <section key={content.ttlEn} className={styles.content}>
               <div className={styles.ttl_container}>
-                <h2 className={`${caveat.className} ${styles.ttl_en}`}>{content.ttlEn}</h2>
-                <p className={styles.ttl_jp}>{content.ttlJP}</p>
+                <h2 className={`${caveat.className} ${styles.content__ttlEn}`}>{content.ttlEn}</h2>
+                <p className={styles.content__ttlJP}>{content.ttlJP}</p>
               </div>
               {content.descriptions.map((description, index) => (
-                <p key={index} className={styles.description}>
+                <p key={index} className={styles.content__description}>
                   {description}
                 </p>
               ))}

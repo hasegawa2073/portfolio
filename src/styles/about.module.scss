@@ -2,56 +2,125 @@
 
 .section {
   @include section;
+  transition: padding var(--t-transition) var(--val-transition-timing-function);
 }
 .ttl_container {
   @include ttl_container;
+  transition: font-size var(--t-transition) var(--val-transition-timing-function),
+    padding var(--t-transition) var(--val-transition-timing-function);
 }
 .main_ttl {
   @include ttl_l;
+  transition: font-size var(--t-transition) var(--val-transition-timing-function);
 }
 .sub_ttl {
   @include ttl_s;
 }
-.icon {
-  border-radius: 50%;
-}
-.name {
-  font-size: 3.2rem;
-  letter-spacing: 0.15em;
-  padding-bottom: 16px;
-}
+
 .profile {
   display: flex;
   gap: 40px;
   justify-content: center;
+  align-items: start;
   padding-bottom: 40px;
-}
-.profile_txt {
-  font-size: 1.6rem;
-  font-weight: 300;
-  letter-spacing: 0.125em;
-  & > :not(:last-child) {
-    padding-bottom: 8px;
+  transition: gap var(--t-transition) var(--val-transition-timing-function),
+    padding var(--t-transition) var(--val-transition-timing-function);
+  &__icon {
+    border-radius: 50%;
+    transition: width var(--t-transition) var(--val-transition-timing-function),
+      height var(--t-transition) var(--val-transition-timing-function);
+  }
+  &__name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    letter-spacing: 0.225em;
+    padding-bottom: 28px;
+    transition: font-size var(--t-transition) var(--val-transition-timing-function);
+  }
+  &__txt {
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    transition: width var(--t-transition) var(--val-transition-timing-function);
+    & > :not(:last-child) {
+      padding-bottom: 20px;
+    }
+  }
+  &__li {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    transition: gap var(--t-transition) var(--val-transition-timing-function);
+  }
+  &__ttl {
+    display: block;
+    min-width: 108px;
+    transition: font-size var(--t-transition) var(--val-transition-timing-function);
+  }
+  &__content {
+    font-size: 1.6rem;
+    transition: font-size var(--t-transition) var(--val-transition-timing-function);
   }
 }
 
 .content {
   padding-top: 70px;
+  &__ttlEn {
+    @include ttl_m;
+  }
+  &__ttlJP {
+    @include ttl_s;
+  }
+  &__description {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 576px;
+    font-size: 1.6rem;
+    letter-spacing: 0.16em;
+    line-height: 3;
+    transition: line-height var(--t-transition) var(--val-transition-timing-function);
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
 }
-.ttl_en {
-  @include ttl_m;
-}
-.ttl_jp {
-  @include ttl_s;
-}
-.description {
-  text-align: left;
-  margin: 0 auto;
-  max-width: 640px;
-  font-size: 1.6rem;
-  letter-spacing: 0.16em;
-  line-height: 3;
-  &:not(:last-child) {
-    margin-bottom: 24px;
+
+@include mediaQuery('xl') {
+  .profile {
+    padding-bottom: 24px;
+    gap: 32px;
+    &__icon {
+      width: 160px;
+      height: 160px;
+    }
+    &__name {
+      font-size: 2.8rem;
+      padding-bottom: 24px;
+    }
+    &__txt {
+      max-width: 448px;
+      & > :not(:last-child) {
+        padding-bottom: 16px;
+      }
+    }
+    &__li {
+      gap: 20px;
+    }
+    &__ttl {
+      font-size: 1.5rem;
+    }
+    &__content {
+      font-size: 1.5rem;
+    }
+  }
+  .content {
+    padding-top: 56px;
+    &__description {
+      max-width: 512px;
+      line-height: 2.6;
+      &:not(:last-child) {
+        margin-bottom: 28px;
+      }
+    }
   }
 }
