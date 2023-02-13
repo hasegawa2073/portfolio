@@ -21,7 +21,7 @@
   display: flex;
   gap: 40px;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   padding-bottom: 40px;
   transition: gap var(--t-transition) var(--val-transition-timing-function),
     padding var(--t-transition) var(--val-transition-timing-function);
@@ -123,4 +123,6 @@
       }
     }
   }
+}
+@include mediaQuery('lg') {
 }
