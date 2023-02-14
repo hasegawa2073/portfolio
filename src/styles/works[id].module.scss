@@ -27,29 +27,37 @@
   height: auto;
   vertical-align: bottom;
   border-radius: 10px;
+  @include transition_all;
 }
 
 .contentContainer {
   max-width: 768px;
+  @include transition_sizing;
 }
 
 .nameContainer {
   padding: 48px 0 64px;
+  @include transition_spacing;
 }
 .date {
   font-size: 1.2rem;
-  font-weight: 100;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
   margin-bottom: 4px;
+  @include transition_all;
 }
 .name {
   font-size: 2.2rem;
-  font-weight: 300;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  @include transition_text;
 }
 
 .detailContainer {
   display: flex;
   gap: 32px;
   justify-content: space-between;
+  @include transition_spacing;
   &__NoIcon {
     display: inline;
   }
@@ -60,15 +68,20 @@
   }
   &__box {
     margin-bottom: 40px;
+    @include transition_spacing;
   }
   &__ttl {
     font-size: 2rem;
-    font-weight: 300;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
     margin-bottom: 6px;
+    @include transition_text;
   }
   &__txt {
     font-size: 1.6rem;
-    font-weight: 100;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    @include transition_text;
   }
   &__url {
     color: var(--c-white);
@@ -85,13 +98,107 @@
   &__iconWrap {
     vertical-align: bottom;
     margin-bottom: 12px;
+    @include transition_spacing;
   }
   &__icon {
     max-width: 180px;
     height: auto;
     border-radius: 17.5%;
+    @include transition_all;
   }
   &__shortName {
     font-size: 1.6rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    @include transition_text;
+  }
+}
+
+@include mediaQuery('xl') {
+  .contentContainer {
+    max-width: 672px;
+  }
+  .thumbnail {
+    max-width: 672px;
+  }
+  .nameContainer {
+    padding: 40px 0 48px;
+  }
+  .detail {
+    &__box {
+      margin-bottom: 36px;
+    }
+  }
+}
+@include mediaQuery('lg') {
+  .contentContainer {
+    max-width: 512px;
+  }
+  .nameContainer {
+    padding: 32px 0 40px;
+  }
+  .name {
+    font-size: 2rem;
+  }
+  .thumbnail {
+    max-width: 512px;
+  }
+  .detailContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .detail {
+    &__ttl {
+      font-size: 1.8rem;
+    }
+  }
+  .work {
+    &__iconWrap {
+      margin-bottom: 4px;
+    }
+    &__icon {
+      max-width: 160px;
+    }
+  }
+}
+@include mediaQuery('md') {
+  .contentContainer {
+    max-width: 448px;
+  }
+  .thumbnail {
+    max-width: 448px;
+  }
+}
+@include mediaQuery('sm') {
+  .contentContainer {
+    max-width: 384px;
+  }
+  .date {
+    font-size: 1rem;
+  }
+  .name {
+    font-size: 1.8rem;
+  }
+  .thumbnail {
+    max-width: 384px;
+  }
+  .detail {
+    &__ttl {
+      margin-bottom: 4px;
+    }
+    &__url {
+      font-size: 1.2rem;
+    }
+  }
+  .work {
+    &__iconWrap {
+      margin-bottom: 2px;
+    }
+    &__icon {
+      max-width: 112px;
+    }
+    &__shortName {
+      font-size: 1.4rem;
+    }
   }
 }
