@@ -1,5 +1,11 @@
 import '@/styles/globals.scss';
-import { Caveat, Cormorant, Noto_Sans_JP, Roboto, Roboto_Condensed } from '@next/font/google';
+import {
+  Caveat,
+  Cormorant_Garamond,
+  Noto_Sans_JP,
+  Roboto,
+  Roboto_Condensed,
+} from '@next/font/google';
 // eslint-disable-next-line import/order
 import { config } from '@fortawesome/fontawesome-svg-core';
 
@@ -12,8 +18,8 @@ import 'ress';
 // eslint-disable-next-line import/order
 config.autoAddCss = false;
 
-export const cormorant = Cormorant({
-  weight: '400',
+export const cormorantGaramond = Cormorant_Garamond({
+  weight: ['300', '400', '500'],
   subsets: ['latin'],
 });
 export const notoSansJP = Noto_Sans_JP({
@@ -36,7 +42,7 @@ export const caveat = Caveat({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div
-      className={`${cormorant.className} ${roboto.className} ${robotoCondensed.className} ${notoSansJP.className}`}
+      className={`${cormorantGaramond.className} ${roboto.className} ${robotoCondensed.className} ${notoSansJP.className}`}
     >
       <Component {...pageProps} />
     </div>
