@@ -10,6 +10,7 @@ import { caveat, notoSansJP } from './_app';
 
 const profile = {
   name: 'Tatsuya Hasegawa',
+  team: 'ECCコンピュータ専門学校(現在休学中)',
   birth: '2001年6月18日',
   hobby: '散歩',
   favoriteFood: '砂ずり・ミノ・魚介で出汁を取ったラーメン',
@@ -64,6 +65,10 @@ const About = () => {
             <div>
               <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>{profile.name}</h2>
               <ul className={styles.profile__txt}>
+                <li className={styles.profile__li}>
+                  <span className={styles.profile__ttl}>所属</span>
+                  <span className={styles.profile__content}>{profile.team}</span>
+                </li>
                 <li className={styles.profile__li}>
                   <span className={styles.profile__ttl}>生年月日</span>
                   <span className={styles.profile__content}>{profile.birth}</span>
