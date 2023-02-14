@@ -98,7 +98,8 @@ $breakpoints: (
     left var(--t-transition) var(--val-transition-timing-function);
 }
 @mixin transition_transform {
-  transition: transform var(--t-transition) var(--val-transition-timing-function);
+  transition: transform var(--t-transition) var(--val-transition-timing-function),
+    scale var(--t-transition) var(--val-transition-timing-function);
 }
 @mixin transition_all {
   transition: all var(--t-transition) var(--val-transition-timing-function);
