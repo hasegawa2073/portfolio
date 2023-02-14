@@ -2,22 +2,27 @@
 
 .section {
   @include section;
+  @include transition_spacing;
 }
 .ttl_container {
   @include ttl_container;
+  @include transition_all;
 }
 .main_ttl {
   @include ttl_l;
+  @include transition_text;
 }
 .sub_ttl {
   @include ttl_s;
+  @include transition_text;
 }
+
 .thumbnailContainer {
   text-align: center;
   width: 100%;
 }
 .thumbnail {
-  max-width: 760px;
+  max-width: 768px;
   width: 100%;
   height: auto;
   vertical-align: bottom;
@@ -25,20 +30,23 @@
 }
 
 .contentContainer {
-  max-width: 760px;
+  max-width: 768px;
 }
-.name_box {
-  padding: 22px 0 40px;
+
+.nameContainer {
+  padding: 48px 0 64px;
 }
 .date {
   font-size: 1.2rem;
   font-weight: 100;
+  margin-bottom: 4px;
 }
 .name {
   font-size: 2.2rem;
   font-weight: 300;
 }
-.detailSection {
+
+.detailContainer {
   display: flex;
   gap: 32px;
   justify-content: space-between;
@@ -47,16 +55,16 @@
   }
 }
 .detail {
-  :last-child {
+  &:last-child {
     padding: 0;
   }
   &__box {
-    padding-bottom: 24px;
+    margin-bottom: 40px;
   }
   &__ttl {
     font-size: 2rem;
     font-weight: 300;
-    padding-bottom: 4px;
+    margin-bottom: 6px;
   }
   &__txt {
     font-size: 1.6rem;
@@ -64,17 +72,22 @@
   }
   &__url {
     color: var(--c-white);
+    @include transition_text;
+    &:hover {
+      color: rgba($color: #ffffff, $alpha: 0.8);
+    }
   }
 }
+
 .work {
   display: inline-block;
   text-align: center;
-  &__iconBox {
+  &__iconWrap {
     vertical-align: bottom;
     margin-bottom: 12px;
   }
   &__icon {
-    max-width: 200px;
+    max-width: 180px;
     height: auto;
     border-radius: 17.5%;
   }

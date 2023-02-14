@@ -38,13 +38,13 @@ const WorkId: NextPage<Work> = (work) => {
               />
             </div>
             <section className={styles.contentContainer}>
-              <div className={styles.name_box}>
+              <div className={styles.nameContainer}>
                 <p className={styles.date}>{work.date}</p>
                 <h2 className={styles.name}>{work.name}</h2>
               </div>
               <section
                 className={`${
-                  work.icon?.url ? styles.detailSection : styles.detailSection__NoIcon
+                  work.icon?.url ? styles.detailContainer : styles.detailContainer__NoIcon
                 }`}
               >
                 <section className={styles.detail}>
@@ -66,7 +66,7 @@ const WorkId: NextPage<Work> = (work) => {
                 {work.icon && work.shortName ? (
                   <section className={styles.work}>
                     <Link href={work.url} target="_blank">
-                      <div className={styles.work__iconBox}>
+                      <div className={styles.work__iconWrap}>
                         <Image
                           src={work.icon.url}
                           width={work.icon.width}
