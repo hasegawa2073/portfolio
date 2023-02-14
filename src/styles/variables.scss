@@ -1,0 +1,112 @@
+$breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+);
+
+@mixin ttl_container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+  text-align: center;
+  padding-bottom: 64px;
+  @include mediaQuery('xl') {
+    gap: 16px;
+    padding-bottom: 40px;
+  }
+  @include mediaQuery('lg') {
+    padding-bottom: 36px;
+  }
+  @include mediaQuery('md') {
+    padding-bottom: 32px;
+  }
+  @include mediaQuery('sm') {
+    padding-bottom: 28px;
+  }
+}
+@mixin ttl_l {
+  font-size: 8rem;
+  @include mediaQuery('xl') {
+    font-size: 7.2rem;
+  }
+  @include mediaQuery('md') {
+    font-size: 6.4rem;
+  }
+  @include mediaQuery('sm') {
+    font-size: 5.6rem;
+  }
+}
+@mixin ttl_m {
+  font-size: 6.4rem;
+  @include mediaQuery('xl') {
+    font-size: 6rem;
+  }
+  @include mediaQuery('md') {
+    font-size: 5.6rem;
+  }
+  @include mediaQuery('sm') {
+    font-size: 4.8rem;
+  }
+}
+@mixin ttl_s {
+  font-size: 1.2rem;
+}
+
+@mixin section {
+  color: var(--c-white);
+  padding: var(--section-pt) 0 var(--section-pb);
+  @include mediaQuery('xl') {
+    padding: var(--section-ptXl) 0 var(--section-pbXl);
+  }
+  @include mediaQuery('lg') {
+    padding: var(--section-ptLg) 0 var(--section-pbLg);
+  }
+  @include mediaQuery('md') {
+    padding: var(--section-ptMd) 0 var(--section-pbMd);
+  }
+  @include mediaQuery('sm') {
+    padding: var(--section-ptSm) 0 var(--section-pbSm);
+  }
+}
+
+@mixin transition_text {
+  transition: font-size var(--t-transition) var(--val-transition-timing-function),
+    color var(--t-transition) var(--val-transition-timing-function),
+    font-weight var(--t-transition) var(--val-transition-timing-function),
+    font-family var(--t-transition) var(--val-transition-timing-function),
+    letter-spacing var(--t-transition) var(--val-transition-timing-function),
+    line-height var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_spacing {
+  transition: margin var(--t-transition) var(--val-transition-timing-function),
+    padding var(--t-transition) var(--val-transition-timing-function),
+    gap var(--t-transition) var(--val-transition-timing-function),
+    letter-spacing var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_sizing {
+  transition: width var(--t-transition) var(--val-transition-timing-function),
+    height var(--t-transition) var(--val-transition-timing-function),
+    line-height var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_position {
+  transition: top var(--t-transition) var(--val-transition-timing-function),
+    right var(--t-transition) var(--val-transition-timing-function),
+    bottom var(--t-transition) var(--val-transition-timing-function),
+    left var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_transform {
+  transition: transform var(--t-transition) var(--val-transition-timing-function),
+    scale var(--t-transition) var(--val-transition-timing-function);
+}
+@mixin transition_all {
+  transition: all var(--t-transition) var(--val-transition-timing-function);
+}
+
+@mixin mediaQuery($size) {
+  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
+    @content;
+  }
+}

@@ -1,0 +1,82 @@
+@import './variables.scss';
+
+.section {
+  @include section;
+  @include transition_spacing;
+}
+.ttl_container {
+  @include ttl_container;
+  @include transition_all;
+}
+.main_ttl {
+  @include ttl_l;
+  @include transition_text;
+}
+.sub_ttl {
+  @include ttl_s;
+  @include transition_text;
+}
+.item {
+  overflow: hidden;
+  border-radius: 10px;
+  @include transition_all;
+  &:not(:last-child) {
+    margin-bottom: 80px;
+  }
+}
+.thumbnail {
+  max-width: 768px;
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  border-radius: 10px;
+  @include transition_all;
+  &:hover {
+    transform: scale(1.0366);
+  }
+}
+
+@include mediaQuery('2xl') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 72px;
+    }
+  }
+  .thumbnail {
+    max-width: 672px;
+  }
+}
+@include mediaQuery('xl') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 64px;
+    }
+  }
+  .thumbnail {
+    max-width: 672px;
+  }
+}
+@include mediaQuery('lg') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+  .thumbnail {
+    max-width: 448px;
+  }
+}
+@include mediaQuery('md') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+}
+@include mediaQuery('sm') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}

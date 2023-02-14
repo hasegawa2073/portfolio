@@ -1,0 +1,23 @@
+@import '../styles/variables.scss';
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+  color: var(--c-white);
+  letter-spacing: 0.32em;
+  padding-bottom: 28px;
+  text-align: right;
+  &__copy {
+    grid-column: 1/12;
+  }
+}
+
+@include mediaQuery('sm') {
+  .footer {
+    letter-spacing: 0.16em;
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  --c-navy: #130059;
+  --c-white: #ffffff;
+
+  --section-pt: 100px;
+  --section-pb: 160px;
+  --section-ptXl: 80px;
+  --section-pbXl: 120px;
+  --section-ptLg: 64px;
+  --section-pbLg: 120px;
+  --section-ptMd: 64px;
+  --section-pbMd: 120px;
+  --section-ptSm: 64px;
+  --section-pbSm: 112px;
+
+  --t-transition: 0.8s;
+  --val-transition-timing-function: ease;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+body {
+  background-color: #106;
+  background-image: radial-gradient(at 0 0, #f70, transparent 40%),
+    radial-gradient(at 0 40%, #0df, transparent 40%),
+    radial-gradient(at 40% 60%, #01f, transparent 80%),
+    radial-gradient(at 0 100%, #faa, transparent 50%);
+  background-attachment: fixed;
+}

@@ -1,0 +1,93 @@
+@import '../../styles/variables.scss';
+
+$btn-xs: 52px;
+$btn-s: 64px;
+$btn-m: 72px;
+$btn-l: 80px;
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  @include transition_transform;
+  &:hover {
+    scale: 1.0864;
+  }
+}
+.box {
+  display: inline-block;
+  text-align: center;
+  color: var(--c-white);
+}
+.button {
+  display: grid;
+  place-items: center;
+  width: $btn-l;
+  height: $btn-l;
+  background-color: var(--c-white);
+  border-radius: 17.5%;
+}
+.icon {
+  width: $btn-l;
+  line-height: $btn-l;
+  color: var(--c-navy);
+  font-size: 3.2rem;
+}
+.label {
+  display: inline-block;
+  width: 100%;
+  padding-top: 8px;
+  font-size: 1.5rem;
+}
+.current {
+  position: absolute;
+  left: -20px;
+  top: calc(50% - 16px);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: var(--c-white);
+}
+
+@mixin navButtonXl {
+  .button {
+    width: $btn-m;
+    height: $btn-m;
+  }
+  .icon {
+    width: $btn-m;
+    height: $btn-m;
+    line-height: $btn-m;
+    font-size: 2.8rem;
+  }
+  .current {
+    left: -16px;
+    top: calc(50% - 14px);
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@include mediaQuery('xl') {
+  @include navButtonXl;
+}
+@include mediaQuery('lg') {
+  .button {
+    width: $btn-s;
+    height: $btn-s;
+  }
+  .icon {
+    width: $btn-s;
+    height: $btn-s;
+    line-height: $btn-s;
+    font-size: 2.4rem;
+  }
+  .label {
+    display: inline-block;
+    width: 100%;
+    padding-top: 6px;
+    font-size: 1.4rem;
+  }
+}
+@include mediaQuery('md') {
+  @include navButtonXl;
+}

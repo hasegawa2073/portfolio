@@ -1,0 +1,153 @@
+@import './variables.scss';
+
+$formBorderRadius: 6px;
+
+.section {
+  @include section;
+  @include transition_spacing;
+}
+.ttl_container {
+  @include ttl_container;
+  @include transition_spacing;
+}
+.main_ttl {
+  @include ttl_l;
+  @include transition_text;
+}
+.sub_ttl {
+  @include ttl_s;
+  @include transition_text;
+}
+
+.form {
+  padding: 24px 0;
+  text-align: center;
+  max-width: 768px;
+  @include transition_all;
+  &__personInfoContainer {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    @include transition_all;
+  }
+  &__personInfo {
+    width: 100%;
+    min-width: 320px;
+    @include transition_sizing;
+  }
+  &__message {
+    margin-bottom: 48px;
+  }
+  &__item {
+    font-size: 1.8rem;
+    @include transition_text;
+  }
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    text-align: start;
+    color: var(--c-white);
+    letter-spacing: 0.08em;
+    @include transition_all;
+  }
+  &__text {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1.6rem;
+    color: var(--c-white);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: $formBorderRadius;
+    @include transition_sizing;
+  }
+  &__textArea {
+    resize: vertical;
+    min-height: 200px;
+    @include transition_all;
+  }
+  &__button {
+    display: inline-block;
+    padding: 16px 88px;
+    letter-spacing: 0.16em;
+    font-size: 1.8rem;
+    color: var(--c-white);
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.02);
+    box-shadow: inset 0 0 60px rgb(255 255 255 / 6%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $formBorderRadius;
+    @include transition_all;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  &__error {
+    text-align: left;
+    font-size: 1.4rem;
+    margin-top: 8px;
+  }
+}
+
+@include mediaQuery('xl') {
+  .form {
+    &__personInfoContainer {
+      margin-bottom: 32px;
+    }
+  }
+}
+@include mediaQuery('lg') {
+  .form {
+    &__personInfoContainer {
+      flex-direction: column;
+    }
+    &__personInfo {
+      min-width: 384px;
+    }
+    &__text {
+      max-width: 384px;
+    }
+    &__textArea {
+      min-height: 320px;
+      max-width: 384px;
+    }
+  }
+}
+@include mediaQuery('md') {
+  .form {
+    padding: 0;
+    &__personInfo {
+      min-width: 320px;
+    }
+    &__item {
+      font-size: 1.6rem;
+    }
+    &__textArea {
+      max-width: 320px;
+    }
+  }
+}
+@include mediaQuery('sm') {
+  .form {
+    &__personInfo {
+      min-width: none;
+    }
+    &__label {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 384px;
+      width: calc(100vw - (24px + 32px));
+    }
+    &__text {
+      margin: 0 auto;
+      max-width: 384px;
+      width: calc(100vw - (24px + 32px));
+    }
+    &__textArea {
+      max-width: 384px;
+      min-height: 200px;
+    }
+    &__error {
+      font-size: 1.2rem;
+    }
+  }
+}

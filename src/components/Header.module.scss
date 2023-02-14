@@ -1,0 +1,69 @@
+@import '../styles/variables.scss';
+
+$buttonSizeMd: 48px;
+
+.header {
+  position: relative;
+  display: inline-block;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  @include transition_spacing;
+}
+.button {
+  display: none;
+}
+.mobileNavContainer {
+  display: none;
+}
+
+@include mediaQuery('xl') {
+  .nav {
+    gap: 32px;
+  }
+}
+@include mediaQuery('lg') {
+  .nav {
+    gap: 26px;
+  }
+}
+@include mediaQuery('md') {
+  .nav {
+    display: none;
+    gap: 20px;
+  }
+  .button {
+    position: relative;
+    display: block;
+    width: $buttonSizeMd;
+    height: $buttonSizeMd;
+    font-size: 2.2rem;
+    color: var(--c-white);
+    background-color: rgba($color: #ffffff, $alpha: 0.2);
+    backdrop-filter: blur(100px);
+    border-radius: 17.5%;
+    z-index: 1000;
+  }
+  .mobileNavContainer {
+    display: flex;
+    gap: 120px;
+  }
+  .mobileNav {
+    display: grid;
+    gap: calc((100svh - 120px - 94px * 5) / 4);
+  }
+}
+@include mediaQuery('sm') {
+  .mobileNav {
+    place-items: center;
+    gap: calc((100svh - 80px - 94px * 5) / 4);
+  }
+  .mobileNavContainer {
+    gap: 80px;
+  }
+  .buttonMenuOpen {
+    display: none;
+  }
+}

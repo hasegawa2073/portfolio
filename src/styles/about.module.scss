@@ -1,0 +1,202 @@
+@import './variables.scss';
+
+.section {
+  @include section;
+  @include transition_spacing;
+}
+.ttl_container {
+  @include ttl_container;
+  @include transition_spacing;
+}
+.main_ttl {
+  @include ttl_l;
+  @include transition_text;
+}
+.sub_ttl {
+  @include ttl_s;
+  @include transition_text;
+}
+
+.profile {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 40px;
+  @include transition_spacing;
+  &__icon {
+    border-radius: 50%;
+    @include transition_sizing;
+  }
+  &__name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    letter-spacing: 0.225em;
+    padding-bottom: 28px;
+    @include transition_all;
+  }
+  &__txt {
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    @include transition_all;
+    & > :not(:last-child) {
+      padding-bottom: 20px;
+    }
+  }
+  &__li {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    @include transition_all;
+  }
+  &__ttl {
+    display: block;
+    min-width: 108px;
+    @include transition_text;
+  }
+  &__content {
+    font-size: 1.6rem;
+    @include transition_text;
+  }
+}
+
+.content {
+  padding-top: 70px;
+  @include transition_spacing;
+  &__ttlEn {
+    @include ttl_m;
+  }
+  &__ttlJP {
+    @include ttl_s;
+  }
+  &__description {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 576px;
+    font-size: 1.6rem;
+    letter-spacing: 0.16em;
+    line-height: 3;
+    @include transition_all;
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@include mediaQuery('xl') {
+  .profile {
+    padding-bottom: 24px;
+    gap: 32px;
+    &__icon {
+      width: 160px;
+      height: 160px;
+    }
+    &__name {
+      font-size: 2.8rem;
+      padding-bottom: 24px;
+    }
+    &__txt {
+      max-width: 448px;
+      & > :not(:last-child) {
+        padding-bottom: 16px;
+      }
+    }
+    &__li {
+      gap: 20px;
+    }
+    &__ttl {
+      font-size: 1.5rem;
+    }
+    &__content {
+      font-size: 1.5rem;
+    }
+  }
+  .content {
+    padding-top: 56px;
+    &__description {
+      max-width: 512px;
+      line-height: 2.6;
+      &:not(:last-child) {
+        margin-bottom: 28px;
+      }
+    }
+  }
+}
+@include mediaQuery('lg') {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    &__name {
+      text-align: center;
+      padding-bottom: 28px;
+    }
+    &__txt {
+      max-width: 512px;
+      & > :not(:last-child) {
+        padding-bottom: 18px;
+      }
+    }
+    &__li {
+      gap: 24px;
+    }
+    &__ttl {
+      font-size: 1.6rem;
+    }
+    &__content {
+      font-size: 1.6rem;
+    }
+  }
+}
+@include mediaQuery('md') {
+  .profile {
+    &__name {
+      letter-spacing: 0.125em;
+    }
+    &__txt {
+      max-width: 448px;
+      letter-spacing: 0.08em;
+    }
+  }
+  .content {
+    &__description {
+      max-width: 448px;
+      line-height: 2.25em;
+    }
+  }
+}
+@include mediaQuery('sm') {
+  .profile {
+    gap: 24px;
+    &__name {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding-bottom: 24px;
+    }
+    &__txt {
+      max-width: 384px;
+      letter-spacing: 0.065em;
+      & > :not(:last-child) {
+        padding-bottom: 16px;
+      }
+    }
+    &__li {
+      gap: 16px;
+    }
+    &__ttl {
+      min-width: 91px;
+      font-size: 1.6rem;
+    }
+    &__content {
+      font-size: 1.6rem;
+    }
+  }
+  .content {
+    &__description {
+      max-width: 384px;
+      line-height: 2;
+      letter-spacing: 0.12em;
+    }
+  }
+}

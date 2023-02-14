@@ -1,0 +1,43 @@
+@import '../styles/variables.scss';
+
+.section {
+  text-align: center;
+  padding: 160px 0;
+}
+.name {
+  font-size: clamp(3.2rem, 17.6vw, 21rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  color: var(--c-navy);
+  line-height: 0.8;
+  padding-bottom: 0.7em;
+  @include transition_all;
+}
+.role {
+  font-size: clamp(1.4rem, 2vw, 2.4rem);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  color: var(--c-white);
+  letter-spacing: 0.3em;
+  @include transition_text;
+}
+
+@include mediaQuery('2xl') {
+  .name {
+    font-weight: 400;
+  }
+  .role {
+    font-weight: 300;
+  }
+}
+@include mediaQuery('sm') {
+  .section {
+    padding: 0;
+  }
+  .name {
+    padding-bottom: 0.8em;
+  }
+  .role {
+    letter-spacing: 0.2em;
+  }
+}
