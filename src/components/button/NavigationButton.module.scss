@@ -8,9 +8,9 @@ $btn-l: 80px;
 .wrapper {
   position: relative;
   display: inline-block;
-  transition: scale 0.6s;
+  @include transition_transform;
   &:hover {
-    scale: 1.08;
+    scale: 1.0864;
   }
 }
 .box {
