@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useRef } from 'react';
+import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
@@ -23,22 +25,33 @@ import styles from '../styles/contact.module.scss';
 const Contact = () => {
   const router = useRouter();
 
-  const nameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
-
   const {
     register,
-    watch,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<EmailContent>({ resolver: yupResolver(emailSchema) });
 
+  const formContent = {
+    name: watch().name,
+    email: watch().email,
+    text: watch().text,
+  };
+  const isEptyForm =
+    formContent.name === undefined ||
+    formContent.email === undefined ||
+    formContent.text === undefined;
+
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    isEptyForm === true ? infoValidateError() : '';
     onSubmit();
   };
-  const onSubmit = handleSubmit((data) => postMail(data));
+
+  const onSubmit = handleSubmit((data) => {
+    postMail(data);
+    notifyDoingSubmit();
+  });
   const postMail = async (data: EmailContent) => {
     axios
       .post('/api/sendMail', {
@@ -49,12 +62,26 @@ const Contact = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          router.push('/');
+          router.push({ pathname: '/', query: { toast: 'success' } });
         }
       })
       .then((err) => {
         console.log(err);
+        router.push({ pathname: '/', query: { toast: 'error' } });
       });
+  };
+
+  const notifyDoingSubmit = () => {
+    toast.info('メールを送信しています...', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
+  };
+  const infoValidateError = () => {
+    toast.warn('必須項目をすべて入力してください。', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
   };
 
   return (
@@ -76,7 +103,6 @@ const Contact = () => {
                   id="name"
                   placeholder=""
                   className={`${notoSansJP.className} ${styles.form__text}`}
-                  // ref={nameRef}
                   {...register('name')}
                 />
                 <p className={styles.form__error}>{errors.name?.message}</p>
@@ -90,7 +116,6 @@ const Contact = () => {
                   id="email"
                   placeholder=""
                   className={`${notoSansJP.className} ${styles.form__text}`}
-                  // ref={emailRef}
                   {...register('email')}
                 />
                 <p className={styles.form__error}>{errors.email?.message}</p>
@@ -104,7 +129,6 @@ const Contact = () => {
                 id="message"
                 placeholder=""
                 className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
-                // ref={messageRef}
                 {...register('text')}
               />
               <p className={styles.form__error}>{errors.text?.message}</p>
@@ -115,6 +139,7 @@ const Contact = () => {
           </form>
         </section>
       </Layout>
+      <ToastContainer />
     </>
   );
 };
