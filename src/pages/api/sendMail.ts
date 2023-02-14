@@ -19,7 +19,7 @@ const sendMail = async (req: NextApiRequest, res: NextApiResponse) => {
     const info = await transporter.sendMail({
       from: data.email,
       to: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
-      subject: data.name,
+      subject: `${data.name} (${data.email}) より`,
       text: data.text,
     });
     res.status(200).send('送信成功');
