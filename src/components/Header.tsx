@@ -1,4 +1,12 @@
-import { faBarsStaggered, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBarsStaggered,
+  faBorderNone,
+  faCubes,
+  faCubesStacked,
+  faSection,
+  faTape,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 
@@ -19,12 +27,15 @@ const Header = () => {
         <NavigationButton type="Contact" currentPage={currentPage} />
       </nav>
       {isMenuOpen === false ? (
-        <button className={styles.button} onClick={() => setIsMenuOpen((prev) => !prev)}>
+        <button className={`${styles.button}`} onClick={() => setIsMenuOpen((prev) => !prev)}>
           <FontAwesomeIcon icon={faBarsStaggered} />
         </button>
       ) : (
         <div className={styles.mobileNavContainer}>
-          <button className={styles.button} onClick={() => setIsMenuOpen((prev) => !prev)}>
+          <button
+            className={`${isMenuOpen === true ? styles.buttonMenuOpen : ''} ${styles.button}`}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+          >
             <FontAwesomeIcon icon={faXmark} />
           </button>
           <nav className={styles.mobileNav}>

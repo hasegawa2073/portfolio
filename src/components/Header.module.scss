@@ -52,17 +52,18 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
-    gap: 40px;
+    gap: calc((100svh - 120px - 94px * 5) / 4);
   }
 }
 @include mediaQuery('sm') {
   .mobileNav {
     place-items: center;
-    gap: 0;
-    min-height: calc(100svh - 24px);
+    gap: calc((100svh - 80px - 94px * 5) / 4);
   }
   .mobileNavContainer {
-    margin-top: 12px;
     gap: 80px;
+  }
+  .buttonMenuOpen {
+    display: none;
   }
 }
