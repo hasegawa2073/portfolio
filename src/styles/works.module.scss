@@ -2,6 +2,7 @@
 
 .section {
   @include section;
+  @include transition_spacing;
 }
 .ttl_container {
   @include ttl_container;
@@ -9,9 +10,11 @@
 }
 .main_ttl {
   @include ttl_l;
+  @include transition_text;
 }
 .sub_ttl {
   @include ttl_s;
+  @include transition_text;
 }
 .item {
   overflow: hidden;
