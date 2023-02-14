@@ -5,6 +5,7 @@
 }
 .ttl_container {
   @include ttl_container;
+  @include transition_all;
 }
 .main_ttl {
   @include ttl_l;
@@ -15,19 +16,64 @@
 .item {
   overflow: hidden;
   border-radius: 10px;
+  @include transition_all;
   &:not(:last-child) {
-    max-width: 760px;
     margin-bottom: 80px;
-    overflow: hidden;
   }
 }
 .thumbnail {
-  max-width: 760px;
+  max-width: 768px;
   width: 100%;
   height: auto;
   vertical-align: bottom;
-  transition: transform 0.6s ease;
+  border-radius: 10px;
+  @include transition_all;
   &:hover {
-    transform: scale(1.12);
+    transform: scale(1.0366);
+  }
+}
+
+@include mediaQuery('2xl') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 72px;
+    }
+  }
+  .thumbnail {
+    max-width: 672px;
+  }
+}
+@include mediaQuery('xl') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 64px;
+    }
+  }
+  .thumbnail {
+    max-width: 672px;
+  }
+}
+@include mediaQuery('lg') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+  .thumbnail {
+    max-width: 448px;
+  }
+}
+@include mediaQuery('md') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+}
+@include mediaQuery('sm') {
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
   }
 }
