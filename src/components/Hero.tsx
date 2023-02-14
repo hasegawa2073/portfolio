@@ -5,14 +5,14 @@ import { NextPage } from 'next';
 import styles from './Hero.module.scss';
 
 // eslint-disable-next-line import/order
-import { cormorant, robotoCondensed } from '../pages/_app';
+import { cormorantGaramond, robotoCondensed } from '../pages/_app';
 
 type Props = { content: string };
 
 const Hero: NextPage<Props> = ({ content }) => {
   return (
     <section className={styles.section}>
-      <h1 className={`${styles.name} ${cormorant.className}`}>
+      <h1 className={`${cormorantGaramond.className} ${styles.name}`}>
         Tatsuya
         <br />
         Hasegawa
