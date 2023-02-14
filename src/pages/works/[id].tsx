@@ -35,6 +35,7 @@ const WorkId: NextPage<Work> = (work) => {
                 height={work.thumbnail.height}
                 alt={work.name}
                 className={styles.thumbnail}
+                priority
               />
             </div>
             <section className={styles.contentContainer}>
