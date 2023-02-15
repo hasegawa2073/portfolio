@@ -1,32 +1,21 @@
+// eslint-disable-next-line import/default
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createTransport } from 'nodemailer';
 
+import { sendMail } from '@/service/aws-ses';
+import { sendGmailToAdmin } from '@/service/sendGmailToAdmin';
 import { EmailContent } from '@/types/emailContent';
 
-const sendMail = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const data: EmailContent = JSON.parse(JSON.stringify(req.body));
-    const transporter = createTransport({
-      // @ts-ignore
-      host: process.env.NEXT_PUBLIC_MAIL_HOST,
-      port: process.env.NEXT_PUBLIC_MAIL_PORT,
-      secure: process.env.NEXT_PUBLIC_MAIL_SECURE,
-      auth: {
-        user: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
-        pass: process.env.NEXT_PUBLIC_MAIL_AUTH_PASS,
-      },
+const checkUserAPI = async (req: NextApiRequest, res: NextApiResponse) => {
+  const data: EmailContent = JSON.parse(JSON.stringify(req.body));
+  Promise.all([sendMail(data), sendGmailToAdmin(data)])
+    .then((response) => {
+      console.log(response);
+      res.status(200).send('送信成功！');
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send('送信失敗！');
     });
-    const info = await transporter.sendMail({
-      from: data.email,
-      to: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
-      subject: `${data.name} (${data.email}) より`,
-      text: data.text,
-    });
-    res.status(200).send('送信成功');
-  } catch (err) {
-    console.log(err);
-    res.status(500).send('送信失敗');
-  }
 };
 
-export default sendMail;
+export default checkUserAPI;

@@ -47,13 +47,13 @@ $formBorderRadius: 6px;
     margin-bottom: 6px;
     text-align: start;
     color: var(--c-white);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     @include transition_all;
   }
   &__text {
     display: block;
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 12px;
     font-size: 1.6rem;
     color: var(--c-white);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -63,12 +63,14 @@ $formBorderRadius: 6px;
   &__textArea {
     resize: vertical;
     min-height: 200px;
-    @include transition_all;
+    height: 320px;
+    transition: width var(--t-transition) var(--val-transition-timing-function);
   }
   &__button {
+    position: relative;
     display: inline-block;
     padding: 16px 88px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     font-size: 1.8rem;
     color: var(--c-white);
     backdrop-filter: blur(20px);
@@ -80,6 +82,12 @@ $formBorderRadius: 6px;
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
+  }
+  &__buttonIcon {
+    position: absolute;
+    left: 12%;
+    font-size: 2rem;
+    color: rgba($color: #ffffff, $alpha: 0.8);
   }
   &__error {
     text-align: left;
@@ -107,7 +115,7 @@ $formBorderRadius: 6px;
       max-width: 384px;
     }
     &__textArea {
-      min-height: 320px;
+      height: 320px;
       max-width: 384px;
     }
   }
@@ -135,16 +143,17 @@ $formBorderRadius: 6px;
       margin-left: auto;
       margin-right: auto;
       max-width: 384px;
-      width: calc(100vw - (24px + 32px));
+      width: calc(100vw - (24px + 40px));
     }
     &__text {
       margin: 0 auto;
       max-width: 384px;
-      width: calc(100vw - (24px + 32px));
+      padding-top: 10px;
+      width: calc(100vw - (24px + 40px));
     }
     &__textArea {
       max-width: 384px;
-      min-height: 200px;
+      min-height: 400px;
     }
     &__error {
       font-size: 1.2rem;

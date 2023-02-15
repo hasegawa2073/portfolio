@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Layout from '@/components/Layout';
+import SEO from '@/components/SEO';
 import { client } from '@/libs/client';
 import styles from '@/styles/works.module.scss';
 import { Work, Works } from '@/types/work';
@@ -13,6 +14,7 @@ import { caveat, notoSansJP } from './_app';
 const Works: NextPage<Works> = ({ works }) => {
   return (
     <>
+      <SEO pagePath="" pageTitle="Tatsuya Hasegawaの過去の制作物一覧" pageDescription="" />
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>

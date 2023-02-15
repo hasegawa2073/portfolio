@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -14,12 +15,16 @@ import { useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-unresolved, import/order
 // eslint-disable-next-line import/order
 import { emailSchema } from '@/schema/emailSchema';
-import { EmailContent } from '@/types/emailContent';
+import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
 // eslint-disable-next-line import/order
 import { caveat, notoSansJP } from './_app';
 
 // eslint-disable-next-line import/order
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import SEO from '@/components/SEO';
 import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
@@ -29,6 +34,7 @@ const Contact = () => {
     register,
     handleSubmit,
     watch,
+    resetField,
     formState: { errors },
   } = useForm<EmailContent>({ resolver: yupResolver(emailSchema) });
 
@@ -41,6 +47,8 @@ const Contact = () => {
     formContent.name === undefined ||
     formContent.email === undefined ||
     formContent.text === undefined;
+  const isCompleteForm =
+    Boolean(formContent.name) && Boolean(formContent.email) && Boolean(formContent.text);
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,8 +56,11 @@ const Contact = () => {
     onSubmit();
   };
 
-  const onSubmit = handleSubmit((data) => {
-    postMail(data);
+  const onSubmit = handleSubmit(async (data) => {
+    const response = await postMail(data);
+    Object.keys(response).map((formContentKey) => {
+      resetField(formContentKey as EmailContentKey);
+    });
     notifyDoingSubmit();
   });
   const postMail = async (data: EmailContent) => {
@@ -69,6 +80,7 @@ const Contact = () => {
         console.log(err);
         router.push({ pathname: '/', query: { toast: 'error' } });
       });
+    return data;
   };
 
   const notifyDoingSubmit = () => {
@@ -86,6 +98,7 @@ const Contact = () => {
 
   return (
     <>
+      <SEO pagePath="" pageTitle="Tatsuya Hasegawaへのお問い合わせ" pageDescription="" />
       <Layout>
         <section className={styles.section}>
           <div className={styles.ttl_container}>
@@ -133,8 +146,15 @@ const Contact = () => {
               />
               <p className={styles.form__error}>{errors.text?.message}</p>
             </div>
-            <button type="submit" className={styles.form__button}>
-              SEND
+            <button type="submit" className={styles.form__button} disabled={!isCompleteForm}>
+              <>
+                {isCompleteForm === true ? (
+                  ''
+                ) : (
+                  <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
+                )}
+                <span>SEND</span>
+              </>
             </button>
           </form>
         </section>
