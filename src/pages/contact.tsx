@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-unresolved, import/order
 // eslint-disable-next-line import/order
 import { emailSchema } from '@/schema/emailSchema';
-import { EmailContent } from '@/types/emailContent';
+import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
 // eslint-disable-next-line import/order
 import { caveat, notoSansJP } from './_app';
@@ -33,6 +33,7 @@ const Contact = () => {
     register,
     handleSubmit,
     watch,
+    resetField,
     formState: { errors },
   } = useForm<EmailContent>({ resolver: yupResolver(emailSchema) });
 
@@ -54,8 +55,11 @@ const Contact = () => {
     onSubmit();
   };
 
-  const onSubmit = handleSubmit((data) => {
-    postMail(data);
+  const onSubmit = handleSubmit(async (data) => {
+    const response = await postMail(data);
+    Object.keys(response).map((formContentKey) => {
+      resetField(formContentKey as EmailContentKey);
+    });
     notifyDoingSubmit();
   });
   const postMail = async (data: EmailContent) => {
@@ -75,6 +79,7 @@ const Contact = () => {
         console.log(err);
         router.push({ pathname: '/', query: { toast: 'error' } });
       });
+    return data;
   };
 
   const notifyDoingSubmit = () => {
@@ -139,7 +144,7 @@ const Contact = () => {
               />
               <p className={styles.form__error}>{errors.text?.message}</p>
             </div>
-            <button type="submit" className={styles.form__button}>
+            <button type="submit" className={styles.form__button} disabled={!isCompleteForm}>
               <>
                 {isCompleteForm === true ? (
                   ''

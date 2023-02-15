@@ -3,3 +3,5 @@ export type EmailContent = {
   name: string;
   text: string;
 };
+
+export type EmailContentKey = 'email' | 'name' | 'text';
