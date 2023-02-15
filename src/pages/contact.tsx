@@ -24,6 +24,7 @@ import { caveat, notoSansJP } from './_app';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import SEO from '@/components/SEO';
 import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
@@ -97,6 +98,7 @@ const Contact = () => {
 
   return (
     <>
+      <SEO pagePath="" pageTitle="Tatsuya Hasegawaへのお問い合わせ" pageDescription="" />
       <Layout>
         <section className={styles.section}>
           <div className={styles.ttl_container}>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Layout from '@/components/Layout';
+import SEO from '@/components/SEO';
 import { client } from '@/libs/client';
 import styles from '@/styles/works[id].module.scss';
 import { Work } from '@/types/work';
@@ -21,6 +22,7 @@ const WorkId: NextPage<Work> = (work) => {
 
   return (
     <>
+      <SEO pagePath="" pageTitle="Tatsuya Hasegawaの過去の制作物" pageDescription={work.name} />
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>

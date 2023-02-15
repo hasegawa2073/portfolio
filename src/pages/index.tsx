@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import Hero from '@/components/Hero';
 import Layout from '@/components/Layout';
-
+import SEO from '@/components/SEO';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
@@ -39,6 +39,7 @@ export default function Home() {
   return (
     <>
       <Layout>
+        <SEO pagePath="" />
         <Hero content={content} />
       </Layout>
       <ToastContainer />

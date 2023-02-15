@@ -1,7 +1,10 @@
 import Image from 'next/image';
 
+// eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
 
+// eslint-disable-next-line import/order
+import SEO from '@/components/SEO';
 // eslint-disable-next-line import/order
 import styles from '../styles/about.module.scss';
 
@@ -46,64 +49,71 @@ const contents = [
 
 const About = () => {
   return (
-    <div className={notoSansJP.className}>
-      <Layout>
-        <section className={styles.section}>
-          <div className={styles.ttl_container}>
-            <h1 className={`${caveat.className} ${styles.main_ttl}`}>About</h1>
-            <p className={styles.sub_ttl}>私について</p>
-          </div>
-          <section className={styles.profile}>
-            <Image
-              src="/my-icon.jpg"
-              width={200}
-              height={200}
-              alt="Tatsuya Hasegawa"
-              priority
-              className={styles.profile__icon}
-            />
-            <div>
-              <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>{profile.name}</h2>
-              <ul className={styles.profile__txt}>
-                <li className={styles.profile__li}>
-                  <span className={styles.profile__ttl}>所属</span>
-                  <span className={styles.profile__content}>{profile.team}</span>
-                </li>
-                <li className={styles.profile__li}>
-                  <span className={styles.profile__ttl}>生年月日</span>
-                  <span className={styles.profile__content}>{profile.birth}</span>
-                </li>
-                <li className={styles.profile__li}>
-                  <span className={styles.profile__ttl}>趣味</span>
-                  <span className={styles.profile__content}>{profile.hobby}</span>
-                </li>
-                <li className={styles.profile__li}>
-                  <span className={styles.profile__ttl}>好きな食べ物</span>
-                  <span className={styles.profile__content}>{profile.favoriteFood}</span>
-                </li>
-                <li className={styles.profile__li}>
-                  <span className={styles.profile__ttl}>開発経験</span>
-                  <span className={styles.profile__content}>{profile.experience}</span>
-                </li>
-              </ul>
+    <>
+      <SEO pagePath="" pageTitle="Tatsuya Hasegawaについて" pageDescription="" />
+      <div className={notoSansJP.className}>
+        <Layout>
+          <section className={styles.section}>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>About</h1>
+              <p className={styles.sub_ttl}>私について</p>
             </div>
-          </section>
-          {contents.map((content) => (
-            <section key={content.ttlEn} className={styles.content}>
-              <div className={styles.ttl_container}>
-                <h2 className={`${caveat.className} ${styles.content__ttlEn}`}>{content.ttlEn}</h2>
-                <p className={styles.content__ttlJP}>{content.ttlJP}</p>
+            <section className={styles.profile}>
+              <Image
+                src="/my-icon.jpg"
+                width={200}
+                height={200}
+                alt="Tatsuya Hasegawa"
+                priority
+                className={styles.profile__icon}
+              />
+              <div>
+                <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>
+                  {profile.name}
+                </h2>
+                <ul className={styles.profile__txt}>
+                  <li className={styles.profile__li}>
+                    <span className={styles.profile__ttl}>所属</span>
+                    <span className={styles.profile__content}>{profile.team}</span>
+                  </li>
+                  <li className={styles.profile__li}>
+                    <span className={styles.profile__ttl}>生年月日</span>
+                    <span className={styles.profile__content}>{profile.birth}</span>
+                  </li>
+                  <li className={styles.profile__li}>
+                    <span className={styles.profile__ttl}>趣味</span>
+                    <span className={styles.profile__content}>{profile.hobby}</span>
+                  </li>
+                  <li className={styles.profile__li}>
+                    <span className={styles.profile__ttl}>好きな食べ物</span>
+                    <span className={styles.profile__content}>{profile.favoriteFood}</span>
+                  </li>
+                  <li className={styles.profile__li}>
+                    <span className={styles.profile__ttl}>開発経験</span>
+                    <span className={styles.profile__content}>{profile.experience}</span>
+                  </li>
+                </ul>
               </div>
-              {content.descriptions.map((description, index) => (
-                <p key={index} className={styles.content__description}>
-                  {description}
-                </p>
-              ))}
             </section>
-          ))}
-        </section>
-      </Layout>
-    </div>
+            {contents.map((content) => (
+              <section key={content.ttlEn} className={styles.content}>
+                <div className={styles.ttl_container}>
+                  <h2 className={`${caveat.className} ${styles.content__ttlEn}`}>
+                    {content.ttlEn}
+                  </h2>
+                  <p className={styles.content__ttlJP}>{content.ttlJP}</p>
+                </div>
+                {content.descriptions.map((description, index) => (
+                  <p key={index} className={styles.content__description}>
+                    {description}
+                  </p>
+                ))}
+              </section>
+            ))}
+          </section>
+        </Layout>
+      </div>
+    </>
   );
 };
 export default About;
