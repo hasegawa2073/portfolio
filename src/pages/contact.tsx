@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -20,6 +21,9 @@ import { EmailContent } from '@/types/emailContent';
 import { caveat, notoSansJP } from './_app';
 
 // eslint-disable-next-line import/order
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
@@ -41,6 +45,8 @@ const Contact = () => {
     formContent.name === undefined ||
     formContent.email === undefined ||
     formContent.text === undefined;
+  const isCompleteForm =
+    Boolean(formContent.name) && Boolean(formContent.email) && Boolean(formContent.text);
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -134,7 +140,14 @@ const Contact = () => {
               <p className={styles.form__error}>{errors.text?.message}</p>
             </div>
             <button type="submit" className={styles.form__button}>
-              SEND
+              <>
+                {isCompleteForm === true ? (
+                  ''
+                ) : (
+                  <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
+                )}
+                <span>SEND</span>
+              </>
             </button>
           </form>
         </section>
