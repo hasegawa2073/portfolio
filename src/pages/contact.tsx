@@ -53,7 +53,6 @@ const Contact = () => {
     e.preventDefault();
     isEptyForm === true ? infoValidateError() : '';
     onSubmit();
-    notifyDoingSubmit();
   };
 
   const onSubmit = handleSubmit(async (data) => {
@@ -61,6 +60,7 @@ const Contact = () => {
     Object.keys(response).map((formContentKey) => {
       resetField(formContentKey as EmailContentKey);
     });
+    notifyDoingSubmit();
   });
   const postMail = async (data: EmailContent) => {
     axios
@@ -144,7 +144,7 @@ const Contact = () => {
               />
               <p className={styles.form__error}>{errors.text?.message}</p>
             </div>
-            <button type="submit" className={styles.form__button}>
+            <button type="submit" className={styles.form__button} disabled={!isCompleteForm}>
               <>
                 {isCompleteForm === true ? (
                   ''
