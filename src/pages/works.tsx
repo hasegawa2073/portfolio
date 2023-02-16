@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
-import { client, WorkResponse } from '@/libs/microcms';
+import { getList } from '@/libs/microcms';
 import styles from '@/styles/works.module.scss';
 import { Work, Works } from '@/types/work';
 
@@ -44,8 +44,7 @@ const Works: NextPage<Works> = ({ works }) => {
 };
 
 export const getStaticProps = async (): Promise<GetStaticPropsResult<Works>> => {
-  const data: WorkResponse = await client?.get({ endpoint: 'works' });
-  const contents: Works = data.contents;
+  const { contents } = await getList();
   return {
     // @ts-ignore
     props: { works: contents },
