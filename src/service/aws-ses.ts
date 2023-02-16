@@ -4,9 +4,9 @@ import { createTransport } from 'nodemailer';
 import { EmailContent } from '@/types/emailContent';
 
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
 });
 AWS.config.getCredentials((error) => {
   if (error) {
