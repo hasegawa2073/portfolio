@@ -11,7 +11,7 @@
   color: var(--c-navy);
   line-height: 0.8;
   padding-bottom: 0.7em;
-  @include transition_all;
+  @include transition_text;
 }
 .role {
   font-size: clamp(1.4rem, 2vw, 2.4rem);
