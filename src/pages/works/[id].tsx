@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
-import { client } from '@/libs/client';
+import { getDetail, getList } from '@/libs/microcms';
 import styles from '@/styles/works[id].module.scss';
 import { Work } from '@/types/work';
 
@@ -94,15 +94,15 @@ const WorkId: NextPage<Work> = (work) => {
 };
 
 export const getStaticPaths = async () => {
-  const data = await client?.get({ endpoint: 'works' });
-  const paths = data.contents.map((content: Work) => `/works/${content.id}`);
+  const { contents } = await getList();
+  const paths = contents.map((content: Work) => `/works/${content.id}`);
   return { paths, fallback: false };
 };
 export const getStaticProps = async (context: {
   params: { id: string };
 }): Promise<GetStaticPropsResult<Work>> => {
   const id = context.params.id;
-  const data = await client?.get({ endpoint: 'works', contentId: id });
+  const data = await getDetail(id);
   return {
     props: data,
   };
