@@ -22,7 +22,11 @@ const WorkId: NextPage<Work> = (work) => {
 
   return (
     <>
-      <SEO pagePath="" pageTitle="Tatsuya Hasegawaの過去の制作物" pageDescription={work.name} />
+      <SEO
+        pagePath={`https://portfolio-teal-mu-78.vercel.app/works/${work.id}`}
+        pageTitle="Tatsuya Hasegawaの過去の制作物"
+        pageDescription={work.name}
+      />
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>

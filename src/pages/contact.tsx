@@ -98,7 +98,11 @@ const Contact = () => {
 
   return (
     <>
-      <SEO pagePath="" pageTitle="Tatsuya Hasegawaへのお問い合わせ" pageDescription="" />
+      <SEO
+        pagePath="https://portfolio-teal-mu-78.vercel.app/contact"
+        pageTitle="Tatsuya Hasegawaへのお問い合わせ"
+        pageDescription=""
+      />
       <Layout>
         <section className={styles.section}>
           <div className={styles.ttl_container}>

@@ -14,7 +14,11 @@ import { caveat, notoSansJP } from './_app';
 const Works: NextPage<Works> = ({ works }) => {
   return (
     <>
-      <SEO pagePath="" pageTitle="Tatsuya Hasegawaの過去の制作物一覧" pageDescription="" />
+      <SEO
+        pagePath="https://portfolio-teal-mu-78.vercel.app/works"
+        pageTitle="Tatsuya Hasegawaの過去の制作物一覧"
+        pageDescription=""
+      />
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>
