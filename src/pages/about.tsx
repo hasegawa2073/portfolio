@@ -50,7 +50,11 @@ const contents = [
 const About = () => {
   return (
     <>
-      <SEO pagePath="" pageTitle="Tatsuya Hasegawaについて" pageDescription="" />
+      <SEO
+        pagePath="https://portfolio-teal-mu-78.vercel.app/about"
+        pageTitle="Tatsuya Hasegawaについて"
+        pageDescription=""
+      />
       <div className={notoSansJP.className}>
         <Layout>
           <section className={styles.section}>
