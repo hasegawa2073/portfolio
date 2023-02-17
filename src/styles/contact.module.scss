@@ -108,9 +108,6 @@ $formBorderRadius: 6px;
     &__personInfoContainer {
       flex-direction: column;
     }
-    &__personInfo {
-      min-width: 384px;
-    }
     &__text {
       max-width: 384px;
     }
@@ -122,38 +119,26 @@ $formBorderRadius: 6px;
 }
 @include mediaQuery('md') {
   .form {
-    padding: 0;
-    &__personInfo {
-      min-width: 320px;
-    }
     &__item {
       font-size: 1.6rem;
-    }
-    &__textArea {
-      max-width: 320px;
     }
   }
 }
 @include mediaQuery('sm') {
   .form {
-    &__personInfo {
-      min-width: none;
-    }
     &__label {
       margin-left: auto;
       margin-right: auto;
       max-width: 384px;
-      width: calc(100vw - (24px + 40px));
     }
     &__text {
       margin: 0 auto;
       max-width: 384px;
       padding-top: 10px;
-      width: calc(100vw - (24px + 40px));
     }
     &__textArea {
       max-width: 384px;
-      min-height: 400px;
+      min-height: none;
     }
     &__error {
       font-size: 1.2rem;

@@ -9,8 +9,10 @@ $btn-l: 80px;
   position: relative;
   display: inline-block;
   @include transition_transform;
-  &:hover {
-    scale: 1.0864;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      scale: 1.03927;
+    }
   }
 }
 .box {
