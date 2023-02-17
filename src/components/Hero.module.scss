@@ -11,7 +11,7 @@
   color: var(--c-navy);
   line-height: 0.8;
   padding-bottom: 0.7em;
-  @include transition_text;
+  @include transition_spacing;
 }
 .role {
   font-size: clamp(1.4rem, 2vw, 2.4rem);
@@ -19,7 +19,7 @@
   font-weight: 400;
   color: var(--c-white);
   letter-spacing: 0.3em;
-  @include transition_text;
+  @include transition_spacing;
 }
 
 @include mediaQuery('2xl') {
