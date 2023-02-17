@@ -18,8 +18,8 @@
 }
 .item {
   overflow: hidden;
-  border-radius: 10px;
-  @include transition_all;
+  border-radius: var(--thumbnail-border-radius);
+  @include transition_spacing;
   &:not(:last-child) {
     margin-bottom: 80px;
   }
@@ -29,10 +29,12 @@
   width: 100%;
   height: auto;
   vertical-align: bottom;
-  border-radius: 10px;
-  @include transition_all;
-  &:hover {
-    transform: scale(1.0366);
+  border-radius: var(--thumbnail-border-radius);
+  @include transition_sizing;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.0193);
+    }
   }
 }
 
