@@ -57,18 +57,18 @@ $breakpoints: (
 
 @mixin section {
   color: var(--c-white);
-  padding: var(--section-pt) 0 var(--section-pb);
+  padding: var(--pt-section) 0 var(--pb-section);
   @include mediaQuery('xl') {
-    padding: var(--section-ptXl) 0 var(--section-pbXl);
+    padding: var(--ptXl-section) 0 var(--pbXl-section);
   }
   @include mediaQuery('lg') {
-    padding: var(--section-ptLg) 0 var(--section-pbLg);
+    padding: var(--ptLg-section) 0 var(--pbLg-section);
   }
   @include mediaQuery('md') {
-    padding: var(--section-ptMd) 0 var(--section-pbMd);
+    padding: var(--ptMd-section) 0 var(--pbMd-section);
   }
   @include mediaQuery('sm') {
-    padding: var(--section-ptSm) 0 var(--section-pbSm);
+    padding: var(--ptSm-section) 0 var(--pbSm-section);
   }
 }
 
