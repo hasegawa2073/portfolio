@@ -149,6 +149,14 @@
     scale: 1.2;
   }
 }
+@keyframes animationViewFilterLayer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @media screen and (max-height: 720px) {
   .header {
@@ -181,6 +189,7 @@
   }
   .filterLayer {
     display: block;
+    animation: animationViewFilterLayer var(--t-view-mobileNav) ease-out forwards;
   }
 }
 @include mediaQuery('sm') {
