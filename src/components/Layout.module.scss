@@ -97,7 +97,7 @@
   left: -12%;
   width: calc(30vw + 200px);
   height: calc(30vw + 200px);
-  min-height: 360px;
+  min-width: 360px;
   min-height: 360px;
   background: radial-gradient(#b94fca, #eaeaea);
   border-radius: 50%;
@@ -215,15 +215,24 @@
     align-items: center;
   }
   .circle_s {
-    top: 20%;
-    left: 76%;
+    min-width: 100px;
+    min-height: 100px;
+    top: -24%;
+    left: -32%;
+    filter: blur(48px);
   }
   .circle_m {
-    right: 2%;
-    bottom: 24%;
+    min-width: 240px;
+    min-height: 240px;
+    right: -54%;
+    bottom: 14%;
+    filter: blur(72px);
   }
   .circle_l {
-    left: -15%;
-    bottom: -10%;
+    min-width: 280px;
+    min-height: 280px;
+    left: -72%;
+    bottom: -48%;
+    filter: blur(96px);
   }
 }
