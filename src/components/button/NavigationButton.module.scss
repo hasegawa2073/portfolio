@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 
+$btn-xs: 60px;
 $btn-s: 64px;
 $btn-m: 72px;
 $btn-l: 80px;
@@ -25,7 +26,7 @@ $btn-l: 80px;
   width: $btn-l;
   height: $btn-l;
   background-color: var(--c-white);
-  border-radius: 17.5%;
+  border-radius: 22%;
 }
 .icon {
   width: $btn-l;
@@ -49,7 +50,7 @@ $btn-l: 80px;
   background-color: var(--c-white);
 }
 
-@mixin navButtonXl {
+@mixin buttonM {
   .button {
     width: $btn-m;
     height: $btn-m;
@@ -60,18 +61,8 @@ $btn-l: 80px;
     line-height: $btn-m;
     font-size: 2.8rem;
   }
-  .current {
-    left: -16px;
-    top: calc(50% - 14px);
-    width: 8px;
-    height: 8px;
-  }
 }
-
-@include mediaQuery('xl') {
-  @include navButtonXl;
-}
-@include mediaQuery('lg') {
+@mixin buttonS {
   .button {
     width: $btn-s;
     height: $btn-s;
@@ -82,6 +73,67 @@ $btn-l: 80px;
     line-height: $btn-s;
     font-size: 2.4rem;
   }
+}
+@mixin buttonXs {
+  .button {
+    width: $btn-xs;
+    height: $btn-xs;
+  }
+  .icon {
+    width: $btn-xs;
+    height: $btn-xs;
+    line-height: $btn-xs;
+    font-size: 2.4rem;
+  }
+}
+
+@mixin currentM {
+  .current {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@mixin currentLeft {
+  .current {
+    left: -20px;
+    top: calc(50% - 16px);
+  }
+}
+@mixin currentLeftM {
+  .current {
+    left: -16px;
+    top: calc(50% - 14px);
+  }
+}
+@mixin currentButtom {
+  .current {
+    top: 104px;
+    left: calc(50% - 4px);
+  }
+}
+@mixin currentButtomS {
+  .current {
+    top: 84px;
+    left: calc(50% - 4px);
+  }
+}
+@mixin currentButtomXs {
+  .current {
+    top: 82px;
+    left: calc(50% - 4px);
+  }
+}
+
+@mixin buttonlLabel {
+  .label {
+    display: inline-block;
+    width: 100%;
+    padding-top: 8px;
+    font-size: 1.5rem;
+  }
+}
+@mixin buttonlLabelS {
   .label {
     display: inline-block;
     width: 100%;
@@ -89,22 +141,41 @@ $btn-l: 80px;
     font-size: 1.4rem;
   }
 }
+
+@mixin navButtonM {
+  @include buttonM;
+  @include currentM;
+  @include currentLeftM;
+  @include buttonlLabel;
+}
+@mixin navButtonS {
+  @include buttonS;
+  @include currentM;
+  @include currentLeftM;
+  @include buttonlLabelS;
+}
+@mixin navButtonXs {
+  @include buttonXs;
+  @include currentM;
+  @include currentButtomXs;
+  @include buttonlLabelS;
+}
+
+@include mediaQuery('xl') {
+  @include navButtonM;
+}
+@include mediaQuery('lg') {
+  @include navButtonS;
+}
 @include mediaQuery('md') {
-  @include navButtonXl;
-  .current {
-    left: calc(50% - 4px);
-    top: 104px;
-  }
+  @include navButtonM;
 }
 @include mediaQuery('sm') {
-  .current {
-    top: 98px;
-  }
+  @include navButtonXs;
 }
 @media screen and (max-height: 720px) {
-  @include navButtonXl;
-  .current {
-    left: calc(50% - 4px);
-    top: 104px;
-  }
+  @include navButtonXs;
+}
+@media screen and (max-height: 720px) and (min-width: 768px) {
+  @include navButtonXs;
 }
