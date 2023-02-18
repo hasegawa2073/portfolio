@@ -9,61 +9,90 @@ $buttonSizeMd: 48px;
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(16px, calc((100vh - 640px) / 8), 40px);
   @include transition_spacing;
 }
 .button {
   display: none;
+  position: relative;
+  width: $buttonSizeMd;
+  height: $buttonSizeMd;
+  font-size: 2.2rem;
+  color: var(--c-white);
+  background-color: rgba($color: #ffffff, $alpha: 0.2);
+  backdrop-filter: blur(100px);
+  border-radius: 17.5%;
+  z-index: 1000;
 }
 .mobileNavContainer {
   display: none;
+  gap: 120px;
+}
+.mobileNav {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(((100vw - (72px * 4) - 80px) / 3));
 }
 
+@media screen and (max-height: 720px) {
+  .nav {
+    display: none;
+  }
+  .button {
+    display: block;
+  }
+  .mobileNavContainer {
+    display: flex;
+    gap: 80px;
+  }
+  .buttonMenuOpen {
+    display: none;
+  }
+  .mobileNav {
+    display: grid;
+  }
+}
+@media screen and (max-height: 720px) and (min-width: 768px) {
+  .mobileNav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(40px, calc(((100vw - (72px * 5) - 120px) / 4)), 128px);
+  }
+}
 @include mediaQuery('xl') {
   .nav {
-    gap: 32px;
+    gap: clamp(16px, calc((100vh - 640px) / 8), 32px);
   }
 }
 @include mediaQuery('lg') {
   .nav {
-    gap: 26px;
+    gap: clamp(16px, calc((100vh - 640px) / 8), 26px);
   }
 }
 @include mediaQuery('md') {
   .nav {
     display: none;
-    gap: 20px;
+    gap: clamp(16px, calc((100vh - 640px) / 8), 20px);
   }
   .button {
-    position: relative;
     display: block;
-    width: $buttonSizeMd;
-    height: $buttonSizeMd;
-    font-size: 2.2rem;
-    color: var(--c-white);
-    background-color: rgba($color: #ffffff, $alpha: 0.2);
-    backdrop-filter: blur(100px);
-    border-radius: 17.5%;
-    z-index: 1000;
   }
   .mobileNavContainer {
-    display: flex;
-    gap: 120px;
+    display: block;
   }
   .mobileNav {
     display: grid;
-    gap: calc((100svh - 120px - 94px * 5) / 4);
-  }
-}
-@include mediaQuery('sm') {
-  .mobileNav {
-    place-items: center;
-    gap: calc((100svh - 80px - 94px * 5) / 4);
-  }
-  .mobileNavContainer {
-    gap: 80px;
   }
   .buttonMenuOpen {
     display: none;
+  }
+}
+@include mediaQuery('sm') {
+  .mobileNavContainer {
+    gap: 80px;
+  }
+  .mobileNav {
+    display: grid;
+    gap: calc(((100vw - (72px * 4) - 40px) / 3));
   }
 }

@@ -1,6 +1,5 @@
 @import '../../styles/variables.scss';
 
-$btn-xs: 52px;
 $btn-s: 64px;
 $btn-m: 72px;
 $btn-l: 80px;
@@ -69,6 +68,9 @@ $btn-l: 80px;
   }
 }
 
+@media screen and (max-height: 720px) {
+  @include navButtonXl;
+}
 @include mediaQuery('xl') {
   @include navButtonXl;
 }
@@ -92,4 +94,13 @@ $btn-l: 80px;
 }
 @include mediaQuery('md') {
   @include navButtonXl;
+  .current {
+    left: calc(50% - 4px);
+    top: 104px;
+  }
+}
+@include mediaQuery('sm') {
+  .current {
+    top: 98px;
+  }
 }

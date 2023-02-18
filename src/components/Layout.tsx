@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+
+import { useWindowSize } from '@/hooks/useWindowSize';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -19,11 +21,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
     const otherChar = path.slice(2);
     return firstUpperLetter + otherChar;
   };
-
   const router = useRouter();
   const pathName = router.pathname === '/' ? 'Home' : convertPathToPage(router.pathname);
-
+  const { width, height } = useWindowSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (width > 768) {
+      setIsMenuOpen(false);
+    }
+  }, [width]);
 
   return (
     <>
@@ -32,7 +39,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <div className={styles.layout}>
             <div className={styles.glassContainer}>
               <div
-                className={`${isMenuOpen === true ? styles.headerMenuOpen : ''} ${styles.header}`}
+                className={`${isMenuOpen === true ? styles.header__menuOpen : ''} ${styles.header}`}
               >
                 <Header />
               </div>
