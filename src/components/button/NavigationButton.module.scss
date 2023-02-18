@@ -68,9 +68,6 @@ $btn-l: 80px;
   }
 }
 
-@media screen and (max-height: 720px) {
-  @include navButtonXl;
-}
 @include mediaQuery('xl') {
   @include navButtonXl;
 }
@@ -102,5 +99,12 @@ $btn-l: 80px;
 @include mediaQuery('sm') {
   .current {
     top: 98px;
+  }
+}
+@media screen and (max-height: 720px) {
+  @include navButtonXl;
+  .current {
+    left: calc(50% - 4px);
+    top: 104px;
   }
 }
