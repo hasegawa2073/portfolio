@@ -149,12 +149,16 @@
     scale: 1.2;
   }
 }
-@keyframes animationViewFilterLayer {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+
+@mixin animationViewFilterLayer {
+  animation: animationViewFilterLayer var(--t-view-mobileNav) ease-out forwards;
+  @keyframes animationViewFilterLayer {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
 
@@ -166,6 +170,7 @@
   }
   .filterLayer {
     display: block;
+    @include animationViewFilterLayer;
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
@@ -189,7 +194,7 @@
   }
   .filterLayer {
     display: block;
-    animation: animationViewFilterLayer var(--t-view-mobileNav) ease-out forwards;
+    @include animationViewFilterLayer;
   }
 }
 @include mediaQuery('sm') {
