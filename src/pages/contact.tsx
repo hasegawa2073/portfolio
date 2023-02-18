@@ -29,7 +29,19 @@ import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
   const router = useRouter();
-
+  const [enableSubmit, setEnableSubmit] = useState(true);
+  const notifyDoingSubmit = () => {
+    toast.info('メールを送信しています...', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
+  };
+  const infoValidateError = () => {
+    toast.warn('必須項目をすべて入力してください。', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
+  };
   const {
     register,
     handleSubmit,
@@ -52,19 +64,22 @@ const Contact = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    isEptyForm === true ? infoValidateError() : '';
-    onSubmit();
+    setEnableSubmit(false);
+    notifyDoingSubmit();
+    await onSubmit();
+    setEnableSubmit(true);
   };
 
   const onSubmit = handleSubmit(async (data) => {
-    setEnableSubmit(false);
-    const response = await postMail(data);
-    resetAllField(response);
-    setEnableSubmit(true);
-    notifyDoingSubmit();
+    const responsePostMail = await postMail(data);
+    if (responsePostMail.status === 200) {
+      resetAllField(data);
+      router.push({
+        pathname: '/',
+        query: { toast: 'success' },
+      });
+    }
   });
-
-  const [enableSubmit, setEnableSubmit] = useState(true);
 
   const resetAllField = (data: EmailContent) => {
     Object.keys(data).map((formContentKey) => {
@@ -73,7 +88,7 @@ const Contact = () => {
   };
 
   const postMail = async (data: EmailContent) => {
-    axios
+    return await axios
       .post('/api/sendMail', {
         name: data.name,
         email: data.email,
@@ -81,28 +96,12 @@ const Contact = () => {
       })
       .then((res) => {
         console.log(res);
-        if (res.status === 200) {
-          router.push({ pathname: '/', query: { toast: 'success' } });
-        }
+        return res;
       })
       .then((err) => {
         console.log(err);
-        router.push({ pathname: '/', query: { toast: 'error' } });
+        return err;
       });
-    return data;
-  };
-
-  const notifyDoingSubmit = () => {
-    toast.info('メールを送信しています...', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 2000,
-    });
-  };
-  const infoValidateError = () => {
-    toast.warn('必須項目をすべて入力してください。', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 5000,
-    });
   };
 
   return (
@@ -161,8 +160,8 @@ const Contact = () => {
             </div>
             <button
               type="submit"
-              className={`${enableSubmit === false ? styles.form__buttonWait : ''} ${
-                isCompleteForm === false ? styles.form__buttonLock : ''
+              className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
+                enableSubmit === false ? styles.form__buttonWait : ''
               } ${styles.form__button}`}
               disabled={!enableSubmit}
             >
