@@ -30,7 +30,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
     if (width > 768) {
       setIsMenuOpen(false);
     }
-  }, [width]);
+    if (height > 720) {
+      setIsMenuOpen(false);
+    }
+  }, [width, height]);
 
   return (
     <>

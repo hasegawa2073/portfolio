@@ -29,7 +29,7 @@
   z-index: 1000;
   &__menuOpen {
     display: block;
-    top: 64px;
+    top: calc(50% - 36px);
     left: 0;
     right: 0;
   }
@@ -176,6 +176,7 @@
     padding: 40px 5vw;
     &__menuOpen {
       padding: 0;
+      top: calc(50% - 158px);
     }
   }
   .filterLayer {
