@@ -41,7 +41,7 @@ $buttonSizeMd: 48px;
   @keyframes viewMobileNav {
     0% {
       gap: 0;
-      scale: 0;
+      scale: 0.25;
     }
     100% {
       gap: $gap;
