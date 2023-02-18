@@ -58,6 +58,8 @@ $formBorderRadius: 6px;
     color: var(--c-white);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: $formBorderRadius;
+    caret-color: var(--c-white);
+    outline: var(--c-white);
     @include transition_sizing;
   }
   &__textArea {
