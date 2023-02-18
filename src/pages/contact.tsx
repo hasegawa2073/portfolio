@@ -2,7 +2,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -57,12 +57,21 @@ const Contact = () => {
   };
 
   const onSubmit = handleSubmit(async (data) => {
+    setEnableSubmit(false);
     const response = await postMail(data);
-    Object.keys(response).map((formContentKey) => {
-      resetField(formContentKey as EmailContentKey);
-    });
+    resetAllField(response);
+    setEnableSubmit(true);
     notifyDoingSubmit();
   });
+
+  const [enableSubmit, setEnableSubmit] = useState(true);
+
+  const resetAllField = (data: EmailContent) => {
+    Object.keys(data).map((formContentKey) => {
+      resetField(formContentKey as EmailContentKey);
+    });
+  };
+
   const postMail = async (data: EmailContent) => {
     axios
       .post('/api/sendMail', {
@@ -150,7 +159,13 @@ const Contact = () => {
               />
               <p className={styles.form__error}>{errors.text?.message}</p>
             </div>
-            <button type="submit" className={styles.form__button} disabled={!isCompleteForm}>
+            <button
+              type="submit"
+              className={`${enableSubmit === false ? styles.form__buttonWait : ''} ${
+                isCompleteForm === false ? styles.form__buttonLock : ''
+              } ${styles.form__button}`}
+              disabled={!enableSubmit}
+            >
               <>
                 {isCompleteForm === true ? (
                   ''
