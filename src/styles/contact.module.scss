@@ -83,6 +83,12 @@ $formBorderRadius: 6px;
       background-color: rgba(255, 255, 255, 0.1);
     }
   }
+  &__buttonLock {
+    cursor: default;
+  }
+  &__buttonWait {
+    cursor: wait;
+  }
   &__buttonIcon {
     position: absolute;
     left: 12%;
