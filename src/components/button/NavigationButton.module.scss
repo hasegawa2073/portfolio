@@ -120,7 +120,7 @@ $btn-l: 80px;
 }
 @mixin currentButtomXs {
   .current {
-    top: 82px;
+    top: 84px;
     left: calc(50% - 4px);
   }
 }
@@ -145,7 +145,7 @@ $btn-l: 80px;
 @mixin navButtonM {
   @include buttonM;
   @include currentM;
-  @include currentLeftM;
+  @include currentButtom;
   @include buttonlLabel;
 }
 @mixin navButtonS {
@@ -163,6 +163,7 @@ $btn-l: 80px;
 
 @include mediaQuery('xl') {
   @include navButtonM;
+  @include currentLeftM;
 }
 @include mediaQuery('lg') {
   @include navButtonS;
