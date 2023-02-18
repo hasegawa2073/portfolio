@@ -65,12 +65,12 @@ const Contact = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEnableSubmit(false);
-    notifyDoingSubmit();
     await onSubmit();
     setEnableSubmit(true);
   };
 
   const onSubmit = handleSubmit(async (data) => {
+    notifyDoingSubmit();
     const responsePostMail = await postMail(data);
     if (responsePostMail.status === 200) {
       resetAllField(data);
