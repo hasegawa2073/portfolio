@@ -25,13 +25,29 @@ $buttonSizeMd: 48px;
   z-index: 1000;
 }
 .mobileNavContainer {
-  display: none;
+  display: block;
   gap: 120px;
 }
 .mobileNav {
-  display: none;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: calc(((100vw - (72px * 4) - 160px) / 3));
+  transform-origin: top left;
+}
+
+@mixin animationViewMobileNav($gap) {
+  gap: 0;
+  scale: 0;
+  animation: viewMobileNav var(--t-view-mobileNav) ease-out forwards;
+  @keyframes viewMobileNav {
+    0% {
+      gap: 0;
+      scale: 0;
+    }
+    100% {
+      gap: $gap;
+      scale: 1;
+    }
+  }
 }
 
 @media screen and (max-height: 720px) {
@@ -50,14 +66,14 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
-    gap: calc(((100vw - (60px * 5) - 0px) / 4));
+    @include animationViewMobileNav(calc(((100vw - (60px * 5) - 0px) / 4)));
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
   .mobileNav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: clamp(40px, calc(((100vw - (72px * 5) - 120px) / 4)), 128px);
+    @include animationViewMobileNav(clamp(40px, calc(((100vw - (72px * 5) - 120px) / 4)), 128px));
   }
 }
 @include mediaQuery('xl') {
@@ -83,17 +99,15 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
+    @include animationViewMobileNav(calc(((100vw - (72px * 4) - 160px) / 3)));
   }
   .buttonMenuOpen {
     display: none;
   }
 }
 @include mediaQuery('sm') {
-  .mobileNavContainer {
-    gap: 80px;
-  }
   .mobileNav {
     display: grid;
-    gap: calc(((100vw - (60px * 4) - 40px) / 3));
+    @include animationViewMobileNav(calc(((100vw - (60px * 4) - 40px) / 3)));
   }
 }
