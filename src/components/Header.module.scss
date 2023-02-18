@@ -31,7 +31,7 @@ $buttonSizeMd: 48px;
 .mobileNav {
   display: none;
   grid-template-columns: repeat(4, 1fr);
-  gap: calc(((100vw - (72px * 4) - 80px) / 3));
+  gap: calc(((100vw - (72px * 4) - 160px) / 3));
 }
 
 @media screen and (max-height: 720px) {
@@ -50,6 +50,7 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
+    gap: calc(((100vw - (60px * 5) - 0px) / 4));
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
@@ -93,6 +94,6 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
-    gap: calc(((100vw - (72px * 4) - 40px) / 3));
+    gap: calc(((100vw - (60px * 4) - 40px) / 3));
   }
 }
