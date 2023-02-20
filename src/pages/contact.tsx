@@ -64,13 +64,12 @@ const Contact = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setEnableSubmit(false);
     await onSubmit();
-    setEnableSubmit(true);
   };
 
   const onSubmit = handleSubmit(async (data) => {
     notifyDoingSubmit();
+    setEnableSubmit(false);
     const responsePostMail = await postMail(data);
     if (responsePostMail.status === 200) {
       resetAllField(data);
@@ -79,6 +78,7 @@ const Contact = () => {
         query: { toast: 'success' },
       });
     }
+    setEnableSubmit(true);
   });
 
   const resetAllField = (data: EmailContent) => {
