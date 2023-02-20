@@ -4,9 +4,9 @@ import { createTransport } from 'nodemailer';
 import { EmailContent } from '@/types/emailContent';
 
 AWS.config.update({
-  accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
-  secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-  region: process.env.NEXT_PUBLIC_AWS_REGION,
+  accessKeyId: process.env.ENV_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.ENV_AWS_SECRET_ACCESS_KEY,
+  region: process.env.ENV_AWS_REGION,
 });
 AWS.config.getCredentials((error) => {
   if (error) {
@@ -15,7 +15,7 @@ AWS.config.getCredentials((error) => {
 });
 
 const ses = new AWS.SES({ apiVersion: '2010-12-01' });
-const adminMail = process.env.NEXT_PUBLIC_MAIL_AUTH_USER;
+const adminMail = process.env.MAIL_AUTH_USER;
 
 const transporter = createTransport({
   SES: ses,

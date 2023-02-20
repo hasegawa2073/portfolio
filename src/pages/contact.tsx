@@ -64,20 +64,25 @@ const Contact = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setEnableSubmit(false);
     await onSubmit();
-    setEnableSubmit(true);
   };
 
   const onSubmit = handleSubmit(async (data) => {
     notifyDoingSubmit();
-    const responsePostMail = await postMail(data);
-    if (responsePostMail.status === 200) {
-      resetAllField(data);
-      router.push({
-        pathname: '/',
-        query: { toast: 'success' },
-      });
+    setEnableSubmit(false);
+    try {
+      const responsePostMail = await postMail(data);
+      if (responsePostMail.status === 200) {
+        resetAllField(data);
+        router.push({
+          pathname: '/',
+          query: { toast: 'success' },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEnableSubmit(true);
     }
   });
 
