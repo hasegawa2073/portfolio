@@ -112,7 +112,7 @@ const Contact = () => {
   return (
     <>
       <SEO
-        pagePath="https://portfolio-teal-mu-78.vercel.app/contact"
+        pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`}
         pageTitle="Tatsuya Hasegawaへのお問い合わせ"
         pageDescription=""
       />

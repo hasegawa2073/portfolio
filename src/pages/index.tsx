@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <SEO pagePath="https://portfolio-teal-mu-78.vercel.app/" />
+        <SEO pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`} />
         <Hero content={content} />
       </Layout>
       <ToastContainer />

@@ -1,6 +1,7 @@
 import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
@@ -19,11 +20,12 @@ const WorkId: NextPage<Work> = (work) => {
     { title: '使用ツール', value: work.tool },
     { title: '制作物URL', value: work.url },
   ];
+  const router = useRouter();
 
   return (
     <>
       <SEO
-        pagePath={`https://portfolio-teal-mu-78.vercel.app/works/${work.id}`}
+        pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}/works/${work.id}`}
         pageTitle="Tatsuya Hasegawaの過去の制作物"
         pageDescription={work.name}
       />
