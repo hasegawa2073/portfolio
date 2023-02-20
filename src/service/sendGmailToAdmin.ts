@@ -2,15 +2,15 @@ import { createTransport } from 'nodemailer';
 
 import { EmailContent } from '@/types/emailContent';
 
-const adminMail = process.env.NEXT_PUBLIC_MAIL_AUTH_USER;
+const adminMail = process.env.MAIL_AUTH_USER;
 const transporterToAdmin = createTransport({
   // @ts-ignore
   host: 'smtp.gmail.com',
-  port: process.env.NEXT_PUBLIC_MAIL_PORT,
-  secure: process.env.NEXT_PUBLIC_MAIL_SECURE,
+  port: process.env.MAIL_PORT,
+  secure: process.env.MAIL_SECURE,
   auth: {
     user: adminMail,
-    pass: process.env.NEXT_PUBLIC_MAIL_AUTH_PASS,
+    pass: process.env.MAIL_AUTH_PASS,
   },
 });
 export const sendGmailToAdmin = async (data: EmailContent) => {
