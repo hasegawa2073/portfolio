@@ -70,15 +70,20 @@ const Contact = () => {
   const onSubmit = handleSubmit(async (data) => {
     notifyDoingSubmit();
     setEnableSubmit(false);
-    const responsePostMail = await postMail(data);
-    if (responsePostMail.status === 200) {
-      resetAllField(data);
-      router.push({
-        pathname: '/',
-        query: { toast: 'success' },
-      });
+    try {
+      const responsePostMail = await postMail(data);
+      if (responsePostMail.status === 200) {
+        resetAllField(data);
+        router.push({
+          pathname: '/',
+          query: { toast: 'success' },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEnableSubmit(true);
     }
-    setEnableSubmit(true);
   });
 
   const resetAllField = (data: EmailContent) => {
