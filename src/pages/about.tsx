@@ -1,4 +1,8 @@
+// eslint-disable-next-line import/order
 import Image from 'next/image';
+
+// eslint-disable-next-line import/order
+import { useRouter } from 'next/router';
 
 // eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
@@ -11,47 +15,47 @@ import styles from '../styles/about.module.scss';
 // eslint-disable-next-line import/order
 import { caveat, notoSansJP } from './_app';
 
-const profile = {
-  name: 'Tatsuya Hasegawa',
-  team: 'ECCコンピュータ専門学校(現在休学中)',
-  birth: '2001年6月18日',
-  hobby: '散歩',
-  favoriteFood: '砂ずり・ミノ・魚介で出汁を取ったラーメン',
-  experience: 'スタートアップでフロントエンド開発経験あり(3ヶ月)',
-};
-
-const contents = [
-  {
-    ttlEn: 'My joy',
-    ttlJP: '喜びに感じること',
-    descriptions: [
-      [
-        '実際に触れることのできるフロントエンドを開発することに喜びを感じます。書いたコードが画面に反映されることに感動し、学習を始めて以来今もずっと持ち続けています。',
-      ],
-    ],
-  },
-  {
-    ttlEn: 'My effort',
-    ttlJP: '私の取り組み',
-    descriptions: [
-      [
-        '2022年11月より、株式会社Univearthで運送会社向け協力会社管理クラウドのフロントエンド開発の業務に携わっております。',
-      ],
-      [
-        '開発業務に併せて営業資料の作成やランディングページのデザイン・コーディングなど、守備範囲を広げて取り組んでおります。',
-      ],
-      [
-        '個人としては、小さなアプリケーションを作成して日々、技術力の向上に努めています。フロントエンドだけでなく、バックエンドやUIデザインの隣接領域にも視野を広げて、自立したエンジニアを目指しています。',
-      ],
-    ],
-  },
-];
-
 const About = () => {
+  const profile = {
+    name: 'Tatsuya Hasegawa',
+    team: 'ECCコンピュータ専門学校(現在休学中)',
+    birth: '2001年6月18日',
+    hobby: '散歩',
+    favoriteFood: '砂ずり・ミノ・魚介で出汁を取ったラーメン',
+    experience: 'スタートアップでフロントエンド開発経験あり(3ヶ月)',
+  };
+  const contents = [
+    {
+      ttlEn: 'My joy',
+      ttlJP: '喜びに感じること',
+      descriptions: [
+        [
+          '実際に触れることのできるフロントエンドを開発することに喜びを感じます。書いたコードが画面に反映されることに感動し、学習を始めて以来今もずっと持ち続けています。',
+        ],
+      ],
+    },
+    {
+      ttlEn: 'My effort',
+      ttlJP: '私の取り組み',
+      descriptions: [
+        [
+          '2022年11月より、株式会社Univearthで運送会社向け協力会社管理クラウドのフロントエンド開発の業務に携わっております。',
+        ],
+        [
+          '開発業務に併せて営業資料の作成やランディングページのデザイン・コーディングなど、守備範囲を広げて取り組んでおります。',
+        ],
+        [
+          '個人としては、小さなアプリケーションを作成して日々、技術力の向上に努めています。フロントエンドだけでなく、バックエンドやUIデザインの隣接領域にも視野を広げて、自立したエンジニアを目指しています。',
+        ],
+      ],
+    },
+  ];
+  const router = useRouter();
+
   return (
     <>
       <SEO
-        pagePath="https://portfolio-teal-mu-78.vercel.app/about"
+        pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`}
         pageTitle="Tatsuya Hasegawaについて"
         pageDescription=""
       />

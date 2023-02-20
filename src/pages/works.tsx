@@ -1,6 +1,7 @@
 import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
@@ -12,10 +13,12 @@ import { caveat, notoSansJP } from './_app';
 
 // @ts-ignore
 const Works: NextPage<Works> = ({ works }) => {
+  const router = useRouter();
+
   return (
     <>
       <SEO
-        pagePath="https://portfolio-teal-mu-78.vercel.app/works"
+        pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`}
         pageTitle="Tatsuya Hasegawaの過去の制作物一覧"
         pageDescription=""
       />
