@@ -1,3 +1,5 @@
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -26,13 +28,15 @@ const Thanks = () => {
               <p className={styles.sub_ttl}>お問い合わせ完了</p>
             </div>
             <div className={styles.thanks}>
-              <Image
-                src="/my-icon.jpg"
-                width={200}
-                height={200}
-                alt="Tatsuya Hasegawaのアイコン"
-                className={styles.thanks__icon}
-              />
+              <div className={styles.thanks__iconContainer}>
+                <Image
+                  src="/my-icon.jpg"
+                  width={200}
+                  height={200}
+                  alt="Tatsuya Hasegawaのアイコン"
+                  className={styles.thanks__icon}
+                />
+              </div>
               <p className={styles.thanks__message}>
                 お問い合わせありがとうございます。
                 <br />
@@ -45,7 +49,8 @@ const Thanks = () => {
               <p className={`${caveat.className} ${styles.thanks__name}`}>Tatsuya Hasegawa</p>
               <p className={styles.thanks__linkContainer}>
                 <Link href="/" className={styles.thanks__link}>
-                  HOMEへ戻る
+                  <FontAwesomeIcon icon={faHome} className={styles.thanks__eyecatch} />
+                  <span>HOMEへ戻る</span>
                 </Link>
               </p>
             </div>
