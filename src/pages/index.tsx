@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/order
 import { useRouter } from 'next/router';
-import { ToastContainer } from 'react-toastify';
 
 import Hero from '@/components/Hero';
 import Layout from '@/components/Layout';
@@ -16,7 +15,6 @@ export default function Home() {
         <SEO pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`} />
         <Hero content={content} />
       </Layout>
-      <ToastContainer />
     </>
   );
 }
