@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+.section {
+  @include section;
+  @include transition_spacing;
+}
+.ttl_container {
+  @include ttl_container;
+  @include transition_spacing;
+}
+.main_ttl {
+  @include ttl_l;
+  @include transition_text;
+}
+.sub_ttl {
+  @include ttl_s;
+  @include transition_text;
+}
+
+.thanks {
+  text-align: center;
+  &__icon {
+    border-radius: 50%;
+    width: 180px;
+    height: auto;
+    margin-bottom: 56px;
+  }
+  &__message {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 576px;
+    font-size: 1.6rem;
+    letter-spacing: 0.025em;
+    line-height: 3;
+    margin-bottom: 32px;
+  }
+  &__name {
+    font-size: 2.4rem;
+    text-align: right;
+    margin-bottom: 64px;
+  }
+  &__linkContainer {
+    display: inline-block;
+  }
+  &__link {
+    color: var(--c-white);
+    font-size: 1.4rem;
+  }
+}
