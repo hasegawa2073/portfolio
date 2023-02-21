@@ -43,6 +43,7 @@ const SEO = ({
       <meta property="og:image:height" content={String(imgHeight)} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hasegawa2073" />
+      <link rel="apple-touch-icon" href="/touch-icon.png"></link>
     </Head>
   );
 };
