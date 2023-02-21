@@ -44,7 +44,7 @@ const SEO = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hasegawa2073" />
       <meta name="apple-mobile-web-app-title" content="Hasegawa"></meta>
-      <link rel="apple-touch-icon" sizes="192x192" href="/touch-icon.png"></link>
+      <link rel="apple-touch-icon" href="/touch-icon.png"></link>
     </Head>
   );
 };
