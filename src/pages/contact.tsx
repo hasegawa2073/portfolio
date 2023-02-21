@@ -131,6 +131,8 @@ const Contact = () => {
                   type="text"
                   id="name"
                   placeholder=""
+                  autoComplete="name"
+                  autoFocus
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('name')}
                 />
@@ -144,6 +146,7 @@ const Contact = () => {
                   type="email"
                   id="email"
                   placeholder=""
+                  autoComplete="email"
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('email')}
                 />
