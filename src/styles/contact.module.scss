@@ -2,6 +2,22 @@
 
 $formBorderRadius: 6px;
 
+@mixin viewErrorMessage($font-size) {
+  opacity: 0;
+  text-align: left;
+  margin-top: 8px;
+  font-size: $font-size;
+  animation: viewErrorMessage 3.67s ease-out forwards;
+  @keyframes viewErrorMessage {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 .section {
   @include section;
   @include transition_spacing;
@@ -98,9 +114,7 @@ $formBorderRadius: 6px;
     color: rgba($color: #ffffff, $alpha: 0.8);
   }
   &__error {
-    text-align: left;
-    font-size: 1.4rem;
-    margin-top: 8px;
+    @include viewErrorMessage(1.4rem);
   }
 }
 
@@ -149,7 +163,7 @@ $formBorderRadius: 6px;
       min-height: none;
     }
     &__error {
-      font-size: 1.2rem;
+      @include viewErrorMessage((1.2rem));
     }
   }
 }
