@@ -75,8 +75,7 @@ const Contact = () => {
       if (responsePostMail.status === 200) {
         resetAllField(data);
         router.push({
-          pathname: '/',
-          query: { toast: 'success' },
+          pathname: '/contact/thanks',
         });
       }
     } catch (error) {
