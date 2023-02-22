@@ -136,7 +136,9 @@ const Contact = () => {
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('name')}
                 />
-                <p className={styles.form__error}>{errors.name?.message}</p>
+                <p role="alert" className={styles.form__error}>
+                  {errors.name?.message}
+                </p>
               </div>
               <div className={`${styles.form__item} ${styles.form__personInfo}`}>
                 <label htmlFor="email" className={styles.form__label}>
@@ -150,7 +152,9 @@ const Contact = () => {
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('email')}
                 />
-                <p className={styles.form__error}>{errors.email?.message}</p>
+                <p role="alert" className={styles.form__error}>
+                  {errors.email?.message}
+                </p>
               </div>
             </div>
             <div className={`${styles.form__item} ${styles.form__message}`}>
@@ -163,7 +167,9 @@ const Contact = () => {
                 className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
                 {...register('text')}
               />
-              <p className={styles.form__error}>{errors.text?.message}</p>
+              <p role="alert" className={styles.form__error}>
+                {errors.text?.message}
+              </p>
             </div>
             <button
               type="submit"
