@@ -52,7 +52,7 @@ const Thanks = () => {
                 </p>
                 <p className={`${caveat.className} ${styles.thanks__name}`}>Tatsuya Hasegawa</p>
                 <p className={styles.thanks__linkContainer}>
-                  <Link href="/" className={styles.thanks__link}>
+                  <Link href="/" className={styles.thanks__link} role="button">
                     <FontAwesomeIcon icon={faHome} className={styles.thanks__eyecatch} />
                     <span>HOMEへ戻る</span>
                   </Link>

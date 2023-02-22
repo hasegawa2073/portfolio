@@ -78,7 +78,7 @@ const NavigationButton = ({ type, currentPage, style }: Props) => {
           target={Button.targetBrank ? '_blank' : ''}
           onClick={() => clickHandler()}
         >
-          <button className={styles.button}>
+          <button className={styles.button} role="button">
             <div className={styles.icon}>
               <FontAwesomeIcon icon={Button.icon} style={style} />
             </div>
