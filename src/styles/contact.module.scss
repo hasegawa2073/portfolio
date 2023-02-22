@@ -18,7 +18,7 @@ $formBorderRadius: 6px;
   }
 }
 
-.section {
+.container {
   @include section;
   @include transition_spacing;
 }

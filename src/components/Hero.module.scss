@@ -1,6 +1,6 @@
 @import '../styles/variables.scss';
 
-.section {
+.container {
   text-align: center;
   padding: 160px 0;
 }
@@ -13,7 +13,12 @@
   padding-bottom: 0.7em;
   @include transition_spacing;
 }
-.role {
+.hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.occupation {
   font-size: clamp(1.4rem, 2vw, 2.4rem);
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 400;

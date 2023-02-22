@@ -116,7 +116,7 @@ const Contact = () => {
         pageDescription=""
       />
       <Layout>
-        <section className={styles.section}>
+        <div className={styles.container}>
           <div className={styles.ttl_container}>
             <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
             <p className={styles.sub_ttl}>お問い合わせ</p>
@@ -182,7 +182,7 @@ const Contact = () => {
               </>
             </button>
           </form>
-        </section>
+        </div>
       </Layout>
       <ToastContainer />
     </>

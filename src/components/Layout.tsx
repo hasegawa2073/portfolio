@@ -42,7 +42,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <div className={styles.layout}>
             <div className={styles.glassContainer}>
               <div
-                className={`${isMenuOpen === true ? styles.header__menuOpen : ''} ${styles.header}`}
+                className={`${styles.header} ${isMenuOpen === true ? styles.header__menuOpen : ''}`}
               >
                 <Header />
               </div>
