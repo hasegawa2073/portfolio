@@ -17,6 +17,11 @@
   @include transition_text;
 }
 
+.hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
 .thanks {
   text-align: center;
   &__iconContainer {
