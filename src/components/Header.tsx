@@ -11,7 +11,7 @@ const Header = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
   return (
     <header className={styles.header}>
-      <nav className={styles.nav} role="navigation">
+      <nav className={styles.nav} role="navigation" aria-label="グローバルナビゲーション">
         <NavigationButton type="Home" currentPage={currentPage} />
         <NavigationButton type="About" currentPage={currentPage} />
         <NavigationButton type="Works" currentPage={currentPage} />
