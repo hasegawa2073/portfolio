@@ -1,12 +1,4 @@
-import {
-  faBarsStaggered,
-  faBorderNone,
-  faCubes,
-  faCubesStacked,
-  faSection,
-  faTape,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBarsStaggered, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 
@@ -19,7 +11,7 @@ const Header = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
   return (
     <header className={styles.header}>
-      <nav className={styles.nav}>
+      <nav className={styles.nav} role="navigation">
         <NavigationButton type="Home" currentPage={currentPage} />
         <NavigationButton type="About" currentPage={currentPage} />
         <NavigationButton type="Works" currentPage={currentPage} />
@@ -27,18 +19,25 @@ const Header = () => {
         <NavigationButton type="Contact" currentPage={currentPage} />
       </nav>
       {isMenuOpen === false ? (
-        <button className={`${styles.button}`} onClick={() => setIsMenuOpen((prev) => !prev)}>
+        <button
+          role="button"
+          aria-pressed="false"
+          className={`${styles.button}`}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+        >
           <FontAwesomeIcon icon={faBarsStaggered} />
         </button>
       ) : (
         <div className={styles.mobileNavContainer}>
           <button
+            role="button"
+            aria-pressed="true"
             className={`${isMenuOpen === true ? styles.buttonMenuOpen : ''} ${styles.button}`}
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             <FontAwesomeIcon icon={faXmark} />
           </button>
-          <nav className={styles.mobileNav}>
+          <nav role="navigation" className={styles.mobileNav}>
             <NavigationButton type="Home" currentPage={currentPage} />
             <NavigationButton type="About" currentPage={currentPage} />
             <NavigationButton type="Works" currentPage={currentPage} />

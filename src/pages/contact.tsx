@@ -133,10 +133,13 @@ const Contact = () => {
                   placeholder=""
                   autoComplete="name"
                   autoFocus
+                  aria-required="true"
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('name')}
                 />
-                <p className={styles.form__error}>{errors.name?.message}</p>
+                <p role="alert" className={styles.form__error}>
+                  {errors.name?.message}
+                </p>
               </div>
               <div className={`${styles.form__item} ${styles.form__personInfo}`}>
                 <label htmlFor="email" className={styles.form__label}>
@@ -147,10 +150,13 @@ const Contact = () => {
                   id="email"
                   placeholder=""
                   autoComplete="email"
+                  aria-required="true"
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('email')}
                 />
-                <p className={styles.form__error}>{errors.email?.message}</p>
+                <p role="alert" className={styles.form__error}>
+                  {errors.email?.message}
+                </p>
               </div>
             </div>
             <div className={`${styles.form__item} ${styles.form__message}`}>
@@ -160,13 +166,17 @@ const Contact = () => {
               <textarea
                 id="message"
                 placeholder=""
+                aria-required="true"
                 className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
                 {...register('text')}
               />
-              <p className={styles.form__error}>{errors.text?.message}</p>
+              <p role="alert" className={styles.form__error}>
+                {errors.text?.message}
+              </p>
             </div>
             <button
               type="submit"
+              role="button"
               className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
                 enableSubmit === false ? styles.form__buttonWait : ''
               } ${styles.form__button}`}
