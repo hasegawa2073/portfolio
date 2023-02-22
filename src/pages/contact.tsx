@@ -176,6 +176,7 @@ const Contact = () => {
             </div>
             <button
               type="submit"
+              role="button"
               className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
                 enableSubmit === false ? styles.form__buttonWait : ''
               } ${styles.form__button}`}
