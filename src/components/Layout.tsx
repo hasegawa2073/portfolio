@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import { useWindowSize } from '@/hooks/useWindowSize';
+import { notoSansJP } from '@/pages/_app';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -39,32 +40,36 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <CurrentContext.Provider value={pathName}>
         <MenuContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
-          <div className={styles.layout}>
-            <div className={styles.glassContainer}>
-              <div
-                className={`${styles.header} ${isMenuOpen === true ? styles.header__menuOpen : ''}`}
-              >
-                <Header />
-              </div>
-              <div className={styles.glass}>
-                <div className={styles.content}>
-                  <main className={styles.main}>{children}</main>
-                </div>
-                <div className={styles.footer}>
-                  <Footer />
-                </div>
-              </div>
-              <div className={styles.circle_s}></div>
-              <div className={styles.circle_m}></div>
-              <div className={styles.circle_l}></div>
-              {isMenuOpen === true ? (
+          <div className={`${notoSansJP.className}`}>
+            <div className={styles.layout}>
+              <div className={styles.glassContainer}>
                 <div
-                  className={styles.filterLayer}
-                  onClick={() => setIsMenuOpen((prev) => !prev)}
-                ></div>
-              ) : (
-                ''
-              )}
+                  className={`${styles.header} ${
+                    isMenuOpen === true ? styles.header__menuOpen : ''
+                  }`}
+                >
+                  <Header />
+                </div>
+                <div className={styles.glass}>
+                  <div className={styles.content}>
+                    <main className={styles.main}>{children}</main>
+                  </div>
+                  <div className={styles.footer}>
+                    <Footer />
+                  </div>
+                </div>
+                <div className={styles.circle_s}></div>
+                <div className={styles.circle_m}></div>
+                <div className={styles.circle_l}></div>
+                {isMenuOpen === true ? (
+                  <div
+                    className={styles.filterLayer}
+                    onClick={() => setIsMenuOpen((prev) => !prev)}
+                  ></div>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
         </MenuContext.Provider>
