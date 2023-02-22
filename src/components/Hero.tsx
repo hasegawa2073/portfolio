@@ -11,14 +11,17 @@ type Props = { content: string };
 
 const Hero: NextPage<Props> = ({ content }) => {
   return (
-    <section className={styles.section}>
+    <div className={styles.container}>
       <h1 className={`${cormorantGaramond.className} ${styles.name}`}>
         Tatsuya
         <br />
         Hasegawa
       </h1>
-      <p className={`${styles.role} ${robotoCondensed.className}`}>{content}</p>
-    </section>
+      <section>
+        <h2 className={styles.hidden}>職種</h2>
+        <p className={`${styles.occupation} ${robotoCondensed.className}`}>{content}</p>
+      </section>
+    </div>
   );
 };
 
