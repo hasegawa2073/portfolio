@@ -31,68 +31,70 @@ const WorkId: NextPage<Work> = (work) => {
       />
       <div className={notoSansJP.className}>
         <Layout>
-          <section className={styles.section}>
+          <div className={styles.section}>
             <div className={styles.ttl_container}>
               <h1 className={`${caveat.className} ${styles.main_ttl}`}>Work</h1>
               <p className={styles.sub_ttl}>制作物の詳細</p>
             </div>
-            <div className={styles.thumbnailContainer}>
-              <Image
-                src={work.thumbnail.url}
-                width={work.thumbnail.width}
-                height={work.thumbnail.height}
-                alt={work.name}
-                className={styles.thumbnail}
-                priority
-              />
-            </div>
-            <section className={styles.contentContainer}>
-              <div className={styles.nameContainer}>
-                <p className={styles.date}>{work.date}</p>
-                <h2 className={styles.name}>{work.name}</h2>
+            <section>
+              <div className={styles.thumbnailContainer}>
+                <Image
+                  src={work.thumbnail.url}
+                  width={work.thumbnail.width}
+                  height={work.thumbnail.height}
+                  alt={work.name}
+                  className={styles.thumbnail}
+                  priority
+                />
               </div>
-              <section
-                className={`${
-                  work.icon?.url ? styles.detailContainer : styles.detailContainer__NoIcon
-                }`}
-              >
-                <section className={styles.detail}>
-                  {items.map((item) => (
-                    <div key={item.title} className={styles.detail__box}>
-                      <h3 className={styles.detail__ttl}>{item.title}</h3>
-                      {item.value === work.url ? (
-                        <p className={styles.detail__txt}>
-                          <Link href={item.value} target="_blank" className={styles.detail__url}>
-                            {item.value}
-                          </Link>
-                        </p>
-                      ) : (
-                        <p className={styles.detail__txt}>{item.value}</p>
-                      )}
-                    </div>
-                  ))}
-                </section>
-                {work.icon && work.shortName ? (
-                  <section className={styles.work}>
-                    <Link href={work.url} target="_blank">
-                      <div className={styles.work__iconWrap}>
-                        <Image
-                          src={work.icon.url}
-                          width={work.icon.width}
-                          height={work.icon.height}
-                          alt={work.shortName}
-                          className={styles.work__icon}
-                        />
+              <div className={styles.contentContainer}>
+                <div className={styles.nameContainer}>
+                  <p className={styles.date}>{work.date}</p>
+                  <h2 className={styles.name}>{work.name}</h2>
+                </div>
+                <div
+                  className={`${
+                    work.icon?.url ? styles.detailContainer : styles.detailContainer__NoIcon
+                  }`}
+                >
+                  <dl className={styles.detail}>
+                    {items.map((item) => (
+                      <div key={item.title} className={styles.detail__box}>
+                        <dt className={styles.detail__ttl}>{item.title}</dt>
+                        {item.value === work.url ? (
+                          <dd className={styles.detail__txt}>
+                            <Link href={item.value} target="_blank" className={styles.detail__url}>
+                              {item.value}
+                            </Link>
+                          </dd>
+                        ) : (
+                          <dd className={styles.detail__txt}>{item.value}</dd>
+                        )}
                       </div>
-                    </Link>
-                    <h3 className={styles.work__shortName}>{work.shortName}</h3>
-                  </section>
-                ) : (
-                  ''
-                )}
-              </section>
+                    ))}
+                  </dl>
+                  {work.icon && work.shortName ? (
+                    <figure className={styles.work}>
+                      <Link href={work.url} target="_blank">
+                        <div className={styles.work__iconWrap}>
+                          <Image
+                            src={work.icon.url}
+                            width={work.icon.width}
+                            height={work.icon.height}
+                            alt={work.shortName}
+                            className={styles.work__icon}
+                          />
+                        </div>
+                      </Link>
+                      <figcaption className={styles.work__shortName}>{work.shortName}</figcaption>
+                    </figure>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </div>
             </section>
-          </section>
+          </div>
         </Layout>
       </div>
     </>
