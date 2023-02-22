@@ -24,7 +24,7 @@ const Works: NextPage<Works> = ({ works }) => {
       />
       <div className={notoSansJP.className}>
         <Layout>
-          <div className={styles.section}>
+          <div className={styles.container}>
             <div className={styles.ttl_container}>
               <h1 className={`${caveat.className} ${styles.main_ttl}`}>Works</h1>
               <p className={styles.sub_ttl}>過去の制作物</p>
