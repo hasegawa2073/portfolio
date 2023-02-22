@@ -148,6 +148,9 @@ $formBorderRadius: 6px;
 }
 @include mediaQuery('sm') {
   .form {
+    &__personInfo {
+      min-width: auto;
+    }
     &__label {
       margin-left: auto;
       margin-right: auto;
@@ -156,6 +159,7 @@ $formBorderRadius: 6px;
     &__text {
       margin: 0 auto;
       max-width: 384px;
+      width: 86vw;
       padding-top: 10px;
     }
     &__textArea {
