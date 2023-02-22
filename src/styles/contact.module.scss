@@ -76,13 +76,11 @@ $formBorderRadius: 6px;
     border-radius: $formBorderRadius;
     caret-color: var(--c-white);
     outline: var(--c-white);
-    @include transition_sizing;
   }
   &__textArea {
     resize: vertical;
     min-height: 200px;
     height: 320px;
-    transition: width var(--t-transition) var(--val-transition-timing-function);
   }
   &__button {
     position: relative;
@@ -130,8 +128,12 @@ $formBorderRadius: 6px;
     &__personInfoContainer {
       flex-direction: column;
     }
+    &__personInfo {
+      min-width: auto;
+    }
     &__text {
       max-width: 384px;
+      width: 100vw;
     }
     &__textArea {
       height: 320px;
