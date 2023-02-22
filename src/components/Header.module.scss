@@ -35,12 +35,12 @@ $buttonSizeMd: 48px;
 }
 
 @mixin animationViewMobileNav($gap) {
-  gap: 0;
-  scale: 0;
+  gap: calc($gap / 4);
+  scale: 0.25;
   animation: viewMobileNav var(--t-view-mobileNav) ease-out forwards;
   @keyframes viewMobileNav {
     0% {
-      gap: 0;
+      gap: calc($gap / 4);
       scale: 0.25;
     }
     100% {
@@ -66,14 +66,14 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
-    @include animationViewMobileNav(calc(((100vw - (60px * 5) - 0px) / 4)));
+    @include animationViewMobileNav(calc(((100vw - (60px * 5)) / 4)));
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
   .mobileNav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    @include animationViewMobileNav(clamp(40px, calc(((100vw - (72px * 5) - 120px) / 4)), 128px));
+    @include animationViewMobileNav(calc((100vw - (60px * 5)) / 6));
   }
 }
 @include mediaQuery('xl') {
@@ -99,7 +99,7 @@ $buttonSizeMd: 48px;
   }
   .mobileNav {
     display: grid;
-    @include animationViewMobileNav(calc(((100vw - (72px * 4) - 160px) / 3)));
+    @include animationViewMobileNav(calc((100vw - (72px * 4)) / 5));
   }
   .buttonMenuOpen {
     display: none;
@@ -108,6 +108,6 @@ $buttonSizeMd: 48px;
 @include mediaQuery('sm') {
   .mobileNav {
     display: grid;
-    @include animationViewMobileNav(calc(((100vw - (60px * 4) - 40px) / 3)));
+    @include animationViewMobileNav(calc((100vw - (60px * 4)) / 5));
   }
 }
