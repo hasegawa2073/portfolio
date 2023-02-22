@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.section {
+.container {
   @include section;
   @include transition_spacing;
 }
