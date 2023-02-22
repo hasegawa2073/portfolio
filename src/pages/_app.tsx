@@ -40,11 +40,5 @@ export const caveat = Caveat({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <div
-      className={`${cormorantGaramond.className} ${roboto.className} ${robotoCondensed.className} ${notoSansJP.className}`}
-    >
-      <Component {...pageProps} />
-    </div>
-  );
+  return <Component {...pageProps} />;
 }
