@@ -133,6 +133,7 @@ const Contact = () => {
                   placeholder=""
                   autoComplete="name"
                   autoFocus
+                  aria-required="true"
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('name')}
                 />
@@ -149,6 +150,7 @@ const Contact = () => {
                   id="email"
                   placeholder=""
                   autoComplete="email"
+                  aria-required="true"
                   className={`${notoSansJP.className} ${styles.form__text}`}
                   {...register('email')}
                 />
@@ -164,6 +166,7 @@ const Contact = () => {
               <textarea
                 id="message"
                 placeholder=""
+                aria-required="true"
                 className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
                 {...register('text')}
               />
