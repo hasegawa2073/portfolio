@@ -31,18 +31,18 @@
   .name {
     font-weight: 400;
   }
-  .role {
+  .occupation {
     font-weight: 300;
   }
 }
 @include mediaQuery('sm') {
-  .section {
+  .container {
     padding: 0;
   }
   .name {
     padding-bottom: 0.8em;
   }
-  .role {
+  .occupation {
     letter-spacing: 0.2em;
   }
 }
