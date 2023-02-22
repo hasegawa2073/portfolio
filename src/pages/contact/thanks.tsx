@@ -22,7 +22,7 @@ const Thanks = () => {
       />
       <Layout>
         <div className={notoSansJP.className}>
-          <section className={styles.section}>
+          <div className={styles.section}>
             <div className={styles.ttl_container}>
               <h1 className={`${caveat.className} ${styles.main_ttl}`}>Thanks</h1>
               <p className={styles.sub_ttl}>お問い合わせ完了</p>
@@ -54,7 +54,7 @@ const Thanks = () => {
                 </Link>
               </p>
             </div>
-          </section>
+          </div>
         </div>
       </Layout>
     </>
