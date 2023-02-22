@@ -1,31 +1,22 @@
-/* eslint-disable import/order */
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
-
-// eslint-disable-next-line import/order
-import { useForm } from 'react-hook-form';
-
-// eslint-disable-next-line import/no-unresolved, import/order
-// eslint-disable-next-line import/order
+import SEO from '@/components/SEO';
 import { emailSchema } from '@/schema/emailSchema';
 import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
+import styles from '../styles/contact.module.scss';
 // eslint-disable-next-line import/order
 import { caveat, notoSansJP } from './_app';
-
-// eslint-disable-next-line import/order
-import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import SEO from '@/components/SEO';
-import styles from '../styles/contact.module.scss';
 
 const Contact = () => {
   const router = useRouter();
@@ -116,83 +107,85 @@ const Contact = () => {
         pageDescription=""
       />
       <Layout>
-        <div className={styles.container}>
-          <div className={styles.ttl_container}>
-            <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
-            <p className={styles.sub_ttl}>お問い合わせ</p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className={styles.container}>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
+              <p className={styles.sub_ttl}>お問い合わせ</p>
+            </div>
+            <form method="post" className={styles.form} onSubmit={submitHandler}>
+              <div className={styles.form__personInfoContainer}>
+                <div className={`${styles.form__item} ${styles.form__personInfo}`}>
+                  <label htmlFor="name" className={styles.form__label}>
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder=""
+                    autoComplete="name"
+                    autoFocus
+                    aria-required="true"
+                    className={`${notoSansJP.className} ${styles.form__text}`}
+                    {...register('name')}
+                  />
+                  <p role="alert" className={styles.form__error}>
+                    {errors.name?.message}
+                  </p>
+                </div>
+                <div className={`${styles.form__item} ${styles.form__personInfo}`}>
+                  <label htmlFor="email" className={styles.form__label}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder=""
+                    autoComplete="email"
+                    aria-required="true"
+                    className={`${notoSansJP.className} ${styles.form__text}`}
+                    {...register('email')}
+                  />
+                  <p role="alert" className={styles.form__error}>
+                    {errors.email?.message}
+                  </p>
+                </div>
+              </div>
+              <div className={`${styles.form__item} ${styles.form__message}`}>
+                <label htmlFor="message" className={styles.form__label}>
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  placeholder=""
+                  aria-required="true"
+                  className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
+                  {...register('text')}
+                />
+                <p role="alert" className={styles.form__error}>
+                  {errors.text?.message}
+                </p>
+              </div>
+              <button
+                type="submit"
+                role="button"
+                className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
+                  enableSubmit === false ? styles.form__buttonWait : ''
+                } ${styles.form__button}`}
+                disabled={!enableSubmit}
+              >
+                <>
+                  {isCompleteForm === true ? (
+                    ''
+                  ) : (
+                    <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
+                  )}
+                  <span>SEND</span>
+                </>
+              </button>
+            </form>
           </div>
-          <form method="post" className={styles.form} onSubmit={submitHandler}>
-            <div className={styles.form__personInfoContainer}>
-              <div className={`${styles.form__item} ${styles.form__personInfo}`}>
-                <label htmlFor="name" className={styles.form__label}>
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder=""
-                  autoComplete="name"
-                  autoFocus
-                  aria-required="true"
-                  className={`${notoSansJP.className} ${styles.form__text}`}
-                  {...register('name')}
-                />
-                <p role="alert" className={styles.form__error}>
-                  {errors.name?.message}
-                </p>
-              </div>
-              <div className={`${styles.form__item} ${styles.form__personInfo}`}>
-                <label htmlFor="email" className={styles.form__label}>
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder=""
-                  autoComplete="email"
-                  aria-required="true"
-                  className={`${notoSansJP.className} ${styles.form__text}`}
-                  {...register('email')}
-                />
-                <p role="alert" className={styles.form__error}>
-                  {errors.email?.message}
-                </p>
-              </div>
-            </div>
-            <div className={`${styles.form__item} ${styles.form__message}`}>
-              <label htmlFor="message" className={styles.form__label}>
-                Message
-              </label>
-              <textarea
-                id="message"
-                placeholder=""
-                aria-required="true"
-                className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
-                {...register('text')}
-              />
-              <p role="alert" className={styles.form__error}>
-                {errors.text?.message}
-              </p>
-            </div>
-            <button
-              type="submit"
-              role="button"
-              className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
-                enableSubmit === false ? styles.form__buttonWait : ''
-              } ${styles.form__button}`}
-              disabled={!enableSubmit}
-            >
-              <>
-                {isCompleteForm === true ? (
-                  ''
-                ) : (
-                  <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
-                )}
-                <span>SEND</span>
-              </>
-            </button>
-          </form>
-        </div>
+        </motion.div>
       </Layout>
       <ToastContainer />
     </>

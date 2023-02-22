@@ -11,6 +11,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
+import { AnimatePresence } from 'framer-motion';
+
 import type { AppProps } from 'next/app';
 
 import 'ress';
@@ -40,5 +42,9 @@ export const caveat = Caveat({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <AnimatePresence mode="wait">
+      <Component {...pageProps} />;
+    </AnimatePresence>
+  );
 }

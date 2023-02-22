@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/order
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import Hero from '@/components/Hero';
@@ -13,7 +13,9 @@ export default function Home() {
     <>
       <Layout>
         <SEO pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`} />
-        <Hero content={content} />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <Hero content={content} />
+        </motion.div>
       </Layout>
     </>
   );

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,26 +24,28 @@ const Works: NextPage<Works> = ({ works }) => {
         pageDescription=""
       />
       <Layout>
-        <div className={styles.container}>
-          <div className={styles.ttl_container}>
-            <h1 className={`${caveat.className} ${styles.main_ttl}`}>Works</h1>
-            <p className={styles.sub_ttl}>過去の制作物</p>
-          </div>
-          {works.map((work: Work) => (
-            <div key={work.id} className={styles.item}>
-              <Link href={`/works/${work.id}`}>
-                <Image
-                  src={work.thumbnail.url}
-                  width={work.thumbnail.width}
-                  height={work.thumbnail.height}
-                  alt={work.name}
-                  className={styles.thumbnail}
-                  priority
-                />
-              </Link>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className={styles.container}>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Works</h1>
+              <p className={styles.sub_ttl}>過去の制作物</p>
             </div>
-          ))}
-        </div>
+            {works.map((work: Work) => (
+              <div key={work.id} className={styles.item}>
+                <Link href={`/works/${work.id}`}>
+                  <Image
+                    src={work.thumbnail.url}
+                    width={work.thumbnail.width}
+                    height={work.thumbnail.height}
+                    alt={work.name}
+                    className={styles.thumbnail}
+                    priority
+                  />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </Layout>
     </>
   );
