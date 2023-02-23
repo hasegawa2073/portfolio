@@ -203,6 +203,10 @@
       right: 0;
     }
   }
+  .footer {
+    align-self: self-end;
+    padding-bottom: 2vh;
+  }
   .filterLayer {
     @include animationViewFilterLayer;
     &__fadeout {

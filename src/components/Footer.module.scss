@@ -15,6 +15,11 @@
   }
 }
 
+@include mediaQuery('md') {
+  .footer {
+    padding-bottom: 0;
+  }
+}
 @include mediaQuery('sm') {
   .footer {
     letter-spacing: 0.16em;
