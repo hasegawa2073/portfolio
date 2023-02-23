@@ -185,36 +185,6 @@
   }
 }
 
-@media screen and (max-height: 720px) and (max-width: 768px) {
-  .header {
-    top: 22vh;
-    right: 100%;
-    &__menuOpen {
-      padding: 0;
-    }
-  }
-  .filterLayer {
-    display: block;
-    @include animationViewFilterLayer;
-    &__fadeout {
-      @include animationFadeout;
-    }
-  }
-}
-@media screen and (max-height: 720px) and (min-width: 768px) {
-  .header {
-    &__menuOpen {
-      top: calc(50% - 105px);
-    }
-  }
-  .filterLayer {
-    display: block;
-    @include animationViewFilterLayer;
-    &__fadeout {
-      @include animationFadeout;
-    }
-  }
-}
 @include mediaQuery('md') {
   .content {
     grid-column: 1 / 13;
@@ -228,7 +198,7 @@
     padding: 0;
     &__menuOpen {
       padding: 0;
-      top: calc(50% - 251px);
+      top: 10vh;
       left: 0;
       right: 0;
     }
@@ -263,7 +233,7 @@
     top: 5vh;
     left: 6vw;
     &__menuOpen {
-      top: 48px;
+      top: 5vh;
       left: 0;
       right: 0;
     }
@@ -293,5 +263,39 @@
     left: -72%;
     bottom: -48%;
     filter: blur(96px);
+  }
+}
+@media screen and (max-height: 720px) and (max-width: 768px) and (hover: hover) and (pointer: fine) {
+  .header {
+    top: 22vh;
+    right: 100%;
+    &__menuOpen {
+      left: 0;
+      right: 0;
+      padding: 0;
+    }
+  }
+  .filterLayer {
+    display: block;
+    @include animationViewFilterLayer;
+    &__fadeout {
+      @include animationFadeout;
+    }
+  }
+}
+@media screen and (max-height: 720px) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .header {
+    &__menuOpen {
+      top: calc(50% - 105px);
+      left: 0;
+      right: 0;
+    }
+  }
+  .filterLayer {
+    display: block;
+    @include animationViewFilterLayer;
+    &__fadeout {
+      @include animationFadeout;
+    }
   }
 }
