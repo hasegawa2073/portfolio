@@ -10,11 +10,9 @@
 }
 .main_ttl {
   @include ttl_l;
-  @include transition_text;
 }
 .sub_ttl {
   @include ttl_s;
-  @include transition_text;
 }
 
 .hidden {
@@ -43,7 +41,6 @@
     letter-spacing: 0.032em;
     line-height: 4.6;
     margin-bottom: 32px;
-    @include transition_text;
   }
   &__name {
     font-size: 2.4rem;
@@ -53,10 +50,10 @@
   }
   &__linkContainer {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   &__eyecatch {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   &__link {
     display: flex;

@@ -6,15 +6,13 @@
 }
 .ttl_container {
   @include ttl_container;
-  @include transition_all;
+  @include transition_spacing;
 }
 .main_ttl {
   @include ttl_l;
-  @include transition_text;
 }
 .sub_ttl {
   @include ttl_s;
-  @include transition_text;
 }
 
 .thumbnailContainer {
@@ -27,7 +25,7 @@
   height: auto;
   vertical-align: bottom;
   border-radius: var(--border-radius-thumbnail);
-  @include transition_all;
+  @include transition_sizing;
 }
 
 .contentContainer {
@@ -44,13 +42,11 @@
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 400;
   margin-bottom: 4px;
-  @include transition_all;
 }
 .name {
   font-size: 2.2rem;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 400;
-  @include transition_text;
 }
 
 .detailContainer {
@@ -75,17 +71,14 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
     margin-bottom: 6px;
-    @include transition_text;
   }
   &__txt {
     font-size: 1.6rem;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
-    @include transition_text;
   }
   &__url {
     color: var(--c-white);
-    @include transition_text;
     &:hover {
       color: rgba($color: #ffffff, $alpha: 0.8);
     }
@@ -104,13 +97,12 @@
     max-width: 180px;
     height: auto;
     border-radius: 22%;
-    @include transition_all;
+    @include transition_sizing;
   }
   &__shortName {
     font-size: 1.6rem;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
-    @include transition_text;
   }
 }
 

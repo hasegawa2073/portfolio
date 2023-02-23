@@ -83,8 +83,7 @@ $breakpoints: (
 @mixin transition_spacing {
   transition: margin var(--t-transition) var(--val-transition-timing-function),
     padding var(--t-transition) var(--val-transition-timing-function),
-    gap var(--t-transition) var(--val-transition-timing-function),
-    letter-spacing var(--t-transition) var(--val-transition-timing-function);
+    gap var(--t-transition) var(--val-transition-timing-function);
 }
 @mixin transition_sizing {
   transition: width var(--t-transition) var(--val-transition-timing-function),

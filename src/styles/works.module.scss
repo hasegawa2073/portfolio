@@ -6,15 +6,13 @@
 }
 .ttl_container {
   @include ttl_container;
-  @include transition_all;
+  @include transition_spacing;
 }
 .main_ttl {
   @include ttl_l;
-  @include transition_text;
 }
 .sub_ttl {
   @include ttl_s;
-  @include transition_text;
 }
 .item {
   overflow: hidden;
