@@ -79,6 +79,7 @@
   }
   &__url {
     color: var(--c-white);
+    @include transition_text;
     &:hover {
       color: rgba($color: #ffffff, $alpha: 0.8);
     }
