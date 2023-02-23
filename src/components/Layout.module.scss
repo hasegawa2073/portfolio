@@ -1,5 +1,41 @@
 @import '../styles/variables.scss';
 
+@mixin filterLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #ffffff, $alpha: 0.1);
+  backdrop-filter: blur(40px);
+}
+@mixin animationViewFilterLayer {
+  display: block;
+  animation: animationViewFilterLayer var(--t-view-mobileNav) ease-out forwards;
+  @keyframes animationViewFilterLayer {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+@mixin animationFadeout {
+  animation: animationFadeout calc(var(--t-view-mobileNav) * 1.2) ease-out forwards;
+  @keyframes animationFadeout {
+    0% {
+      opacity: 1;
+      display: block;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+      z-index: -9999;
+    }
+  }
+}
+
 .layout {
   display: grid;
   place-items: center;
@@ -16,6 +52,7 @@
   @include transition_all;
 }
 .glassContainer {
+  position: relative;
   margin: 0 auto;
   width: 100%;
   max-width: 1360px;
@@ -52,13 +89,11 @@
 }
 .filterLayer {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color: #ffffff, $alpha: 0.1);
-  backdrop-filter: blur(40px);
+  @include filterLayer;
+  &__fadeout {
+    @include filterLayer;
+    @include animationFadeout;
+  }
 }
 
 .circle_s {
@@ -150,20 +185,10 @@
   }
 }
 
-@mixin animationViewFilterLayer {
-  animation: animationViewFilterLayer var(--t-view-mobileNav) ease-out forwards;
-  @keyframes animationViewFilterLayer {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-}
-
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 720px) and (max-width: 768px) {
   .header {
+    top: 22vh;
+    right: 100%;
     &__menuOpen {
       padding: 0;
     }
@@ -171,13 +196,22 @@
   .filterLayer {
     display: block;
     @include animationViewFilterLayer;
+    &__fadeout {
+      @include animationFadeout;
+    }
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
   .header {
     &__menuOpen {
-      left: 0;
-      right: 0;
+      top: calc(50% - 105px);
+    }
+  }
+  .filterLayer {
+    display: block;
+    @include animationViewFilterLayer;
+    &__fadeout {
+      @include animationFadeout;
     }
   }
 }
@@ -185,16 +219,25 @@
   .content {
     grid-column: 1 / 13;
   }
+  .glass {
+    min-height: calc(100vh - 112px);
+  }
   .header {
-    padding: 40px 5vw;
+    top: 10vh;
+    left: 12vw;
+    padding: 0;
     &__menuOpen {
       padding: 0;
-      top: calc(50% - 158px);
+      top: calc(50% - 251px);
+      left: 0;
+      right: 0;
     }
   }
   .filterLayer {
-    display: block;
     @include animationViewFilterLayer;
+    &__fadeout {
+      @include animationFadeout;
+    }
   }
 }
 @include mediaQuery('sm') {
@@ -217,6 +260,8 @@
     backdrop-filter: blur(32px);
   }
   .header {
+    top: 5vh;
+    left: 6vw;
     &__menuOpen {
       top: 48px;
       left: 0;

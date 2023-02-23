@@ -26,6 +26,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const pathName = router.pathname === '/' ? 'Home' : convertPathToPage(router.pathname);
   const { width, height } = useWindowSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  useEffect(() => {
+    setIsFirstLoad(false);
+  }, [isMenuOpen]);
+  useEffect(() => {
+    setIsFirstLoad(true);
+  }, []);
 
   useEffect(() => {
     if (width > 768) {
@@ -66,6 +73,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
                     className={styles.filterLayer}
                     onClick={() => setIsMenuOpen((prev) => !prev)}
                   ></div>
+                ) : (
+                  ''
+                )}
+                {!isMenuOpen && !isFirstLoad ? (
+                  <div className={styles.filterLayer__fadeout}></div>
                 ) : (
                   ''
                 )}

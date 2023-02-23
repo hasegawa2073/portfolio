@@ -7,7 +7,6 @@ $btn-l: 80px;
 
 .wrapper {
   position: relative;
-  display: inline-block;
   @include transition_transform;
   @media (hover: hover) and (pointer: fine) {
     &:hover {

@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 $buttonSizeMd: 48px;
 
@@ -17,17 +17,40 @@ $buttonSizeMd: 48px;
     }
   }
 }
+@mixin animationScaleDownMobileNav($gap) {
+  gap: calc($gap / 4);
+  grid-template-columns: repeat(3, 1fr);
+  scale: 0.25;
+  animation: scaleDownMobileNav var(--t-view-mobileNav) ease-out forwards;
+  @keyframes scaleDownMobileNav {
+    0% {
+      gap: $gap;
+      scale: 1;
+    }
+    100% {
+      gap: calc($gap / 4);
+      scale: 0.25;
+    }
+  }
+}
+@mixin animationFadeoutMobileNavContainer {
+  animation: fadeoutMobileNavContainer var(--t-view-mobileNav) ease-out forwards;
+  @keyframes fadeoutMobileNavContainer {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      width: $buttonSizeMd;
+      height: $buttonSizeMd;
+      opacity: 1;
+      scale: 0.6;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
 
-.header {
-  position: relative;
-  display: inline-block;
-}
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, calc((100vh - 640px) / 8), 40px);
-  @include transition_spacing;
-}
 .button {
   display: none;
   position: relative;
@@ -43,17 +66,25 @@ $buttonSizeMd: 48px;
 .mobileNavContainer {
   display: block;
   gap: 120px;
+  transform-origin: top left;
+  &__fadeout {
+    position: absolute;
+    top: calc(50% - 16px);
+    left: calc(50% - 16px);
+    @include animationFadeoutMobileNavContainer;
+  }
 }
 .mobileNav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   transform-origin: top left;
+  &__fadeout {
+    transform-origin: top left;
+    display: none;
+  }
 }
 
 @media screen and (max-height: 720px) {
-  .nav {
-    display: none;
-  }
   .button {
     display: block;
   }
@@ -67,6 +98,9 @@ $buttonSizeMd: 48px;
   .mobileNav {
     display: grid;
     @include animationViewMobileNav(calc(((100vw - (60px * 5)) / 4)));
+    &__fadeout {
+      @include animationScaleDownMobileNav(calc((100vw - (60px * 4)) / 5));
+    }
   }
 }
 @media screen and (max-height: 720px) and (min-width: 768px) {
@@ -74,6 +108,9 @@ $buttonSizeMd: 48px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     @include animationViewMobileNav(calc((100vw - (60px * 5)) / 6));
+    &__fadeout {
+      @include animationScaleDownMobileNav(calc((100vw - (60px * 5)) / 6));
+    }
   }
 }
 @include mediaQuery('xl') {
@@ -96,10 +133,18 @@ $buttonSizeMd: 48px;
   }
   .mobileNavContainer {
     display: block;
+    &__fadeout {
+      @include animationFadeoutMobileNavContainer;
+    }
   }
   .mobileNav {
     display: grid;
     @include animationViewMobileNav(calc((100vw - (72px * 4)) / 5));
+    &__fadeout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      @include animationScaleDownMobileNav(calc((100vw - (72px * 4)) / 5));
+    }
   }
   .buttonMenuOpen {
     display: none;
@@ -109,5 +154,8 @@ $buttonSizeMd: 48px;
   .mobileNav {
     display: grid;
     @include animationViewMobileNav(calc((100vw - (60px * 4)) / 5));
+    &__fadeout {
+      @include animationScaleDownMobileNav(calc((100vw - (60px * 4)) / 5));
+    }
   }
 }
