@@ -3,8 +3,8 @@
 $buttonSizeMd: 48px;
 
 @mixin animationViewMobileNav($gap) {
-  gap: calc($gap / 4);
-  scale: 0.25;
+  gap: $gap;
+  scale: 1;
   animation: viewMobileNav var(--t-view-mobileNav) ease-out forwards;
   @keyframes viewMobileNav {
     0% {
