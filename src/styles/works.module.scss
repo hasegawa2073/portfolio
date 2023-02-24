@@ -31,7 +31,7 @@
   @include transition_sizing;
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      transform: scale(1.0193);
+      scale: 1.0193;
     }
   }
 }
