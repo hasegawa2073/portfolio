@@ -32,7 +32,7 @@ const Works: NextPage<Works> = ({ works }) => {
             </div>
             {works.map((work: Work) => (
               <div key={work.id} className={styles.item}>
-                <Link href={`/works/${work.id}`}>
+                <Link href={`/works/${work.id}`} className={styles.link}>
                   <Image
                     src={work.thumbnail.url}
                     width={work.thumbnail.width}
