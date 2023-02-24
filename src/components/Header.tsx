@@ -2,13 +2,12 @@ import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useEffect, useState } from 'react';
 
-import NavigationButton from './button/NavigationButton';
+import GlobalNavigation from './globalNavigation/GlobalNavigation';
 import styles from './Header.module.scss';
-import { CurrentContext, MenuContext } from './Layout';
+import { MenuContext } from './Layout';
 import MobileNavContainer from './mobileNavContainer/MobileNavContainer';
 
 const Header = () => {
-  const currentPage = useContext(CurrentContext);
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   useEffect(() => {
@@ -20,11 +19,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav} role="navigation" aria-label="グローバルナビゲーション">
-        <NavigationButton type="Home" currentPage={currentPage} />
-        <NavigationButton type="About" currentPage={currentPage} />
-        <NavigationButton type="Works" currentPage={currentPage} />
-        <NavigationButton type="GitHub" currentPage={currentPage} />
-        <NavigationButton type="Contact" currentPage={currentPage} />
+        <GlobalNavigation />
       </nav>
       {isMenuOpen === false && isFirstLoad === false ? <MobileNavContainer /> : ''}
       {isMenuOpen === false ? (
