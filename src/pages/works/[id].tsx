@@ -37,7 +37,7 @@ const WorkId: NextPage<Work> = (work) => {
   const handlers = useSwipeable({
     onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/works')),
     onSwipedRight: () => swipeScreenTransition(router.push('/works')),
-    onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/works')),
+    // onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/works')),
     onSwipedLeft: () => swipeScreenTransition(router.push('/works')),
   });
   const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
@@ -52,7 +52,7 @@ const WorkId: NextPage<Work> = (work) => {
         pageTitle="Tatsuya Hasegawaの過去の制作物"
         pageDescription={work.name}
       />
-      <Swipe>
+      <Swipe direction={{ Up: false, Down: true, Left: true, Right: true }}>
         <div {...handlers} ref={refPassthrough}>
           <Layout>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

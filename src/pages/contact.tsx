@@ -15,6 +15,7 @@ import SEO from '@/components/SEO';
 import Swipe from '@/components/swipe/Swipe';
 import { swipeScreenTransition } from '@/function/swipeScreenTransition';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
+import { useWheelScreenTransition } from '@/hooks/useWheelScreenTransition';
 import { emailSchema } from '@/schema/emailSchema';
 import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
@@ -25,12 +26,15 @@ import { caveat, notoSansJP } from './_app';
 const Contact = () => {
   const router = useRouter();
   const { scrollRatioY } = useScrollRatio();
+  const { prev, next } = useWheelScreenTransition();
+
+  prev && swipeScreenTransition(scrollRatioY === 0 && router.push('/works'));
 
   const handlers = useSwipeable({
     onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/works')),
-    onSwipedRight: () => swipeScreenTransition(router.push('/works')),
-    onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/')),
-    onSwipedLeft: () => swipeScreenTransition(router.push('/')),
+    // onSwipedRight: () => swipeScreenTransition(router.push('/works')),
+    // onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/')),
+    // onSwipedLeft: () => swipeScreenTransition(router.push('/')),
   });
   const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
   const refPassthrough = (el: HTMLElement | null) => {
@@ -117,7 +121,7 @@ const Contact = () => {
         pageTitle="Tatsuya Hasegawaへのお問い合わせ"
         pageDescription=""
       />
-      <Swipe>
+      <Swipe direction={{ Up: false, Down: true, Left: false, Right: false }}>
         <div {...handlers} ref={refPassthrough}>
           <Layout>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

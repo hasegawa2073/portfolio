@@ -21,14 +21,13 @@ export default function Home() {
   const prev = wheelDirection == 'Up';
   const next = scrollRatioY === 100 && wheelDirection == 'Down';
 
-  prev && swipeScreenTransition(router.push('/contact'));
   next && swipeScreenTransition(router.push('/about'));
 
   const handlers = useSwipeable({
     onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/about')),
     onSwipedLeft: () => swipeScreenTransition(router.push('/about')),
-    onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/contact')),
-    onSwipedRight: () => swipeScreenTransition(router.push('/contact')),
+    // onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/contact')),
+    // onSwipedRight: () => swipeScreenTransition(router.push('/contact')),
   });
   const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
   const refPassthrough = (el: HTMLElement | null) => {
@@ -38,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <Swipe>
+      <Swipe direction={{ Up: true, Down: false, Left: true, Right: false }}>
         <div {...handlers} ref={refPassthrough}>
           <Layout>
             <SEO pagePath={`${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`} />
