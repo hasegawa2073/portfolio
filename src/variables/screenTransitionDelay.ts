@@ -1,1 +1,1 @@
-export const screenTransitionDelayMs = 500;
+export const screenTransitionDelayMs = 800;
