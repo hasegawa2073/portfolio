@@ -5,12 +5,23 @@ import Image from 'next/image';
 
 // eslint-disable-next-line import/order
 import { useRouter } from 'next/router';
+import { MutableRefObject, useRef } from 'react';
+import { useSwipeable } from 'react-swipeable';
 
 // eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
 
 // eslint-disable-next-line import/order
 import SEO from '@/components/SEO';
+// eslint-disable-next-line import/order
+import Swipe from '@/components/swipe/Swipe';
+import { swipeScreenTransition } from '@/function/swipeScreenTransition';
+// eslint-disable-next-line import/order
+// eslint-disable-next-line import/order
+import { useScrollRatio } from '@/hooks/useScrollRatio';
+
+// eslint-disable-next-line import/order
+import { useWheelScreenTransition } from '@/hooks/useWheelScreenTransition';
 // eslint-disable-next-line import/order
 import styles from '../styles/about.module.scss';
 
@@ -52,8 +63,25 @@ const About = () => {
       ],
     },
   ];
-  const router = useRouter();
 
+  const router = useRouter();
+  const { scrollRatioY } = useScrollRatio();
+  const { prev, next } = useWheelScreenTransition();
+
+  prev && swipeScreenTransition(router.push('/'));
+  next && swipeScreenTransition(router.push('/works'));
+
+  const handlers = useSwipeable({
+    onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/')),
+    onSwipedRight: () => swipeScreenTransition(router.push('/')),
+    onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/works')),
+    onSwipedLeft: () => swipeScreenTransition(router.push('/works')),
+  });
+  const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
+  const refPassthrough = (el: HTMLElement | null) => {
+    handlers.ref(el);
+    layoutRef.current = el;
+  };
   return (
     <>
       <SEO
@@ -61,68 +89,78 @@ const About = () => {
         pageTitle="Tatsuya Hasegawaについて"
         pageDescription=""
       />
-      <Layout>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div className={styles.container}>
-            <div className={styles.ttl_container}>
-              <h1 className={`${caveat.className} ${styles.main_ttl}`}>About</h1>
-              <p className={styles.sub_ttl}>私について</p>
-            </div>
-            <section className={styles.profile}>
-              <Image
-                src="/my-icon.jpg"
-                width={200}
-                height={200}
-                alt="Tatsuya Hasegawa"
-                priority
-                className={styles.profile__icon}
-              />
-              <div>
-                <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>
-                  {profile.name}
-                </h2>
-                <dl className={styles.profile__txt}>
-                  <div className={styles.profile__li}>
-                    <dt className={styles.profile__ttl}>所属</dt>
-                    <dd className={styles.profile__content}>{profile.team}</dd>
-                  </div>
-                  <div className={styles.profile__li}>
-                    <dt className={styles.profile__ttl}>生年月日</dt>
-                    <dd className={styles.profile__content}>{profile.birth}</dd>
-                  </div>
-                  <div className={styles.profile__li}>
-                    <dt className={styles.profile__ttl}>趣味</dt>
-                    <dd className={styles.profile__content}>{profile.hobby}</dd>
-                  </div>
-                  <div className={styles.profile__li}>
-                    <dt className={styles.profile__ttl}>好きな食べ物</dt>
-                    <dd className={styles.profile__content}>{profile.favoriteFood}</dd>
-                  </div>
-                  <div className={styles.profile__li}>
-                    <dt className={styles.profile__ttl}>開発経験</dt>
-                    <dd className={styles.profile__content}>{profile.experience}</dd>
-                  </div>
-                </dl>
-              </div>
-            </section>
-            {contents.map((content) => (
-              <section key={content.ttlEn} className={styles.content}>
+      <Swipe>
+        <div {...handlers} ref={refPassthrough}>
+          <Layout>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <div className={styles.container}>
                 <div className={styles.ttl_container}>
-                  <h2 className={`${caveat.className} ${styles.content__ttlEn}`}>
-                    {content.ttlEn}
-                  </h2>
-                  <p className={styles.content__ttlJP}>{content.ttlJP}</p>
+                  <h1 className={`${caveat.className} ${styles.main_ttl}`}>About</h1>
+                  <p className={styles.sub_ttl}>私について</p>
                 </div>
-                {content.descriptions.map((description, index) => (
-                  <p key={index} className={styles.content__description}>
-                    {description}
-                  </p>
+                <section className={styles.profile}>
+                  <motion.div
+                    drag
+                    dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+                    dragElastic={0.15}
+                  >
+                    <Image
+                      src="/my-icon.jpg"
+                      width={200}
+                      height={200}
+                      alt="Tatsuya Hasegawa"
+                      priority
+                      className={styles.profile__icon}
+                    />
+                  </motion.div>
+                  <div>
+                    <h2 className={`${notoSansJP.className} ${styles.profile__name}`}>
+                      {profile.name}
+                    </h2>
+                    <dl className={styles.profile__txt}>
+                      <div className={styles.profile__li}>
+                        <dt className={styles.profile__ttl}>所属</dt>
+                        <dd className={styles.profile__content}>{profile.team}</dd>
+                      </div>
+                      <div className={styles.profile__li}>
+                        <dt className={styles.profile__ttl}>生年月日</dt>
+                        <dd className={styles.profile__content}>{profile.birth}</dd>
+                      </div>
+                      <div className={styles.profile__li}>
+                        <dt className={styles.profile__ttl}>趣味</dt>
+                        <dd className={styles.profile__content}>{profile.hobby}</dd>
+                      </div>
+                      <div className={styles.profile__li}>
+                        <dt className={styles.profile__ttl}>好きな食べ物</dt>
+                        <dd className={styles.profile__content}>{profile.favoriteFood}</dd>
+                      </div>
+                      <div className={styles.profile__li}>
+                        <dt className={styles.profile__ttl}>開発経験</dt>
+                        <dd className={styles.profile__content}>{profile.experience}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </section>
+                {contents.map((content) => (
+                  <section key={content.ttlEn} className={styles.content}>
+                    <div className={styles.ttl_container}>
+                      <h2 className={`${caveat.className} ${styles.content__ttlEn}`}>
+                        {content.ttlEn}
+                      </h2>
+                      <p className={styles.content__ttlJP}>{content.ttlJP}</p>
+                    </div>
+                    {content.descriptions.map((description, index) => (
+                      <p key={index} className={styles.content__description}>
+                        {description}
+                      </p>
+                    ))}
+                  </section>
                 ))}
-              </section>
-            ))}
-          </div>
-        </motion.div>
-      </Layout>
+              </div>
+            </motion.div>
+          </Layout>
+        </div>
+      </Swipe>
     </>
   );
 };
