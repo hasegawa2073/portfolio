@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
@@ -58,21 +57,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 >
                   <Header />
                 </div>
-                <motion.div
-                  drag="x"
-                  dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                  dragElastic={0.1}
-                  className={styles.draggable}
-                >
-                  <div className={styles.glass}>
-                    <div className={styles.content}>
-                      <main className={styles.main}>{children}</main>
-                    </div>
-                    <div className={styles.footer}>
-                      <Footer />
-                    </div>
+                <div className={styles.glass}>
+                  <div className={styles.content}>
+                    <main className={styles.main}>{children}</main>
                   </div>
-                </motion.div>
+                  <div className={styles.footer}>
+                    <Footer />
+                  </div>
+                </div>
                 <div className={styles.circle_s}></div>
                 <div className={styles.circle_m}></div>
                 <div className={styles.circle_l}></div>
