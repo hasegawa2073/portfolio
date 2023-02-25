@@ -24,6 +24,7 @@
   @include transition_spacing;
   &__icon {
     border-radius: 50%;
+    pointer-events: none;
     @include transition_sizing;
   }
   &__name {

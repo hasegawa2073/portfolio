@@ -4,13 +4,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { MutableRefObject, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSwipeable } from 'react-swipeable';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
+import Swipe from '@/components/swipe/Swipe';
+import { swipeScreenTransition } from '@/function/swipeScreenTransition';
+import { useScrollRatio } from '@/hooks/useScrollRatio';
 import { emailSchema } from '@/schema/emailSchema';
 import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
@@ -20,19 +24,29 @@ import { caveat, notoSansJP } from './_app';
 
 const Contact = () => {
   const router = useRouter();
+  const { scrollRatioY } = useScrollRatio();
+
+  const handlers = useSwipeable({
+    onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/works')),
+    onSwipedRight: () => swipeScreenTransition(router.push('/works')),
+    onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/')),
+    onSwipedLeft: () => swipeScreenTransition(router.push('/')),
+  });
+  const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
+  const refPassthrough = (el: HTMLElement | null) => {
+    handlers.ref(el);
+    layoutRef.current = el;
+  };
+
   const [enableSubmit, setEnableSubmit] = useState(true);
+
   const notifyDoingSubmit = () => {
     toast.info('メールを送信しています...', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
     });
   };
-  const infoValidateError = () => {
-    toast.warn('必須項目をすべて入力してください。', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 5000,
-    });
-  };
+
   const {
     register,
     handleSubmit,
@@ -46,10 +60,7 @@ const Contact = () => {
     email: watch().email,
     text: watch().text,
   };
-  const isEptyForm =
-    formContent.name === undefined ||
-    formContent.email === undefined ||
-    formContent.text === undefined;
+
   const isCompleteForm =
     Boolean(formContent.name) && Boolean(formContent.email) && Boolean(formContent.text);
 
@@ -106,87 +117,91 @@ const Contact = () => {
         pageTitle="Tatsuya Hasegawaへのお問い合わせ"
         pageDescription=""
       />
-      <Layout>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div className={styles.container}>
-            <div className={styles.ttl_container}>
-              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
-              <p className={styles.sub_ttl}>お問い合わせ</p>
-            </div>
-            <form method="post" className={styles.form} onSubmit={submitHandler}>
-              <div className={styles.form__personInfoContainer}>
-                <div className={`${styles.form__item} ${styles.form__personInfo}`}>
-                  <label htmlFor="name" className={styles.form__label}>
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder=""
-                    autoComplete="name"
-                    autoFocus
-                    aria-required="true"
-                    className={`${notoSansJP.className} ${styles.form__text}`}
-                    {...register('name')}
-                  />
-                  <p role="alert" className={styles.form__error}>
-                    {errors.name?.message}
-                  </p>
+      <Swipe>
+        <div {...handlers} ref={refPassthrough}>
+          <Layout>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <div className={styles.container}>
+                <div className={styles.ttl_container}>
+                  <h1 className={`${caveat.className} ${styles.main_ttl}`}>Contact</h1>
+                  <p className={styles.sub_ttl}>お問い合わせ</p>
                 </div>
-                <div className={`${styles.form__item} ${styles.form__personInfo}`}>
-                  <label htmlFor="email" className={styles.form__label}>
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder=""
-                    autoComplete="email"
-                    aria-required="true"
-                    className={`${notoSansJP.className} ${styles.form__text}`}
-                    {...register('email')}
-                  />
-                  <p role="alert" className={styles.form__error}>
-                    {errors.email?.message}
-                  </p>
-                </div>
+                <form method="post" className={styles.form} onSubmit={submitHandler}>
+                  <div className={styles.form__personInfoContainer}>
+                    <div className={`${styles.form__item} ${styles.form__personInfo}`}>
+                      <label htmlFor="name" className={styles.form__label}>
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        placeholder=""
+                        autoComplete="name"
+                        autoFocus
+                        aria-required="true"
+                        className={`${notoSansJP.className} ${styles.form__text}`}
+                        {...register('name')}
+                      />
+                      <p role="alert" className={styles.form__error}>
+                        {errors.name?.message}
+                      </p>
+                    </div>
+                    <div className={`${styles.form__item} ${styles.form__personInfo}`}>
+                      <label htmlFor="email" className={styles.form__label}>
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder=""
+                        autoComplete="email"
+                        aria-required="true"
+                        className={`${notoSansJP.className} ${styles.form__text}`}
+                        {...register('email')}
+                      />
+                      <p role="alert" className={styles.form__error}>
+                        {errors.email?.message}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`${styles.form__item} ${styles.form__message}`}>
+                    <label htmlFor="message" className={styles.form__label}>
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      placeholder=""
+                      aria-required="true"
+                      className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
+                      {...register('text')}
+                    />
+                    <p role="alert" className={styles.form__error}>
+                      {errors.text?.message}
+                    </p>
+                  </div>
+                  <button
+                    type="submit"
+                    role="button"
+                    className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
+                      enableSubmit === false ? styles.form__buttonWait : ''
+                    } ${styles.form__button}`}
+                    disabled={!enableSubmit}
+                  >
+                    <>
+                      {isCompleteForm === true ? (
+                        ''
+                      ) : (
+                        <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
+                      )}
+                      <span>SEND</span>
+                    </>
+                  </button>
+                </form>
               </div>
-              <div className={`${styles.form__item} ${styles.form__message}`}>
-                <label htmlFor="message" className={styles.form__label}>
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  placeholder=""
-                  aria-required="true"
-                  className={`${notoSansJP.className} ${styles.form__text} ${styles.form__textArea}`}
-                  {...register('text')}
-                />
-                <p role="alert" className={styles.form__error}>
-                  {errors.text?.message}
-                </p>
-              </div>
-              <button
-                type="submit"
-                role="button"
-                className={`${isCompleteForm === false ? styles.form__buttonLock : ''} ${
-                  enableSubmit === false ? styles.form__buttonWait : ''
-                } ${styles.form__button}`}
-                disabled={!enableSubmit}
-              >
-                <>
-                  {isCompleteForm === true ? (
-                    ''
-                  ) : (
-                    <FontAwesomeIcon icon={faLock} className={styles.form__buttonIcon} />
-                  )}
-                  <span>SEND</span>
-                </>
-              </button>
-            </form>
-          </div>
-        </motion.div>
-      </Layout>
+            </motion.div>
+          </Layout>
+        </div>
+      </Swipe>
       <ToastContainer />
     </>
   );
