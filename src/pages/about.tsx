@@ -21,7 +21,8 @@ import { swipeScreenTransition } from '@/function/swipeScreenTransition';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
 
 // eslint-disable-next-line import/order
-import { useWheelScreenTransition } from '@/hooks/useWheelScreenTransition';
+import { useWheelDirection } from '@/hooks/useWheeloDirection';
+
 // eslint-disable-next-line import/order
 import styles from '../styles/about.module.scss';
 
@@ -66,7 +67,9 @@ const About = () => {
 
   const router = useRouter();
   const { scrollRatioY } = useScrollRatio();
-  const { prev, next } = useWheelScreenTransition();
+  const wheelDirection = useWheelDirection();
+  const prev = scrollRatioY === 0 && wheelDirection === 'Up';
+  const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
   prev && swipeScreenTransition(router.push('/'));
   next && swipeScreenTransition(router.push('/works'));
@@ -89,7 +92,7 @@ const About = () => {
         pageTitle="Tatsuya Hasegawaについて"
         pageDescription=""
       />
-      <Swipe>
+      <Swipe direction={{ Up: true, Down: true, Left: true, Right: true }}>
         <div {...handlers} ref={refPassthrough}>
           <Layout>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

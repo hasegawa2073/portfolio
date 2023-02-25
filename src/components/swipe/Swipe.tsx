@@ -5,7 +5,15 @@ import { useScrollRatio } from '@/hooks/useScrollRatio';
 
 import styles from './Swipe.module.scss';
 
-const Swipe = ({ children }: { children: ReactNode }) => {
+type Direction = {
+  Up: boolean;
+  Down: boolean;
+  Left: boolean;
+  Right: boolean;
+};
+
+const Swipe = ({ children, direction }: { children: ReactNode; direction: Direction }) => {
+  const { Up, Down, Left, Right } = direction;
   const [swipeDirection, setSwipeDirection] = useState<SwipeDirection>();
   const { scrollRatioY } = useScrollRatio();
   const handlers = useSwipeable({
@@ -22,10 +30,10 @@ const Swipe = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div
-        className={`${swipeDirection === 'Up' && styles.swipe__up} ${
-          swipeDirection === 'Down' && styles.swipe__down
-        } ${swipeDirection === 'Left' && styles.swipe__left} ${
-          swipeDirection === 'Right' && styles.swipe__right
+        className={`${Up && swipeDirection === 'Up' && styles.swipe__up} ${
+          Down && swipeDirection === 'Down' && styles.swipe__down
+        } ${Left && swipeDirection === 'Left' && styles.swipe__left} ${
+          Right && swipeDirection === 'Right' && styles.swipe__right
         }`}
         {...handlers}
         ref={refPassthrough}
