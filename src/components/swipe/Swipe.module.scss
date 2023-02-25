@@ -1,0 +1,56 @@
+// @mixin transtion_swipe {
+//   transition: transform 0.8s ease-out;
+// }
+
+$swipeAmountX: 500px;
+$swipeAmountY: 1200px;
+
+@mixin animationSwipe($direction) {
+  animation: swipe#{$direction} 0.8s ease-out forwards;
+  @keyframes swipeUp {
+    0% {
+      transform: 0;
+    }
+    100% {
+      transform: translateY(-#{$swipeAmountY});
+    }
+  }
+  @keyframes swipeDown {
+    0% {
+      transform: 0;
+    }
+    100% {
+      transform: translateY($swipeAmountY);
+    }
+  }
+  @keyframes swipeLeft {
+    0% {
+      transform: 0;
+    }
+    100% {
+      transform: translateX(-#{$swipeAmountX});
+    }
+  }
+  @keyframes swipeRight {
+    0% {
+      transform: 0;
+    }
+    100% {
+      transform: translateX($swipeAmountX);
+    }
+  }
+}
+.swipe {
+  &__up {
+    @include animationSwipe('Up');
+  }
+  &__down {
+    @include animationSwipe('Down');
+  }
+  &__left {
+    @include animationSwipe('Left');
+  }
+  &__right {
+    @include animationSwipe('Right');
+  }
+}
