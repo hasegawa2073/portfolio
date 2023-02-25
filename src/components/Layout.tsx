@@ -61,7 +61,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 <motion.div
                   drag="x"
                   dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                  dragElastic={0.25}
+                  dragElastic={0.1}
                   className={styles.draggable}
                 >
                   <div className={styles.glass}>
