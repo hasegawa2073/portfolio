@@ -15,7 +15,7 @@ import SEO from '@/components/SEO';
 import Swipe from '@/components/swipe/Swipe';
 import { swipeScreenTransition } from '@/function/swipeScreenTransition';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
-import { useWheelScreenTransition } from '@/hooks/useWheelScreenTransition';
+import { useWheelDirection } from '@/hooks/useWheeloDirection';
 import { emailSchema } from '@/schema/emailSchema';
 import { EmailContent, EmailContentKey } from '@/types/emailContent';
 
@@ -26,7 +26,8 @@ import { caveat, notoSansJP } from './_app';
 const Contact = () => {
   const router = useRouter();
   const { scrollRatioY } = useScrollRatio();
-  const { prev, next } = useWheelScreenTransition();
+  const wheelDirection = useWheelDirection();
+  const prev = scrollRatioY === 0 && wheelDirection === 'Up';
 
   prev && swipeScreenTransition(scrollRatioY === 0 && router.push('/works'));
 
