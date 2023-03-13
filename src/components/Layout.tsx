@@ -68,19 +68,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 <div className={styles.circle_s}></div>
                 <div className={styles.circle_m}></div>
                 <div className={styles.circle_l}></div>
-                {isMenuOpen === true ? (
+                {isMenuOpen === true && (
                   <div
                     className={styles.filterLayer}
                     onClick={() => setIsMenuOpen((prev) => !prev)}
                   ></div>
-                ) : (
-                  ''
                 )}
-                {!isMenuOpen && !isFirstLoad ? (
-                  <div className={styles.filterLayer__fadeout}></div>
-                ) : (
-                  ''
-                )}
+                {!isMenuOpen && !isFirstLoad && <div className={styles.filterLayer__fadeout}></div>}
               </div>
             </div>
           </div>
