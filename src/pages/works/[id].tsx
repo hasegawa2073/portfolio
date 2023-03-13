@@ -30,6 +30,7 @@ const WorkId: NextPage<Work> = (work) => {
   const prev = scrollRatioY === 0 && wheelDirection === 'Up';
   const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
+  prev && router.push('/works');
   next && router.push('/works');
 
   return (

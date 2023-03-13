@@ -24,6 +24,7 @@ const Works: NextPage<Works> = ({ works }) => {
   const prev = scrollRatioY === 0 && wheelDirection === 'Up';
   const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
+  prev && router.push('/about');
   next && router.push('/contact');
 
   return (

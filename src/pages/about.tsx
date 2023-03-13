@@ -8,9 +8,17 @@ import { useRouter } from 'next/router';
 
 // eslint-disable-next-line import/order
 import Layout from '@/components/Layout';
+// eslint-disable-next-line import/order
+import { useContext } from 'react';
 
 // eslint-disable-next-line import/order
 import SEO from '@/components/SEO';
+// eslint-disable-next-line import/order
+import { HistoryContext } from '@/context/HistoryContext';
+// eslint-disable-next-line import/order
+import { ScrollHistoryContext } from '@/context/ScrollHistoryContext';
+// eslint-disable-next-line import/order
+import { scrollToBottom } from '@/functions/scrollToBottom';
 // eslint-disable-next-line import/order
 import { useScrollRatio } from '@/hooks/useScrollRatio';
 
@@ -60,12 +68,21 @@ const About = () => {
   ];
 
   const router = useRouter();
+
+  const history = useContext(HistoryContext);
+  const scrollHistory = useContext(ScrollHistoryContext);
+
   const { scrollRatioY } = useScrollRatio();
   const wheelDirection = useWheelDirection();
 
   const prev = scrollRatioY === 0 && wheelDirection === 'Up';
   const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
+  const isFromWorks = history[1].includes('/works');
+  const scrollFromWorks = scrollHistory && isFromWorks;
+  scrollFromWorks && scrollToBottom();
+
+  prev && router.push('/');
   next && router.push('/works');
 
   return (

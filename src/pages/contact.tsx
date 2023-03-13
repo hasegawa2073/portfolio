@@ -4,13 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
+import { HistoryContext } from '@/context/HistoryContext';
+import { ScrollHistoryContext } from '@/context/ScrollHistoryContext';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
 import { useWheelDirection } from '@/hooks/useWheeloDirection';
 import { emailSchema } from '@/schema/emailSchema';
@@ -22,9 +24,14 @@ import { caveat, notoSansJP } from './_app';
 
 const Contact = () => {
   const router = useRouter();
+  const history = useContext(HistoryContext);
+  const scrollHistory = useContext(ScrollHistoryContext);
+
   const { scrollRatioY } = useScrollRatio();
   const wheelDirection = useWheelDirection();
+
   const prev = scrollRatioY === 0 && wheelDirection === 'Up';
+  const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
   const [enableSubmit, setEnableSubmit] = useState(true);
 

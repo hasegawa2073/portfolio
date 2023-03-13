@@ -17,19 +17,25 @@ export const CurrentContext = createContext('Home');
 export const MenuContext = createContext({} as MenuContext);
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
+
+  const { width, height } = useWindowSize();
+
   const convertPathToPage = (path: string) => {
     const firstUpperLetter = path.slice(1).toUpperCase().slice(0, 1);
     const otherChar = path.slice(2);
     return firstUpperLetter + otherChar;
   };
-  const router = useRouter();
+
   const pathName = router.pathname === '/' ? 'Home' : convertPathToPage(router.pathname);
-  const { width, height } = useWindowSize();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   useEffect(() => {
     setIsFirstLoad(false);
   }, [isMenuOpen]);
+
   useEffect(() => {
     setIsFirstLoad(true);
   }, []);
