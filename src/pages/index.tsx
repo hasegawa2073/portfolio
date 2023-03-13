@@ -14,7 +14,6 @@ export default function Home() {
   const { scrollRatioY } = useScrollRatio();
   const wheelDirection = useWheelDirection();
 
-  const prev = wheelDirection === 'Up';
   const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
   next && router.push('/about');
