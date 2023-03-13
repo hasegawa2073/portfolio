@@ -3,9 +3,13 @@ import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
+import { HistoryContext } from '@/context/HistoryContext';
+import { ScrollHistoryContext } from '@/context/ScrollHistoryContext';
+import { scrollToBottom } from '@/functions/scrollToBottom';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
 import { useWheelDirection } from '@/hooks/useWheeloDirection';
 import { getList } from '@/libs/microcms';
@@ -18,11 +22,18 @@ import { caveat } from './_app';
 const Works: NextPage<Works> = ({ works }) => {
   const router = useRouter();
 
+  const history = useContext(HistoryContext);
+  const scrollHistory = useContext(ScrollHistoryContext);
+
   const { scrollRatioY } = useScrollRatio();
   const wheelDirection = useWheelDirection();
 
   const prev = scrollRatioY === 0 && wheelDirection === 'Up';
   const next = scrollRatioY === 100 && wheelDirection === 'Down';
+
+  const isFromWork = history[1].includes('/works/[id]');
+  const scrollFromWork = scrollHistory && isFromWork;
+  scrollFromWork && scrollToBottom();
 
   prev && router.push('/about');
 
