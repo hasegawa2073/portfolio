@@ -3,15 +3,11 @@ import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { MutableRefObject, useRef } from 'react';
-import { useSwipeable } from 'react-swipeable';
 
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
-import Swipe from '@/components/swipe/Swipe';
-import { swipeScreenTransition } from '@/function/swipeScreenTransition';
 import { useScrollRatio } from '@/hooks/useScrollRatio';
-import { useWheelScreenTransition } from '@/hooks/useWheelScreenTransition';
+import { useWheelDirection } from '@/hooks/useWheeloDirection';
 import { getDetail, getList } from '@/libs/microcms';
 import styles from '@/styles/works[id].module.scss';
 import { Work } from '@/types/work';
@@ -29,22 +25,14 @@ const WorkId: NextPage<Work> = (work) => {
   ];
   const router = useRouter();
   const { scrollRatioY } = useScrollRatio();
-  const { prev, next } = useWheelScreenTransition();
+  const wheelDirection = useWheelDirection();
 
-  prev && swipeScreenTransition(router.push('/works'));
-  next && swipeScreenTransition(router.push('/works'));
+  const prev = scrollRatioY === 0 && wheelDirection === 'Up';
+  const next = scrollRatioY === 100 && wheelDirection === 'Down';
 
-  const handlers = useSwipeable({
-    onSwipedDown: () => swipeScreenTransition(scrollRatioY === 0 && router.push('/works')),
-    onSwipedRight: () => swipeScreenTransition(router.push('/works')),
-    // onSwipedUp: () => swipeScreenTransition(scrollRatioY === 100 && router.push('/works')),
-    onSwipedLeft: () => swipeScreenTransition(router.push('/works')),
-  });
-  const layoutRef: MutableRefObject<HTMLElement | null> = useRef(null);
-  const refPassthrough = (el: HTMLElement | null) => {
-    handlers.ref(el);
-    layoutRef.current = el;
-  };
+  prev && router.push('/works');
+  next && router.push('/works');
+
   return (
     <>
       <SEO
@@ -52,89 +40,79 @@ const WorkId: NextPage<Work> = (work) => {
         pageTitle="Tatsuya Hasegawaの過去の制作物"
         pageDescription={work.name}
       />
-      <Swipe direction={{ Up: false, Down: true, Left: true, Right: true }}>
-        <div {...handlers} ref={refPassthrough}>
-          <Layout>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <div className={styles.section}>
-                <div className={styles.ttl_container}>
-                  <h1 className={`${caveat.className} ${styles.main_ttl}`}>Work</h1>
-                  <p className={styles.sub_ttl}>制作物の詳細</p>
-                </div>
-                <section>
-                  <div className={styles.thumbnailContainer}>
-                    <Image
-                      src={work.thumbnail.url}
-                      width={work.thumbnail.width}
-                      height={work.thumbnail.height}
-                      alt={work.name}
-                      className={styles.thumbnail}
-                      priority
-                    />
-                  </div>
-                  <div className={styles.contentContainer}>
-                    <div className={styles.nameContainer}>
-                      <p className={styles.date}>{work.date}</p>
-                      <h2 className={styles.name}>{work.name}</h2>
-                    </div>
-                    <div
-                      className={`${
-                        work.icon?.url ? styles.detailContainer : styles.detailContainer__NoIcon
-                      }`}
-                    >
-                      <dl className={styles.detail}>
-                        {items.map((item) => (
-                          <div key={item.title} className={styles.detail__box}>
-                            <dt className={styles.detail__ttl}>{item.title}</dt>
-                            {item.value === work.url ? (
-                              <dd className={styles.detail__txt}>
-                                <Link
-                                  href={item.value}
-                                  target="_blank"
-                                  className={styles.detail__url}
-                                >
-                                  {item.value}
-                                </Link>
-                              </dd>
-                            ) : (
-                              <dd className={styles.detail__txt}>{item.value}</dd>
-                            )}
-                          </div>
-                        ))}
-                      </dl>
-                      {work.icon && work.shortName ? (
-                        <figure className={styles.work}>
-                          <Link
-                            href={work.url}
-                            target="_blank"
-                            role="button"
-                            aria-label={`${work.name}を見る`}
-                          >
-                            <div className={styles.work__iconWrap}>
-                              <Image
-                                src={work.icon.url}
-                                width={work.icon.width}
-                                height={work.icon.height}
-                                alt={work.shortName}
-                                className={styles.work__icon}
-                              />
-                            </div>
-                          </Link>
-                          <figcaption className={styles.work__shortName}>
-                            {work.shortName}
-                          </figcaption>
-                        </figure>
-                      ) : (
-                        ''
-                      )}
-                    </div>
-                  </div>
-                </section>
+      <Layout>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className={styles.section}>
+            <div className={styles.ttl_container}>
+              <h1 className={`${caveat.className} ${styles.main_ttl}`}>Work</h1>
+              <p className={styles.sub_ttl}>制作物の詳細</p>
+            </div>
+            <section>
+              <div className={styles.thumbnailContainer}>
+                <Image
+                  src={work.thumbnail.url}
+                  width={work.thumbnail.width}
+                  height={work.thumbnail.height}
+                  alt={work.name}
+                  className={styles.thumbnail}
+                  priority
+                />
               </div>
-            </motion.div>
-          </Layout>
-        </div>
-      </Swipe>
+              <div className={styles.contentContainer}>
+                <div className={styles.nameContainer}>
+                  <p className={styles.date}>{work.date}</p>
+                  <h2 className={styles.name}>{work.name}</h2>
+                </div>
+                <div
+                  className={`${
+                    work.icon?.url ? styles.detailContainer : styles.detailContainer__NoIcon
+                  }`}
+                >
+                  <dl className={styles.detail}>
+                    {items.map((item) => (
+                      <div key={item.title} className={styles.detail__box}>
+                        <dt className={styles.detail__ttl}>{item.title}</dt>
+                        {item.value === work.url ? (
+                          <dd className={styles.detail__txt}>
+                            <Link href={item.value} target="_blank" className={styles.detail__url}>
+                              {item.value}
+                            </Link>
+                          </dd>
+                        ) : (
+                          <dd className={styles.detail__txt}>{item.value}</dd>
+                        )}
+                      </div>
+                    ))}
+                  </dl>
+                  {work.icon && work.shortName ? (
+                    <figure className={styles.work}>
+                      <Link
+                        href={work.url}
+                        target="_blank"
+                        role="button"
+                        aria-label={`${work.name}を見る`}
+                      >
+                        <div className={styles.work__iconWrap}>
+                          <Image
+                            src={work.icon.url}
+                            width={work.icon.width}
+                            height={work.icon.height}
+                            alt={work.shortName}
+                            className={styles.work__icon}
+                          />
+                        </div>
+                      </Link>
+                      <figcaption className={styles.work__shortName}>{work.shortName}</figcaption>
+                    </figure>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </div>
+            </section>
+          </div>
+        </motion.div>
+      </Layout>
     </>
   );
 };
